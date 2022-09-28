@@ -34,10 +34,10 @@ public class EnemigoIA : MonoBehaviour
    //esta funcion se ejecuta 1 vez por fotograma
     void Update()
     {
-        //Esta variable almacena el vector dirección del enemigo en funcion de su posición y el proximo waypoint
+        //Esta variable almacena el vector direcciï¿½n del enemigo en funcion de su posiciï¿½n y el proximo waypoint
         Vector2 dir = objetivo.position - transform.position;
 
-        //mueve al enemigo hacia el proximo waypoint en funcion de la velocidad y la dirección. Al ser .normalized no depende del modulo del vector direccion y al estar multiplicado por Time.deltaTime no depende de los fps del cliente.
+        //mueve al enemigo hacia el proximo waypoint en funcion de la velocidad y la direcciï¿½n. Al ser .normalized no depende del modulo del vector direccion y al estar multiplicado por Time.deltaTime no depende de los fps del cliente.
         transform.Translate(dir.normalized * velocidad * Time.deltaTime, Space.World);
 
         //ejecuta la funcion sigueinteWaypoint cuando el enemigo llega a un waypoint para cambiar de objetivo al siguiente waypoint
@@ -60,6 +60,14 @@ public class EnemigoIA : MonoBehaviour
                 objetivo = Waypoints.puntosRama2[waypointIndice];
             }
             
+        }
+        //elimina los enemigos al llegar alfinal del recorrido
+        int eliminarEntidades()
+        {
+            if(Vector2.Distance(transform.position, Waypoints.ultimo.position) <= 0.05f){
+                
+            }
+            return;
         }
 
     }
