@@ -22,11 +22,11 @@ public class EnemigoIA : MonoBehaviour
         //asigna un camino al enemigo en funcion de su punto de spawn
         if (puntoSpawn == 1)
         {
-            objetivo = WaypointsRama1.puntosRama1[0];
+            objetivo = Waypoints.puntosRama1[0];
         }
         else if (puntoSpawn == 2)
         {
-            objetivo = WaypointsRama2.puntosRama2[0];
+            objetivo = Waypoints.puntosRama2[0];
         }
     }
 
@@ -53,11 +53,11 @@ public class EnemigoIA : MonoBehaviour
 
             if (puntoSpawn == 1)
             {
-                objetivo = WaypointsRama1.puntosRama1[waypointIndice];
+                objetivo = Waypoints.puntosRama1[waypointIndice];
             }
             else if (puntoSpawn == 2)
             {
-                objetivo = WaypointsRama2.puntosRama2[waypointIndice];
+                objetivo = Waypoints.puntosRama2[waypointIndice];
             }
             
         }
