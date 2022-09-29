@@ -51,11 +51,11 @@ public class EnemigoIA : MonoBehaviour
         {
             waypointIndice++;
 
-            if (puntoSpawn == 1)
+            if (puntoSpawn == 1 && waypointIndice < Waypoints.rama1length)
             {
                 objetivo = Waypoints.puntosRama1[waypointIndice];
             }
-            else if (puntoSpawn == 2)
+            else if (puntoSpawn == 2  && waypointIndice < Waypoints.rama2length)
             {
                 objetivo = Waypoints.puntosRama2[waypointIndice];
             }
@@ -64,11 +64,12 @@ public class EnemigoIA : MonoBehaviour
         //elimina los enemigos al llegar alfinal del recorrido
         int eliminarEntidades()
         {
-            if(Vector2.Distance(transform.position, Waypoints.ultimo.position) <= 0.05f){
-                
+            if(Vector3.Distance(transform.position, Waypoints.ultimo.position) <= 0.05f){
+                Destroy(gameObject);
             }
-            return;
+            return 0;
         }
+        eliminarEntidades();
 
     }
 }

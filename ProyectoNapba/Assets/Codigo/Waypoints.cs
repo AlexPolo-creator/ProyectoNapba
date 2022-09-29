@@ -6,8 +6,11 @@ public class Waypoints : MonoBehaviour
 {
     
     public static Transform[] puntosRama1;
+    public static int rama1length = 0;
+    public static int rama2length = 0; 
     public static Transform[] puntosRama2;
-    public int rama;
+    public static Transform ultimo ;
+    public int rama ;
 
     void Awake()
     {
@@ -17,7 +20,9 @@ public class Waypoints : MonoBehaviour
             for (int i = 0; i < puntosRama1.Length; i++)
             {
                 puntosRama1[i] = transform.GetChild(i);
+                rama1length++;
             }
+            ultimo = puntosRama1[rama1length-1];
         }
         else if (rama == 2)
         {
@@ -25,7 +30,9 @@ public class Waypoints : MonoBehaviour
             for (int i = 0; i < puntosRama2.Length; i++)
             {
                 puntosRama2[i] = transform.GetChild(i);
+                rama2length++;
             }
+            ultimo = puntosRama2[rama2length-1];
         }
 
 

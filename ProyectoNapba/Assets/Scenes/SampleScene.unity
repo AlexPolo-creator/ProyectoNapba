@@ -614,6 +614,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7110862643458536590, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
+      propertyPath: velocidad
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7806536576105148037, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
       propertyPath: m_Name
       value: Enemigo 1
@@ -3016,11 +3020,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2099477504944914319, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.599
+      value: 3.53
       objectReference: {fileID: 0}
     - target: {fileID: 2099477504944914319, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.02
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 2099477504944914319, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3053,6 +3057,10 @@ PrefabInstance:
     - target: {fileID: 2099477504944914319, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110862643458536590, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
+      propertyPath: velocidad
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7110862643458536590, guid: 1c3500eb03157154e8158e49ede42635, type: 3}
       propertyPath: puntoSpawn
