@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7110862643458536590}
   - component: {fileID: 7141134848501576474}
   m_Layer: 0
-  m_Name: Enemigo 1
+  m_Name: Enemigo 1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 1
-  puntoSpawn: 1
+  puntoSpawn: 2
 --- !u!212 &7141134848501576474
 SpriteRenderer:
   m_ObjectHideFlags: 0
