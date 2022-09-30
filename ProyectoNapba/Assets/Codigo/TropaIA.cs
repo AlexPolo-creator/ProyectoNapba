@@ -35,10 +35,10 @@ public class TropaIA : MonoBehaviour
 
         if (objetivo == null) return;
 
-        Vector3 vectorToTarget = objetivo.position - puntoDeDisparo.position;
+        Vector3 vectorToTarget = objetivo.position - transform.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotacionDiff;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        puntoDeDisparo.rotation = Quaternion.Slerp(puntoDeDisparo.rotation, q, Time.deltaTime * velocidadRotacion);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);
 
         /*
         Vector2 dir = objetivo.position - transform.position;

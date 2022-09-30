@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rango: 1.5
   velocidadDisparo: 1
-  velocidadRotacion: 20
+  velocidadRotacion: 2
   rotacionDiff: 90
   puntoDeDisparo: {fileID: 4054432302120944946}
   enemigoTag: Enemigo

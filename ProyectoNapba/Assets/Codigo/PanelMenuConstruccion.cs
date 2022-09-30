@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class PanelMenuConstruccion : MonoBehaviour
 {
+    public ItemsDeCompra arquero;
+    public ItemsDeCompra mago;
+
+    public ItemsDeCompra torre;
 
     MenuConstrucion menuConstrucion;
 
@@ -13,17 +17,17 @@ public class PanelMenuConstruccion : MonoBehaviour
 
     public void ElegirArquero()
     {
-        menuConstrucion.ElegirTropaAColocar(menuConstrucion.Arquero);
+        menuConstrucion.ElegirTropaAColocar(arquero);
     }
 
     public void ElegirMago()
     {
-        menuConstrucion.ElegirTropaAColocar(menuConstrucion.Mago);
+        menuConstrucion.ElegirTropaAColocar(mago);
     }
 
     public void ElegirTorre()
     {
-        menuConstrucion.ElegirTorreAColocar(menuConstrucion.Torre);
+        menuConstrucion.ElegirTorreAColocar(torre);
         Debug.Log("1");
     }
 

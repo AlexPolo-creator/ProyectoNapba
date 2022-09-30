@@ -8,7 +8,8 @@ public class NodoTropa : MonoBehaviour
 
     public Color hoverColor;
 
-    private GameObject tropa = null;
+    [Header("Opcional")]
+    public GameObject tropa = null;
 
     private SpriteRenderer sprite;
     private Color colorInicial;
@@ -21,9 +22,14 @@ public class NodoTropa : MonoBehaviour
         menuConstrucion = MenuConstrucion.instance;
     }
 
+    public Vector3 ObtenerPosicionColocacionTropa()
+    {
+        return transform.position;
+    }
+
     void OnMouseDown()
     {
-        if (menuConstrucion.ObtenerTropaAColocar() == null) return;
+        if (!menuConstrucion.puedeColocarTropa) return;
 
         if (tropa = null)
         {
@@ -31,14 +37,14 @@ public class NodoTropa : MonoBehaviour
             return;
         }
 
-        GameObject tropaAColocar = MenuConstrucion.instance.ObtenerTropaAColocar();
-        tropa = (GameObject)Instantiate(tropaAColocar, transform.position, transform.rotation);
+        menuConstrucion.ColocarTropaEn(this);
+
         
     }
 
     void OnMouseEnter()
     {
-        if (menuConstrucion.ObtenerTropaAColocar() == null) return;
+        if (!menuConstrucion.puedeColocarTropa) return;
 
         sprite.color = hoverColor;
     }

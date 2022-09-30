@@ -8,7 +8,8 @@ public class NodoTorre : MonoBehaviour
 
     public Color hoverColor;
 
-    private GameObject torre = null;
+    [Header("Opcional")]
+    public GameObject torre = null;
 
     private SpriteRenderer sprite;
     private Color colorInicial;
@@ -21,25 +22,29 @@ public class NodoTorre : MonoBehaviour
         menuConstrucion = MenuConstrucion.instance;
     }
 
+    public Vector3 ObtenerPosicionColocacionTorre ()
+    {
+        return transform.position;
+    }
+
     void OnMouseDown()
     {
-        if (menuConstrucion.ObtenerTorreAColocar() == null) return;
+        if (!menuConstrucion.puedeColocarTorre) return;
 
-        if (torre = null)
+        if (torre != null)
         {
             Debug.Log("No se puede construir ahí pendejo!");
             return;
         }
-
-        GameObject torreAColocar = MenuConstrucion.instance.ObtenerTorreAColocar();
-        torre = (GameObject)Instantiate(torreAColocar, transform.position, transform.rotation);
+        menuConstrucion.ColocarTorreEn(this);
+        
         gameObject.SetActive(false);
     }
 
     void OnMouseEnter()
     {
-        if (menuConstrucion.ObtenerTorreAColocar() == null) return;
-        Debug.Log("onMouseEnter");
+        if (!menuConstrucion.puedeColocarTorre) return;
+        
         sprite.color = hoverColor;
     }
     void OnMouseExit()

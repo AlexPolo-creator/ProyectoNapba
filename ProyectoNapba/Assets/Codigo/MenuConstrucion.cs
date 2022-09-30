@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MenuConstrucion : MonoBehaviour
 {
+    
     public static MenuConstrucion instance;
 
     void Awake()
@@ -26,28 +27,34 @@ public class MenuConstrucion : MonoBehaviour
 
    
 
-    private GameObject tropaAColocar;
-    private GameObject torreAColocar;
+    private ItemsDeCompra tropaAColocar;
+    private ItemsDeCompra torreAColocar;
 
-    public GameObject ObtenerTropaAColocar ()
+    public bool puedeColocarTorre { get { return torreAColocar != null;  } }
+    public bool puedeColocarTropa { get { return tropaAColocar != null; } }
+
+    public void ColocarTorreEn (NodoTorre nodo)
     {
-        return tropaAColocar;
+        GameObject torre = (GameObject)Instantiate(torreAColocar.prefab, nodo.ObtenerPosicionColocacionTorre(), Quaternion.identity);
+        nodo.torre = torre;
     }
 
-    public void ElegirTropaAColocar (GameObject torre)
+    public void ColocarTropaEn(NodoTropa nodo)
     {
-        tropaAColocar = torre;
+        GameObject tropa = (GameObject)Instantiate(tropaAColocar.prefab, nodo.ObtenerPosicionColocacionTropa(), Quaternion.identity);
+        nodo.tropa = tropa;
     }
 
-    public GameObject ObtenerTorreAColocar()
+    public void ElegirTropaAColocar (ItemsDeCompra tropa)
     {
-        return torreAColocar;
+        tropaAColocar = tropa;
+        torreAColocar = null;
     }
 
-    public void ElegirTorreAColocar(GameObject torre)
+    public void ElegirTorreAColocar(ItemsDeCompra torre)
     {
         torreAColocar = torre;
-        Debug.Log("2");
+        tropaAColocar = null;
     }
 
 }
