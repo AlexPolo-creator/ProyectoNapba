@@ -7,6 +7,8 @@ public class Stats : MonoBehaviour
 {
     private void Start()
     {
+        InvokeRepeating("calcularStats", 0, 0.1f);
+
         vidaJugador = vidaJugadorInicial;
 
         oro = oroInicial;
@@ -14,12 +16,22 @@ public class Stats : MonoBehaviour
         poblacion = poblacionInicial;
         comida = comidaInicial;
 
+        poblacionEnCultivo = poblacionEnCultivoInicial;
+        poblacionEnMina = poblacionEnMinaInicial;
+        poblacionEnTemplo = poblacionEnTemploInicial;
+
+        poblacionLibre = poblacion - poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
+
         arqueros = 0;
         magos = 0;
 
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
+    void calcularStats()
+    {
+        poblacionLibre = poblacion - poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
+    }
 
     public static int vidaJugador;
     public int vidaJugadorInicial = 100;
@@ -34,6 +46,15 @@ public class Stats : MonoBehaviour
 
     public static int poblacion;
     public int poblacionInicial = 50;
+
+    public static int poblacionEnMina;
+    public static int poblacionEnTemplo;
+    public static int poblacionEnCultivo;
+    public int poblacionEnMinaInicial;
+    public int poblacionEnTemploInicial;
+    public int poblacionEnCultivoInicial;
+
+    public static int poblacionLibre;
 
     public static int comida;
     public int comidaInicial = 100;

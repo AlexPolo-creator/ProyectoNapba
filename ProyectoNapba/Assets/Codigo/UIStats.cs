@@ -6,12 +6,16 @@ using TMPro;
 
 public class UIStats : MonoBehaviour
 {
+   // HUD
     public TextMeshProUGUI vidaJugadorTexto;
 
     public TextMeshProUGUI oroTexto;
     public TextMeshProUGUI favorTexto;
     public TextMeshProUGUI poblacionTexto;
     public TextMeshProUGUI comidaTexto;
+
+    
+    
 
     private void Start()
     {
@@ -24,7 +28,9 @@ public class UIStats : MonoBehaviour
 
         oroTexto.text = "Oro: " + Stats.oro.ToString();
         favorTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
-        poblacionTexto.text = "Poblacion: " + Stats.poblacion.ToString();
+        poblacionTexto.text = "Poblacion: " + Stats.poblacion.ToString() + " (" + Stats.poblacionLibre.ToString() + ")";
         comidaTexto.text = "Comida: " + Stats.comida.ToString();
+
+        
     }
 }
