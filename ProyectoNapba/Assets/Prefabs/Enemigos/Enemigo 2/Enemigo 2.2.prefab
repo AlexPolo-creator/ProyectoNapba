@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 0.35
+  vidaEnemigo: 200
+  "da\xF1o": 25
   puntoSpawn: 2
 --- !u!212 &7141134848501576474
 SpriteRenderer:

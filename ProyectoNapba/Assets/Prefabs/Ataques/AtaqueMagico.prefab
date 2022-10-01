@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 1
+  "da\xF1oAtaque": 75
   enemigoTag: Enemigo
   rotacionDiff: 90
   velocidadRotacion: 10000

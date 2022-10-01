@@ -6,6 +6,7 @@ public class AtaqueIA : MonoBehaviour
     Transform objetivoAtaque;
 
     public float velocidad = 50f;
+    public float dañoAtaque = 25f;
 
     public string enemigoTag = "Enemigo";
 
@@ -52,6 +53,8 @@ public class AtaqueIA : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+            //TODO: particulas cuando desaparece un ataque
+
         }
 
         Vector3 dir = objetivoAtaque.position - transform.position;
@@ -59,8 +62,7 @@ public class AtaqueIA : MonoBehaviour
 
         if (dir.magnitude <= distanciaEsteFotograma)
         {
-            dañarObjetivo();
-            return;
+            dañarObjetivo();            
         }
 
         transform.Translate(dir.normalized * distanciaEsteFotograma, Space.World);
@@ -72,8 +74,11 @@ public class AtaqueIA : MonoBehaviour
 
         void dañarObjetivo() 
         {
-            Destroy(objetivoAtaque.gameObject);
+            EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
+            e.recibirDaño(dañoAtaque);
+
             Destroy(gameObject);
+            return;
         }
 
         
