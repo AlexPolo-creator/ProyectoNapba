@@ -7,6 +7,7 @@ public class NodoTorre : MonoBehaviour
     MenuConstrucion menuConstrucion;
 
     public Color hoverColor;
+    public Color noTieneDineroColor;
 
     [Header("Opcional")]
     public GameObject torre = null;
@@ -38,14 +39,26 @@ public class NodoTorre : MonoBehaviour
         }
         menuConstrucion.ColocarTorreEn(this);
         
-        gameObject.SetActive(false);
+        
     }
+
+
 
     void OnMouseEnter()
     {
+        if (torre != null)
+        {
+            gameObject.SetActive(false);
+        }
         if (!menuConstrucion.puedeColocarTorre) return;
+        if (menuConstrucion.tieneDineroParaTorre)
+        {
+            sprite.color = hoverColor;
+        }else
+        {
+            sprite.color = noTieneDineroColor;
+        }
         
-        sprite.color = hoverColor;
     }
     void OnMouseExit()
     {

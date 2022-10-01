@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1699751541
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.1724368, g: 0.26387757, b: 0.2924528, a: 1}
   m_FlipX: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.36339802, g: 0.47513494, b: 0.514, a: 1}
+  noTieneDineroColor: {r: 0.5137255, g: 0.3647059, b: 0.36942157, a: 1}
+  torre: {fileID: 0}
 --- !u!61 &6620745894959919656
 BoxCollider2D:
   m_ObjectHideFlags: 0
