@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TropaIA : MonoBehaviour
 {
+    [Header("Que tropa es?:")]
+    public string tipoTropa;
 
     Transform objetivo;
 
@@ -26,8 +28,44 @@ public class TropaIA : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("BuscarObjetivo", 0f, 0.5f);
+        InvokeRepeating("BuscarObjetivo", 0f, 0.25f);
     }
+
+    void BuscarObjetivo()
+    {
+        GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag);
+        float minimaDistancia = Mathf.Infinity;
+        GameObject enemigoMasCercano = null;
+
+        foreach (GameObject enemigo in enemigos)
+        {
+            float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position);
+            if (distanciaEnemigo < minimaDistancia)
+            {
+                minimaDistancia = distanciaEnemigo;
+                enemigoMasCercano = enemigo;
+            }
+        }
+        if (enemigoMasCercano != null && minimaDistancia <= rango)
+        {
+            objetivo = enemigoMasCercano.transform;
+        }
+        else
+        {
+            objetivo = null;
+        }
+        //esto no es parte de buscar objetivo pero aprovecha en invoke:
+        if (tipoTropa == "mago")
+        {
+            rango = TropaStats.magoRango;
+            velocidadDisparo = TropaStats.magoVelocidadDeDisparo;
+        }
+        else if (tipoTropa == "arquero")
+        {
+
+        }
+    }
+
 
     void Update()
     {
@@ -58,34 +96,7 @@ public class TropaIA : MonoBehaviour
 
     }
 
-    void BuscarObjetivo()
-    {
-        GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag);
-        float minimaDistancia = Mathf.Infinity;
-        GameObject enemigoMasCercano = null;
-
-        foreach (GameObject enemigo in enemigos)
-        {
-            float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position);
-            if (distanciaEnemigo < minimaDistancia)
-            {
-                minimaDistancia = distanciaEnemigo;
-                enemigoMasCercano = enemigo;
-            }
-        }
-
-        if (enemigoMasCercano != null && minimaDistancia <= rango)
-        {
-            objetivo = enemigoMasCercano.transform;
-        }
-        else
-        {
-            objetivo = null;
-        }
-
-
-    }
-
+    
     void Disparar()
     {
         Instantiate(ataque, puntoDeDisparo.position, puntoDeDisparo.rotation);

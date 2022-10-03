@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568b2227933e1348b436b75ea70191b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoTropa: arquero
   rango: 1.5
   velocidadDisparo: 1
   velocidadRotacion: 3

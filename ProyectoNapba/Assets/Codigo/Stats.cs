@@ -5,22 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
+    public static int numMagos; //estas dos variables sirven para llevar cuenta de cuantas tropas hay colocadas.
+    public static int numSoldados;
+
+
     private void Start()
     {
         InvokeRepeating("calcularStats", 0, 0.1f);
+
+        numMagos = 0;
+        numSoldados = 0;
 
         vidaJugador = vidaJugadorInicial;
 
         oro = oroInicial;
         favorDeDioses = favorDeDiosesInicial;
-        poblacion = poblacionInicial;
-        comida = comidaInicial;
+        poblacionLibre = poblacionLibreInicial;
+        
 
         poblacionEnCultivo = poblacionEnCultivoInicial;
         poblacionEnMina = poblacionEnMinaInicial;
         poblacionEnTemplo = poblacionEnTemploInicial;
 
-        poblacionLibre = poblacion - poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
+        poblacion = poblacionLibre + poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
 
         arqueros = 0;
         magos = 0;
@@ -30,7 +37,8 @@ public class Stats : MonoBehaviour
 
     void calcularStats()
     {
-        poblacionLibre = poblacion - poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
+        poblacionLibre = poblacion - poblacionEnMina - poblacionEnTemplo - poblacionEnCultivo;
+        
     }
 
     public static int vidaJugador;
@@ -44,8 +52,8 @@ public class Stats : MonoBehaviour
     public static int favorDeDioses;
     public int favorDeDiosesInicial = 100;
 
-    public static int poblacion;
-    public int poblacionInicial = 50;
+    public static int poblacionLibre;
+    public int poblacionLibreInicial = 50;
 
     public static int poblacionEnMina;
     public static int poblacionEnTemplo;
@@ -54,15 +62,16 @@ public class Stats : MonoBehaviour
     public int poblacionEnTemploInicial;
     public int poblacionEnCultivoInicial;
 
-    public static int poblacionLibre;
+    public static int poblacion;
 
-    public static int comida;
-    public int comidaInicial = 100;
 
     [Header("Tropas para colocar:")]
 
     public static int arqueros = 0;
     public static int magos = 0;
+
+    [Header("Otras Stats:")]
+    public static float dañoCritico = 5f;
 
 
     public static int nextSceneToLoad;

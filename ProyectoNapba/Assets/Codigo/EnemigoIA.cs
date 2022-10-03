@@ -33,41 +33,58 @@ public class EnemigoIA : MonoBehaviour
             objetivo = Waypoints.puntosRama2[0];
         }
 
+        //uso un InvokeRepeating y no Update para no calcular distancias demasidas veces por segundo lo cual puede causar lag.
         InvokeRepeating("eliminarEntidades", 0, 0.1f);
 
     }
 
+    //esta funcion resta la vida al enemigo correspondiente al daño del ataque recibido extraido del Script de AtaqueIA, de donde se llama a esta funcion.
     public void recibirDaño(float cantidad)
     {
+        //resta la cantidad equivalente al daño del ataque
         vidaEnemigo -= cantidad;
 
+        //si la vida llega a 0 el enemigo muere
         if (vidaEnemigo <= 0f)
         {
             Muerte();
         }
-
     }
 
+    //mata al objetivo y otorga una recompensa al jugador
     void Muerte ()
     {
         Stats.favorDeDioses += recompensa;
+
+        if (Templo.mejoraBotinDivino1)
+        {
+            Stats.favorDeDioses += Stats.numMagos;
+        }
+
         Destroy(gameObject);
     }
 
     //elimina los enemigos al llegar al final del recorrido
     void eliminarEntidades()
     {
+        //calcula la distancia al punto final para destruirse a si mismo al alcanzarla
         if (Vector3.Distance(transform.position, Waypoints.ultimo.position) <= 0.05f)
         {
+            //destruye este objeto
             Destroy(gameObject);
+
+            //resta la vida del jugador en funcion del daño del enemigo
             Stats.vidaJugador -= daño;
+
+            //ejecuta la funcion de derrota cuando la vida del jugador llega a 0
             if(Stats.vidaJugador <= 0)
             {
-                Debug.Log("moriste");
                 Stats.Derrota();
             }
+
+            //hago return para asegurarme de que la funcion Destroy() se haya terminado de ejecutar antes de continuar
+            return;           
         }
-        return;
     }
 
     //esta funcion aumenta en 1 la posicion en el array para coger la posicion del siguiente waypoint y lo establece como objetivo (en funcion del punto de spwan cogera el array de la rama correspondiente).

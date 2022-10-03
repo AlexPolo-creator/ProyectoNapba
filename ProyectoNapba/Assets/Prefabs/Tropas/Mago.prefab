@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568b2227933e1348b436b75ea70191b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoTropa: mago
   rango: 2
   velocidadDisparo: 0.3
   velocidadRotacion: 2

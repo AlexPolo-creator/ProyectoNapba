@@ -192,8 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07d81cca042fe34890bd546bb13633d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoTropa: mago
   velocidad: 1
   "da\xF1oAtaque": 75
+  criticoAtaque: 1
   enemigoTag: Enemigo
-  rotacionDiff: 90
   velocidadRotacion: 10000

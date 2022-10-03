@@ -11,26 +11,30 @@ public class UIStats : MonoBehaviour
 
     public TextMeshProUGUI oroTexto;
     public TextMeshProUGUI favorTexto;
+    public TextMeshProUGUI favorTemploTexto;
     public TextMeshProUGUI poblacionTexto;
-    public TextMeshProUGUI comidaTexto;
 
-    
-    
+    public TextMeshProUGUI poblacionCultivoTexto;
+    public TextMeshProUGUI poblacionMinaTexto;
+
 
     private void Start()
     {
         InvokeRepeating("refrescarUI", 0, 0.1f);
     }
-    // Update is called once per frame
+   
+
     void refrescarUI()
     {
         vidaJugadorTexto.text = "Vida: " + Stats.vidaJugador.ToString();
 
         oroTexto.text = "Oro: " + Stats.oro.ToString();
         favorTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
+        favorTemploTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
         poblacionTexto.text = "Poblacion: " + Stats.poblacion.ToString() + " (" + Stats.poblacionLibre.ToString() + ")";
-        comidaTexto.text = "Comida: " + Stats.comida.ToString();
-
         
+
+        poblacionMinaTexto.text = Stats.poblacionEnMina.ToString() + " mineros";
+        poblacionCultivoTexto.text = Stats.poblacionEnCultivo.ToString() + " granjeros";
     }
 }
