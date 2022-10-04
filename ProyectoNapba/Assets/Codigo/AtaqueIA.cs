@@ -62,7 +62,7 @@ public class AtaqueIA : MonoBehaviour
             {
                 maxCritNum = Mathf.RoundToInt(1 / TropaStats.magoCriticoPorcentaje * 100);
                 criticoAtaque = Random.Range(0, maxCritNum);
-                Debug.Log("num:" + criticoAtaque);
+                
             }
             else
             {
@@ -77,8 +77,29 @@ public class AtaqueIA : MonoBehaviour
                 dañoAtaque = TropaStats.magoAtaque;
             }
         }
+        else if (tipoTropa == "arquero")
+        {
+            if (TropaStats.arqueroCriticoPorcentaje != 0)
+            {
+                maxCritNum = Mathf.RoundToInt(1 / TropaStats.arqueroCriticoPorcentaje * 100);
+                criticoAtaque = Random.Range(0, maxCritNum);
+                
+            }
+            else
+            {
+                criticoAtaque = 1;
+            }
+            if (criticoAtaque == 0)
+            {
+                dañoAtaque = TropaStats.arqueroAtaque * Stats.dañoCritico;
+            }
+            else
+            {
+                dañoAtaque = TropaStats.arqueroAtaque;
+            }            
+        }
         
-        Debug.Log("Ataque:" + dañoAtaque);
+        
         //ejecuta la funcion de buscar objetivo, al estar en Start lo hara solo al crearse el objeto por lo que si su objetivo muere se destruye el objeto, si queremos que un ataque al morir su objetivo busque otro se tendria que poner esta funcion en Update mas unos cambios y listo
         BuscarObjetivo();
     }
@@ -86,7 +107,7 @@ public class AtaqueIA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dañoAtaque = TropaStats.magoAtaque;
+        
         //si su objetivo muere el ataque desaparece
         if (objetivoAtaque == null) 
         {
@@ -109,7 +130,7 @@ public class AtaqueIA : MonoBehaviour
         //si la distancia que va a viajar este fotograma es major que la magnitud del vector direccion, es decir, esta mas cerca de la distacia que viajará por lo que se pasara de lago, por lo consideramos que ha golpeado al objetivo. Con esto evitamos bugs de que se pase de largo y esas cosas
         if (dir.magnitude <= distanciaEsteFotograma)
         {
-            dañarObjetivo();            
+            DañarObjetivo();            
         }
 
         //trasladamos el objeto hacia el objetivo
@@ -121,13 +142,21 @@ public class AtaqueIA : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);
 
         //funcion que daña al objetivo en funcion del daño del atque y destryue el ataque
-        void dañarObjetivo() 
+        void DañarObjetivo() 
         {
             //obtenemos el codigo del objetivo
             EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
 
             //al tener el codigo podemos ejecutar la funcion recibirDaño() del objetivo
             e.recibirDaño(dañoAtaque);
+            if (tipoTropa == "mago")
+            {
+                Stats.dañoCausadoMago += Mathf.RoundToInt(dañoAtaque);
+            }
+            else if (tipoTropa == "arquero")
+            {
+                Stats.dañoCausadoArquero += Mathf.RoundToInt(dañoAtaque);
+            }
 
             //destruimos el ataque
             Destroy(gameObject);

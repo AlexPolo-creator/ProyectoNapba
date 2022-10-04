@@ -58,7 +58,7 @@ public class EnemigoIA : MonoBehaviour
 
         if (Templo.mejoraBotinDivino1)
         {
-            Stats.favorDeDioses += Stats.numMagos;
+            Stats.favorDeDioses += Stats.numMagos * Templo.numBotinDivino1;
         }
 
         Destroy(gameObject);
