@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using TMPro;
 
 public class AtaqueIA : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class AtaqueIA : MonoBehaviour
 
     [Header("Que tropa es la atacante?:")]
     public string tipoTropa;
+    public string queTropa;
 
     //stats del ataque
     public float velocidad = 50f;
@@ -54,13 +56,15 @@ public class AtaqueIA : MonoBehaviour
 
     }
 
+    private bool esCrit = false;
+    public Color colorCrit;
     void Start()
     {
-        if (tipoTropa == "mago")
+        if (queTropa == "hechicero")
         {
-            if (TropaStats.magoCriticoPorcentaje != 0)
+            if (TropaStats.hechiceroCriticoPorcentaje != 0)
             {
-                maxCritNum = Mathf.RoundToInt(1 / TropaStats.magoCriticoPorcentaje * 100);
+                maxCritNum = Mathf.RoundToInt(1 / TropaStats.hechiceroCriticoPorcentaje * 100);
                 criticoAtaque = Random.Range(0, maxCritNum);
                 
             }
@@ -68,16 +72,42 @@ public class AtaqueIA : MonoBehaviour
             {
                 criticoAtaque = 1;
             }
+
             if (criticoAtaque == 0)
             {
-                dañoAtaque = TropaStats.magoAtaque * Stats.dañoCritico;
+                dañoAtaque = TropaStats.hechiceroAtaque * Stats.dañoCritico;
+                esCrit = true;
             }
             else
             {
-                dañoAtaque = TropaStats.magoAtaque;
+                dañoAtaque = TropaStats.hechiceroAtaque;
             }
         }
-        else if (tipoTropa == "arquero")
+        else if (queTropa == "verdugo")
+        {
+            Debug.Log("verdugo");
+            if (TropaStats.verdugoCriticoPorcentaje != 0)
+            {
+                maxCritNum = Mathf.RoundToInt(1 / TropaStats.verdugoCriticoPorcentaje * 100);
+                criticoAtaque = Random.Range(0, maxCritNum);
+
+            }
+            else
+            {
+                criticoAtaque = 1;
+            }
+            if (criticoAtaque == 0)
+            {
+                dañoAtaque = TropaStats.verdugoAtaque * Stats.dañoCritico;
+                esCrit = true;
+            }
+            else
+            {
+                dañoAtaque = TropaStats.verdugoAtaque;
+            }
+            Debug.Log("daño:" + dañoAtaque);
+        }
+        else if (queTropa == "arquero")
         {
             if (TropaStats.arqueroCriticoPorcentaje != 0)
             {
@@ -92,6 +122,7 @@ public class AtaqueIA : MonoBehaviour
             if (criticoAtaque == 0)
             {
                 dañoAtaque = TropaStats.arqueroAtaque * Stats.dañoCritico;
+                esCrit = true;
             }
             else
             {
@@ -140,29 +171,67 @@ public class AtaqueIA : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - rotacionDiff;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);
-
-        //funcion que daña al objetivo en funcion del daño del atque y destryue el ataque
-        void DañarObjetivo() 
-        {
-            //obtenemos el codigo del objetivo
-            EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
-
-            //al tener el codigo podemos ejecutar la funcion recibirDaño() del objetivo
-            e.recibirDaño(dañoAtaque);
-            if (tipoTropa == "mago")
-            {
-                Stats.dañoCausadoMago += Mathf.RoundToInt(dañoAtaque);
-            }
-            else if (tipoTropa == "arquero")
-            {
-                Stats.dañoCausadoArquero += Mathf.RoundToInt(dañoAtaque);
-            }
-
-            //destruimos el ataque
-            Destroy(gameObject);
-
-            //hago return para asegurarme de que la funcion Destroy() se haya terminado de ejecutar antes de continuar
-            return;
-        }       
+        
     }
+
+
+    //funcion que daña al objetivo en funcion del daño del atque y destryue el ataque
+    void DañarObjetivo()
+    {
+        Debug.Log("daño:" + dañoAtaque);
+        ActivarDañoPopUp(Mathf.RoundToInt(dañoAtaque));
+
+        //obtenemos el codigo del objetivo
+        EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
+
+        //al tener el codigo podemos ejecutar la funcion recibirDaño() del objetivo
+       
+        e.recibirDaño(dañoAtaque);
+
+        if (dañoAtaque >= e.vidaEnemigo)
+        {
+
+            dañoAtaque = e.vidaEnemigo; //con esto evitamos que el daño registrado sea mayor que la vida restante del objetivo en caso de que el objetivo vaya a morir ya
+
+        }
+
+        if (tipoTropa == "hechicero")
+        {
+            Stats.dañoCausadoHechicero += Mathf.RoundToInt(dañoAtaque);
+        }
+        else if (tipoTropa == "verdugo")
+        {
+            Stats.dañoCausadoVerdugo += Mathf.RoundToInt(dañoAtaque);
+        }
+        else if (tipoTropa == "arquero")
+        {
+            Stats.dañoCausadoArquero += Mathf.RoundToInt(dañoAtaque);
+        }
+
+        //destruimos el ataque
+        Destroy(gameObject);
+
+        //hago return para asegurarme de que la funcion Destroy() se haya terminado de ejecutar antes de continuar
+        return;
+    }
+
+    public GameObject PopUpDaño;
+    TextMeshPro textoPopUp;
+    void ActivarDañoPopUp(int cantidadDaño)
+    {       
+        textoPopUp = PopUpDaño.GetComponent<TextMeshPro>();
+        if (esCrit)
+        {
+            textoPopUp.color = colorCrit;
+            textoPopUp.fontSize = 12;
+        }
+        else
+        {
+            textoPopUp.color = Color.white;
+            textoPopUp.fontSize = 10;
+        }      
+        textoPopUp.SetText(cantidadDaño.ToString());
+        Instantiate(PopUpDaño, objetivoAtaque.position, Quaternion.identity);
+    }
+
 }

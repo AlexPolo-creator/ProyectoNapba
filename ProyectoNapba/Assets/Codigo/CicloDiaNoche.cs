@@ -12,11 +12,12 @@ public class CicloDiaNoche : MonoBehaviour
     public Light sol;
 
     public float minutosPorDia;
-    float tick; //los ticks indica cuantos segundos del juego pasan por cada segundo real 
+    public static float tick; //los ticks indica cuantos segundos del juego pasan por cada segundo real 
     float segundos;
     int minutos;
     public int horas = 10;
-    int dias = 1;
+    public static int dias = 1;
+
 
     float rate = 0.18f;
 

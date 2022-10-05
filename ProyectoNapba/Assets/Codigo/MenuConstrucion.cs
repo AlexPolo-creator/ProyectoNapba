@@ -21,14 +21,16 @@ public class MenuConstrucion : MonoBehaviour
 
     //lista de las torres (prefabs)
     [Header("Torres:")]
-
     public GameObject Torre;
 
     //lista de las tropas (prefabs)
-    [Header("Tropas:")]
+    [Header("Magos:")]
+    public GameObject Hechicero;
+    public GameObject Verdugo;
 
+
+    [Header("Soldados:")]
     public GameObject Arquero;
-    public GameObject Mago;
 
     //obtemos la tropa a colocar con las caracteristicas etablecidas en el PanelMenuConstruccion y gracias al script serializado de ItemsDeCompra
     private ItemsDeCompra tropaAColocar;
@@ -63,30 +65,43 @@ public class MenuConstrucion : MonoBehaviour
     {
         
         //dependiendo del tipo de recurso necesario para colocar la tropa se ejecutará un codigo u otro
-        if (tropaAColocar.recurso == "oro")
+        if (tropaAColocar.recurso == "hechicero")
         {
             //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
-            if (Stats.oro < tropaAColocar.precio)
+            if (Stats.hechiceros < 1)
             {
-                Debug.Log("No tienes Oro suficiente.");
+                Debug.Log("No tienes Hechiceros suficientes.");
                 return;
             }
 
             //resta al stat del oro el precio de la tropa seleccionada
-            Stats.oro -= tropaAColocar.precio;
-            Stats.numSoldados++; 
-        }else if (tropaAColocar.recurso == "favor")
+            Stats.hechiceros -= 1;
+            Stats.numMagos++; 
+        }else if (tropaAColocar.recurso == "verdugo")
         {
             //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
-            if (Stats.favorDeDioses < tropaAColocar.precio)
+            if (Stats.verdugos < 1)
             {
-                Debug.Log("No tienes Favor suficiente.");
+                Debug.Log("No tienes Verdugos suficiente.");
                 return;
             }
 
             //resta al stat del oro el precio de la tropa seleccionada
-            Stats.favorDeDioses -= tropaAColocar.precio;
+            Stats.verdugos -= 1;
             Stats.numMagos++;
+        }
+        else if (tropaAColocar.recurso == "arquero")
+        {
+            //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
+            if (Stats.arqueros < 1)
+            {
+                Debug.Log("No tienes Arqueros suficiente.");
+                return;
+            }
+
+            //resta al stat del oro el precio de la tropa seleccionada
+            Stats.arqueros -= 1;
+            Stats.numSoldados++;
         }
 
         //instaciamos una tropa en la posicion del nodo seleccionado gracias a la fucnion de ObtenerPosicionColocacionTropa del script de NodoTropa.

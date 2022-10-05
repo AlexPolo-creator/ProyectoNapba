@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class PanelMenuConstruccion : MonoBehaviour
 {
+    public ItemsDeCompra hechicero;
+    public ItemsDeCompra verdugo;
+
     public ItemsDeCompra arquero;
-    public ItemsDeCompra mago;
 
     public ItemsDeCompra torre;
 
@@ -15,20 +17,27 @@ public class PanelMenuConstruccion : MonoBehaviour
         menuConstrucion = MenuConstrucion.instance;
     }
 
+    public void ElegirHechicero()
+    {
+        menuConstrucion.ElegirTropaAColocar(hechicero);
+    }
+
+    public void ElegirVerdugo()
+    {
+        menuConstrucion.ElegirTropaAColocar(verdugo);
+    }
+
+
+
     public void ElegirArquero()
     {
         menuConstrucion.ElegirTropaAColocar(arquero);
     }
 
-    public void ElegirMago()
-    {
-        menuConstrucion.ElegirTropaAColocar(mago);
-    }
 
     public void ElegirTorre()
     {
         menuConstrucion.ElegirTorreAColocar(torre);
-        Debug.Log("1");
     }
 
 }

@@ -40,8 +40,8 @@ public class Mina : MonoBehaviour
     {
         if (!poblacionMinaCero)
         {
-            //esta sintaxis indica la cantidad de segundos reales que tardara en ejecutar el resto del codigo
-            yield return new WaitForSecondsRealtime(velocidadMineros);
+            //esta sintaxis indica la cantidad de segundos reales (pero escalados) que tardara en ejecutar el resto del codigo
+            yield return new WaitForSeconds(velocidadMineros);
 
             //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
             Stats.oro += produccionOro * Stats.poblacionEnMina;

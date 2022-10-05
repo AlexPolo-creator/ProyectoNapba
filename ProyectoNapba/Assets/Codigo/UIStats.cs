@@ -10,12 +10,19 @@ public class UIStats : MonoBehaviour
     public TextMeshProUGUI vidaJugadorTexto;
 
     public TextMeshProUGUI oroTexto;
+
     public TextMeshProUGUI favorTexto;
     public TextMeshProUGUI favorTemploTexto;
+    public TextMeshProUGUI favorColegioTexto;
+
     public TextMeshProUGUI poblacionTexto;
 
     public TextMeshProUGUI poblacionCultivoTexto;
     public TextMeshProUGUI poblacionMinaTexto;
+
+    public TextMeshProUGUI hechicerosBotonTexto;
+    public TextMeshProUGUI verdugosBotonTexto;
+    public TextMeshProUGUI arquerosBotonTexto;
 
 
     private void Start()
@@ -46,26 +53,22 @@ public class UIStats : MonoBehaviour
         if (!Stats.favorDeDiosesMil)
         {
             favorTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
+            favorTemploTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
+            favorColegioTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
         }
         else if (Stats.favorDeDiosesMil)
         {
             favorEnMiles = (Stats.favorDeDioses / 1000);
             favorEnMilesResto = ((Stats.favorDeDioses - (1000 * favorEnMiles)) / 100);
             favorTexto.text = "Favor de Dioses: " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
-        }
-
-        if (!Stats.favorDeDiosesMil)
-        {
-            favorTemploTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
-        }
-        else if (Stats.favorDeDiosesMil)
-        {
-            favorEnMiles = (Stats.favorDeDioses / 1000);
-            favorEnMilesResto = ((Stats.favorDeDioses - (1000 * favorEnMiles)) / 100);
             favorTemploTexto.text = "Favor de Dioses: " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
+            favorColegioTexto.text = "Favor de Dioses: " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
         }
 
-        
+        hechicerosBotonTexto.text = Stats.hechiceros.ToString();
+        verdugosBotonTexto.text = Stats.verdugos.ToString();
+        arquerosBotonTexto.text = Stats.arqueros.ToString();
+
         poblacionTexto.text = "Poblacion: " + Stats.poblacion.ToString() + " (" + Stats.poblacionLibre.ToString() + ")";
         
 

@@ -34,10 +34,12 @@ public class Stats : MonoBehaviour
         poblacion = poblacionLibre + poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
 
         arqueros = 0;
-        magos = 0;
+        hechiceros = 0;
+        verdugos = 0;
 
         dañoCausado = 0;
-        dañoCausadoMago = 0;
+        dañoCausadoHechicero = 0;
+        dañoCausadoVerdugo = 0;
         dañoCausadoArquero = 0;
         
 
@@ -48,24 +50,25 @@ public class Stats : MonoBehaviour
     {
         poblacionLibre = poblacion - poblacionEnMina - poblacionEnTemplo - poblacionEnCultivo;
 
-        dañoCausado = dañoCausadoArquero + dañoCausadoMago;
+        dañoCausado = dañoCausadoHechicero + dañoCausadoVerdugo + dañoCausadoArquero;
+        dañoCausadoHechiceroShow = dañoCausadoHechicero;
+        dañoCausadoVerdugoShow = dañoCausadoVerdugo;
         dañoCausadoArqueroShow = dañoCausadoArquero;
-        dañoCausadoMagoShow = dañoCausadoMago;
 
-        if (favorDeDioses <= 1000) // 60 sec = 1 min
+        if (favorDeDioses <= 10000) // 60 sec = 1 min
         {
             favorDeDiosesMil = false;
         }
-        if (favorDeDioses >= 1000) // 60 sec = 1 min
+        if (favorDeDioses >= 10000) // 60 sec = 1 min
         {
             favorDeDiosesMil = true;
         }
 
-        if (oro <= 1000) //60 min = 1 hr
+        if (oro <= 10000) //60 min = 1 hr
         {
             oroMil = false;
         }
-        if (oro >= 1000) //60 min = 1 hr
+        if (oro >= 10000) //60 min = 1 hr
         {
             oroMil = true;
         }
@@ -75,26 +78,35 @@ public class Stats : MonoBehaviour
         {
             dañoCausadoMillon = false;
         }
-        if (dañoCausadoArquero <= 1000000) //24 hr = 1 day
-        {
-            dañoCausadoArqueroMillon = false;
-        }
-        if (dañoCausadoMago <= 1000000) //24 hr = 1 day
-        {
-            dañoCausadoMagoMillon = false;
-        }
         if (dañoCausado >= 1000000) //24 hr = 1 day
         {
             dañoCausadoMillon = true;
+        }
+        if (dañoCausadoHechicero <= 1000000) //24 hr = 1 day
+        {
+            dañoCausadoHechiceroMillon = false;
+        }
+        if (dañoCausadoHechicero >= 1000000) //24 hr = 1 day
+        {
+            dañoCausadoHechiceroMillon = true;
+        }
+        if (dañoCausadoVerdugo <= 1000000) //24 hr = 1 day
+        {
+            dañoCausadoVerdugoMillon = false;
+        }
+        if (dañoCausadoVerdugo >= 1000000) //24 hr = 1 day
+        {
+            dañoCausadoVerdugoMillon = true;
+        }
+        if (dañoCausadoArquero <= 1000000) //24 hr = 1 day
+        {
+            dañoCausadoArqueroMillon = false;
         }
         if (dañoCausadoArquero >= 1000000) //24 hr = 1 day
         {
             dañoCausadoArqueroMillon = true;
         }
-        if (dañoCausadoMago >= 1000000) //24 hr = 1 day
-        {
-            dañoCausadoMagoMillon = true;
-        }
+
 
     }
 
@@ -126,7 +138,8 @@ public class Stats : MonoBehaviour
 
     [Header("Tropas para colocar:")]
     public static int arqueros = 0;
-    public static int magos = 0;
+    public static int hechiceros = 0;
+    public static int verdugos = 0;
 
     [Header("Otras Stats:")]
     public static float dañoCritico = 5f;
@@ -134,12 +147,20 @@ public class Stats : MonoBehaviour
     [Header("Daño causado:")]
     public int dañoCausado = 0;
     public static bool dañoCausadoMillon = false;
-    public int dañoCausadoMagoShow = 0;
+
+    public int dañoCausadoHechiceroShow = 0;
+    public static int dañoCausadoHechicero = 0;
+    public static bool dañoCausadoHechiceroMillon = false;
+
+    public int dañoCausadoVerdugoShow = 0;
+    public static int dañoCausadoVerdugo = 0;
+    public static bool dañoCausadoVerdugoMillon = false;
+
     public int dañoCausadoArqueroShow = 0;
-    public static int dañoCausadoMago = 0;
-    public static bool dañoCausadoMagoMillon = false;
     public static int dañoCausadoArquero = 0;
     public static bool dañoCausadoArqueroMillon = false;
+
+
 
     public static int nextSceneToLoad;
     public static void Derrota()

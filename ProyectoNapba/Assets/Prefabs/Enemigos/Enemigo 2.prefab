@@ -46,7 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 0.35
+  velocidadInicial: 0.5
   vidaEnemigo: 200
+  vidaEnemigoInicial: 100
+  recompensa: 15
+  recompensaInicial: 5
   "da\xF1o": 25
   puntoSpawn: 1
 --- !u!212 &7141134848501576474

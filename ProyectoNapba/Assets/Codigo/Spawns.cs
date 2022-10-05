@@ -4,39 +4,52 @@ using UnityEngine;
 
 public class Spawns : MonoBehaviour
 {
+    public int numSpawn;
+
     public GameObject[] enemigos;
 
-    public float esperaInicialEnemigosTipo1 = 5; //segundos antes de el primer spawn
+    public float esperaInicialEnemigosTipo1 = 5; //segundos antes de el primer spawn y espera base para el resto de la partida
     public float esperaInicialEnemigosTipo2 = 30;
     
 
-    public float esperaEnemigosTipo1 = 5; //segundos entre cada spawn
-    public float esperaEnemigosTipo2 = 10;
+    float esperaEnemigosTipo1; //segundos entre cada spawn
+    float esperaEnemigosTipo2;
 
 
     void Start()
     {
-        InvokeRepeating("spawnEnemigosTipo1", esperaInicialEnemigosTipo1, esperaEnemigosTipo1);
-        InvokeRepeating("spawnEnemigosTipo2", esperaInicialEnemigosTipo2, esperaEnemigosTipo2);
+        Debug.Log(":" + esperaEnemigosTipo1);
+        esperaEnemigosTipo1 = esperaInicialEnemigosTipo1;
+        esperaEnemigosTipo2 = esperaInicialEnemigosTipo2;
+        Debug.Log(":" + esperaEnemigosTipo1);
+
+        StartCoroutine(SpawnEnemigosTipo1());
+        StartCoroutine(SpawnEnemigosTipo2());
     }
 
+    
 
-    void Update()
+    IEnumerator SpawnEnemigosTipo1()
     {
 
-    }
+        yield return new WaitForSeconds(esperaEnemigosTipo1);
 
-    public void spawnEnemigosTipo1()
-    {
         Vector3 spawnPosition1 = new Vector3(0, 0, 0);
         spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
+        EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
+        spawn.puntoSpawn = numSpawn;
         GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
+        StartCoroutine(SpawnEnemigosTipo1());
     }
 
-    public void spawnEnemigosTipo2()
+    IEnumerator SpawnEnemigosTipo2()
     {
+        yield return new WaitForSeconds(esperaEnemigosTipo2);
         Vector3 spawnPosition1 = new Vector3(0, 0, 0);
         spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
+        EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
+        spawn.puntoSpawn = numSpawn;
         GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
+        StartCoroutine(SpawnEnemigosTipo2());
     }
 }

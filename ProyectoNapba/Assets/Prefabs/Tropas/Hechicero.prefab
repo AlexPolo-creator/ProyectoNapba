@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3006556615823216038}
   - component: {fileID: 720093864012784983}
   m_Layer: 0
-  m_Name: Mago
+  m_Name: Hechicero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoTropa: mago
+  queTropa: hechicero
   rango: 2
   velocidadDisparo: 0.3
   velocidadRotacion: 2

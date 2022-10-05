@@ -6,15 +6,16 @@ public class TropaIA : MonoBehaviour
 {
     [Header("Que tropa es?:")]
     public string tipoTropa;
+    public string queTropa;
 
     Transform objetivo;
 
     [Header("Atributos:")]
 
-    //TODO: Pasar todos los atributos al GameMaster y hacerlos static.
+    //TODO: Pasar todos los atributos al GameMaster y hacerlos static. HECHO: ahora estos atributos no hay que modificarlos, para editar una tropa id al gamemaster
 
-    public float rango = 1.5f;
-    public float velocidadDisparo = 1f;
+    float rango = 1.5f;
+    float velocidadDisparo = 1f;
     public float velocidadRotacion = 1f;
 
     [Header("Unity Set up:")]
@@ -55,14 +56,18 @@ public class TropaIA : MonoBehaviour
             objetivo = null;
         }
         //esto no es parte de buscar objetivo pero aprovecha en invoke:
-        if (tipoTropa == "mago")
+        if (queTropa == "hechicero")
         {
-            rango = TropaStats.magoRango;
-            velocidadDisparo = TropaStats.magoVelocidadDeDisparo;
-        }
-        else if (tipoTropa == "arquero")
+            rango = TropaStats.hechiceroRango;
+            velocidadDisparo = TropaStats.hechiceroVelocidadDeDisparo;
+        }else if (queTropa == "verdugo")
         {
-
+            rango = TropaStats.verdugoRango;
+            velocidadDisparo = TropaStats.verdugoVelocidadDeDisparo;
+        }else if (queTropa == "arquero")
+        {
+            rango = TropaStats.arqueroRango;
+            velocidadDisparo = TropaStats.arqueroVelocidadDeDisparo;
         }
     }
 

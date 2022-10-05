@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Templo : MonoBehaviour
 {
     //Mejoras globales (Bendiciones):
     public static bool mejoraBotinDivino1;
     public bool botonBotinActivado = false;
+    public TextMeshProUGUI textoBotinPrecio;
     public static int numBotinDivino1;
-    public int precioBotinDivino1 = 75;
+    int precioBotinDivino1;
+    public int precioInicialBotinDivino1 = 75;
     public GameObject botonBotinDivino1;
 
     public void ActivarBotinDivino1()
@@ -27,7 +30,9 @@ public class Templo : MonoBehaviour
     public static bool mejoraVivacidad1;
     public bool botonVivacidadActivado = false;
     public static int numVivacidad1;
-    public int precioVivacidad1 = 50;
+    public TextMeshProUGUI textoVivacidadPrecio;
+    int precioVivacidad1;
+    public int precioInicialVivacidad1 = 50;
     public GameObject botonVivacidad1;
     public void ActivarVivacidad1()
     {
@@ -38,7 +43,8 @@ public class Templo : MonoBehaviour
             numBotonesMejoraAxctivos--;
             numVivacidad1++;
             mejoraVivacidad1 = true;
-            TropaStats.magoVelocidadDeDisparo = TropaStats.magoVelocidadDeDisparo * (1 + (0.15f * numVivacidad1)); // + porque la velocidad de ataque de los magos es ataques/segundo y no al reves
+            TropaStats.hechiceroVelocidadDeDisparo = TropaStats.hechiceroVelocidadDeDisparo * (1 + (0.15f * numVivacidad1)); // + porque la velocidad de ataque de los magos es ataques/segundo y no al reves
+            TropaStats.verdugoVelocidadDeDisparo = TropaStats.verdugoVelocidadDeDisparo * (1 + (0.15f * numVivacidad1));
             Stats.favorDeDioses -= precioVivacidad1;           
         }      
     }
@@ -46,7 +52,9 @@ public class Templo : MonoBehaviour
     public static bool mejoraCastigoPiadoso1;
     public bool botonCastigoActivado = false;
     public static int numCastigoPiadoso1;
-    public int precioCastigoPiadoso1 = 30;
+    public TextMeshProUGUI textoCastigoPrecio;
+    int precioCastigoPiadoso1;
+    public int precioInicialCastigoPiadoso1 = 30;
     public GameObject botonCastigoPiadoso1;
  
     public void ActivarCastigoPiadoso1()
@@ -58,7 +66,8 @@ public class Templo : MonoBehaviour
             numBotonesMejoraAxctivos--;
             numCastigoPiadoso1++;
             mejoraCastigoPiadoso1 = true;
-            TropaStats.magoAtaque = TropaStats.magoAtaque * 1.1f;
+            TropaStats.hechiceroAtaque = TropaStats.hechiceroAtaque * 1.1f;
+            TropaStats.verdugoAtaque = TropaStats.verdugoAtaque * 1.1f;
             Stats.favorDeDioses -= precioCastigoPiadoso1;
         }
     }
@@ -66,7 +75,9 @@ public class Templo : MonoBehaviour
     public static bool mejoraSantaSentencia1;
     public bool botonSentenciaActivado = false;
     public static int numSantaSentencia1;
-    public int precioSantaSentencia1 = 35;
+    public TextMeshProUGUI textoSentenciaPrecio;
+    int precioSantaSentencia1;
+    public int precioInicialSantaSentencia1 = 35;
     public GameObject botonSantaSentencia1;
 
     public void ActivarSantaSentencia1()
@@ -74,11 +85,12 @@ public class Templo : MonoBehaviour
         if (Stats.favorDeDioses >= precioSantaSentencia1)
         {
             botonSantaSentencia1.SetActive(false);
-            botonCastigoActivado = false;
+            botonSentenciaActivado = false;
             numBotonesMejoraAxctivos--;
             numSantaSentencia1++;
             mejoraSantaSentencia1 = true;
-            TropaStats.magoCriticoPorcentaje += 5f;
+            TropaStats.hechiceroCriticoPorcentaje += 5f;
+            TropaStats.verdugoCriticoPorcentaje += 5f;
             Stats.favorDeDioses -= precioSantaSentencia1;
         }
     }
@@ -86,7 +98,9 @@ public class Templo : MonoBehaviour
     public static bool mejoraClarividencia;
     public bool botonClarividenciaActivado = false;
     public static int numClarividencia;
-    public int precioClarividencia = 60;
+    public TextMeshProUGUI textoClarividenciaPrecio;
+    int precioClarividencia;
+    public int precioInicialClarividencia = 60;
     public GameObject botonClarividencia;
 
     public void ActivarClarividencia()
@@ -98,7 +112,8 @@ public class Templo : MonoBehaviour
             numBotonesMejoraAxctivos--;
             numClarividencia++;
             mejoraClarividencia = true;
-            TropaStats.magoRango += TropaStats.magoRango * 0.1f;
+            TropaStats.hechiceroRango += TropaStats.hechiceroRango * 0.1f;
+            TropaStats.verdugoRango += TropaStats.verdugoRango * 0.1f;
             Stats.favorDeDioses -= precioClarividencia;           
         }
     }
@@ -108,7 +123,6 @@ public class Templo : MonoBehaviour
     {
         if (numBotonesMejoraAxctivos < 3)
         {
-            Debug.Log("se ejecuta");
             RandomMejoraGlobal();
             return;
         }     
@@ -123,50 +137,55 @@ public class Templo : MonoBehaviour
         {
             if (!botonBotinActivado)
             {
+                precioBotinDivino1 = Mathf.RoundToInt(precioBotinDivino1 * (1 + numBotinDivino1));
+                textoBotinPrecio.text = precioBotinDivino1.ToString() + " de Favor";
                 botonBotinDivino1.SetActive(true);
                 botonBotinActivado = true;
                 numBotonesMejoraAxctivos++;
-                Debug.Log("botin");
             }             
         }
         else if (numRandom == 1)
         {
             if (!botonCastigoActivado)
             {
+                precioCastigoPiadoso1 = Mathf.RoundToInt(precioCastigoPiadoso1 * (1 + numCastigoPiadoso1));
+                textoCastigoPrecio.text = precioCastigoPiadoso1.ToString() + " de Favor";
                 botonCastigoPiadoso1.SetActive(true);
                 botonCastigoActivado = true;
                 numBotonesMejoraAxctivos++;
-                Debug.Log("castigo");
             }                      
         }
         else if (numRandom == 2)
         {
             if (numSantaSentencia1 < 10 && !botonSentenciaActivado)
             {
+                precioSantaSentencia1 = Mathf.RoundToInt(precioSantaSentencia1 * (1 + numSantaSentencia1));
+                textoSentenciaPrecio.text = precioSantaSentencia1.ToString() + " de Favor";
                 botonSantaSentencia1.SetActive(true);
                 botonSentenciaActivado = true;
                 numBotonesMejoraAxctivos++;
-                Debug.Log("sentencia");
             }          
         }
         else if (numRandom == 3)
         {
             if (numVivacidad1 < 5 && !botonVivacidadActivado)
             {
+                precioVivacidad1 = Mathf.RoundToInt(precioVivacidad1 * (1 + numVivacidad1));
+                textoVivacidadPrecio.text = precioVivacidad1.ToString() + " de Favor";
                 botonVivacidad1.SetActive(true);
                 botonVivacidadActivado = true;
                 numBotonesMejoraAxctivos++;
-                Debug.Log("vivacidad");
             }           
         }
         else if (numRandom == 4)
         {
             if (numClarividencia < 5 && !botonClarividenciaActivado)
             {
+                precioClarividencia = Mathf.RoundToInt(precioClarividencia * (1 + numClarividencia));
+                textoClarividenciaPrecio.text = precioClarividencia.ToString() + " de Favor";
                 botonClarividencia.SetActive(true);
                 botonClarividenciaActivado = true;
                 numBotonesMejoraAxctivos++;
-                Debug.Log("clarividencia");
             }
         }
         return;
@@ -178,14 +197,24 @@ public class Templo : MonoBehaviour
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
     private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
-    private bool menuActivado = false;
+    public static bool menuActivado = false;
 
     public GameObject menuTemplo;
+    public GameObject menuColegio;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         numBotonesMejoraAxctivos = 0;
+
+        precioBotinDivino1 = precioInicialBotinDivino1;
+        precioCastigoPiadoso1 = precioInicialCastigoPiadoso1;
+        precioClarividencia = precioInicialClarividencia;
+        precioSantaSentencia1 = precioInicialSantaSentencia1;
+        precioVivacidad1 = precioInicialVivacidad1;
+
 
         botonBotinActivado = false;
         botonCastigoActivado = false;
@@ -210,9 +239,6 @@ public class Templo : MonoBehaviour
 
         //establecemos el color inicial al color de la mina al comienzo
         colorInicial = sprite.color;
-        RandomMejoraGlobal();
-        RandomMejoraGlobal();
-        RandomMejoraGlobal();
     }
 
     public void desactivarMenu()
@@ -225,6 +251,8 @@ public class Templo : MonoBehaviour
     {
         if (!menuActivado)
         {
+            menuColegio.SetActive(false);
+            Colegio.menuActivado = false;
             menuTemplo.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;

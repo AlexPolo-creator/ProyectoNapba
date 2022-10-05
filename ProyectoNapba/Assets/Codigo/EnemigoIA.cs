@@ -5,8 +5,11 @@ using UnityEngine;
 public class EnemigoIA : MonoBehaviour
 {
     public float velocidad = 0.5f;
+    public float velocidadInicial = 0.5f;
     public float vidaEnemigo = 100f;
+    public float vidaEnemigoInicial = 100f;
     public int recompensa = 5;
+    public int recompensaInicial = 5;
 
     public int daño = 1;
 
@@ -22,6 +25,9 @@ public class EnemigoIA : MonoBehaviour
     //esta funcion se ejecuta al iniciar la escena
     private void Start()
     {
+        recompensa = Mathf.RoundToInt(recompensaInicial * SistemaDificultad.recompensaSegunTiempo);
+        velocidad = velocidadInicial;
+        vidaEnemigo = Mathf.RoundToInt(vidaEnemigoInicial * SistemaDificultad.dificultadEnemigos);
 
         //asigna un camino al enemigo en funcion de su punto de spawn
         if (puntoSpawn == 1)
@@ -54,11 +60,14 @@ public class EnemigoIA : MonoBehaviour
     //mata al objetivo y otorga una recompensa al jugador
     void Muerte ()
     {
-        Stats.favorDeDioses += recompensa;
+        
 
         if (Templo.mejoraBotinDivino1)
         {
-            Stats.favorDeDioses += Stats.numMagos * Templo.numBotinDivino1;
+            Stats.favorDeDioses += Mathf.RoundToInt(recompensa * (Stats.numMagos * Templo.numBotinDivino1 * 1.1f));
+        }else
+        {
+            Stats.favorDeDioses += recompensa;
         }
 
         Destroy(gameObject);

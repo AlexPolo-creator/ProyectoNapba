@@ -46,19 +46,19 @@ public class Cultivos : MonoBehaviour
     {
         if (!poblacionCultivoCero)
         {
-            yield return new WaitForSecondsRealtime(0.01f); //bugfix
+            yield return new WaitForSeconds(0.01f); //bugfix
 
             //esta sintaxis indica la cantidad de segundos reales que tardara en ejecutar el resto del codigo, esta puesto 10 veces para que si el jugador cambia la cantidad de granjeros una vez empezada la coroutina no tenga que esperar a que se acabe la coroutina entera para ver la diferencia
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad);
-            yield return new WaitForSecondsRealtime(realVelocidad - 0.01f);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad);
+            yield return new WaitForSeconds(realVelocidad - 0.01f);
 
 
 
