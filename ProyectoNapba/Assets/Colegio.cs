@@ -26,12 +26,7 @@ public class Colegio : MonoBehaviour
         menuActivado = false;
     }
 
-    private void Update()
-    {
-        Debug.Log(Stats.verdugos + " : " + Stats.hechiceros);
-        precioHechicero = precioHechiceroInicial * (1 + (numHechicerosEntrenados / 2));
-        precioVerdugo = precioVerdugoInicial * (1 + (numVerdugosEntrenados / 2));
-    }
+
 
     public int precioHechiceroInicial;
     int precioHechicero;
@@ -43,6 +38,7 @@ public class Colegio : MonoBehaviour
             Stats.hechiceros += 1;
             Stats.favorDeDioses -= precioHechicero;
             numHechicerosEntrenados++;
+            precioHechicero = Mathf.RoundToInt(precioHechicero * 1.1f);
         }
     }
 
@@ -56,6 +52,7 @@ public class Colegio : MonoBehaviour
             Stats.verdugos += 1;
             Stats.favorDeDioses -= precioVerdugo;
             numVerdugosEntrenados++;
+            precioVerdugo = Mathf.RoundToInt(precioVerdugoInicial * 1.1f);
         }
     }
 

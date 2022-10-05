@@ -17,13 +17,14 @@ public class Templo : MonoBehaviour
     public void ActivarBotinDivino1()
     {
         if (Stats.favorDeDioses >= precioBotinDivino1)
-        {
+        {           
             botonBotinDivino1.SetActive(false);
             botonBotinActivado = false;
             numBotonesMejoraAxctivos--;
             numBotinDivino1++;
             mejoraBotinDivino1 = true;
-            Stats.favorDeDioses -= precioBotinDivino1;              
+            Stats.favorDeDioses -= precioBotinDivino1;
+            precioBotinDivino1 = 2 * precioBotinDivino1;
         }
     }
 
@@ -45,7 +46,8 @@ public class Templo : MonoBehaviour
             mejoraVivacidad1 = true;
             TropaStats.hechiceroVelocidadDeDisparo = TropaStats.hechiceroVelocidadDeDisparo * (1 + (0.15f * numVivacidad1)); // + porque la velocidad de ataque de los magos es ataques/segundo y no al reves
             TropaStats.verdugoVelocidadDeDisparo = TropaStats.verdugoVelocidadDeDisparo * (1 + (0.15f * numVivacidad1));
-            Stats.favorDeDioses -= precioVivacidad1;           
+            Stats.favorDeDioses -= precioVivacidad1;
+            precioVivacidad1 = 2 * precioVivacidad1;
         }      
     }
 
@@ -69,6 +71,7 @@ public class Templo : MonoBehaviour
             TropaStats.hechiceroAtaque = TropaStats.hechiceroAtaque * 1.1f;
             TropaStats.verdugoAtaque = TropaStats.verdugoAtaque * 1.1f;
             Stats.favorDeDioses -= precioCastigoPiadoso1;
+            precioCastigoPiadoso1 = 2 * precioCastigoPiadoso1;
         }
     }
 
@@ -92,6 +95,7 @@ public class Templo : MonoBehaviour
             TropaStats.hechiceroCriticoPorcentaje += 5f;
             TropaStats.verdugoCriticoPorcentaje += 5f;
             Stats.favorDeDioses -= precioSantaSentencia1;
+            precioSantaSentencia1 = 2 * precioSantaSentencia1;
         }
     }
 
@@ -114,7 +118,8 @@ public class Templo : MonoBehaviour
             mejoraClarividencia = true;
             TropaStats.hechiceroRango += TropaStats.hechiceroRango * 0.1f;
             TropaStats.verdugoRango += TropaStats.verdugoRango * 0.1f;
-            Stats.favorDeDioses -= precioClarividencia;           
+            Stats.favorDeDioses -= precioClarividencia;
+            precioClarividencia = 2 * precioClarividencia;
         }
     }
 
@@ -136,8 +141,7 @@ public class Templo : MonoBehaviour
         if (numRandom == 0)
         {
             if (!botonBotinActivado)
-            {
-                precioBotinDivino1 = Mathf.RoundToInt(precioBotinDivino1 * (1 + numBotinDivino1));
+            {               
                 textoBotinPrecio.text = precioBotinDivino1.ToString() + " de Favor";
                 botonBotinDivino1.SetActive(true);
                 botonBotinActivado = true;
@@ -148,7 +152,6 @@ public class Templo : MonoBehaviour
         {
             if (!botonCastigoActivado)
             {
-                precioCastigoPiadoso1 = Mathf.RoundToInt(precioCastigoPiadoso1 * (1 + numCastigoPiadoso1));
                 textoCastigoPrecio.text = precioCastigoPiadoso1.ToString() + " de Favor";
                 botonCastigoPiadoso1.SetActive(true);
                 botonCastigoActivado = true;
@@ -159,7 +162,6 @@ public class Templo : MonoBehaviour
         {
             if (numSantaSentencia1 < 10 && !botonSentenciaActivado)
             {
-                precioSantaSentencia1 = Mathf.RoundToInt(precioSantaSentencia1 * (1 + numSantaSentencia1));
                 textoSentenciaPrecio.text = precioSantaSentencia1.ToString() + " de Favor";
                 botonSantaSentencia1.SetActive(true);
                 botonSentenciaActivado = true;
@@ -170,7 +172,6 @@ public class Templo : MonoBehaviour
         {
             if (numVivacidad1 < 5 && !botonVivacidadActivado)
             {
-                precioVivacidad1 = Mathf.RoundToInt(precioVivacidad1 * (1 + numVivacidad1));
                 textoVivacidadPrecio.text = precioVivacidad1.ToString() + " de Favor";
                 botonVivacidad1.SetActive(true);
                 botonVivacidadActivado = true;
@@ -181,7 +182,6 @@ public class Templo : MonoBehaviour
         {
             if (numClarividencia < 5 && !botonClarividenciaActivado)
             {
-                precioClarividencia = Mathf.RoundToInt(precioClarividencia * (1 + numClarividencia));
                 textoClarividenciaPrecio.text = precioClarividencia.ToString() + " de Favor";
                 botonClarividencia.SetActive(true);
                 botonClarividenciaActivado = true;
