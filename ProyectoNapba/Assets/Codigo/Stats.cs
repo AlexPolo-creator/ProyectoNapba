@@ -37,10 +37,10 @@ public class Stats : MonoBehaviour
         hechiceros = 0;
         verdugos = 0;
 
-        dañoCausado = 0;
-        dañoCausadoHechicero = 0;
-        dañoCausadoVerdugo = 0;
-        dañoCausadoArquero = 0;
+        danoCausado = 0;
+        danoCausadoHechicero = 0;
+        danoCausadoVerdugo = 0;
+        danoCausadoArquero = 0;
         
 
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
@@ -50,10 +50,10 @@ public class Stats : MonoBehaviour
     {
         poblacionLibre = poblacion - poblacionEnMina - poblacionEnTemplo - poblacionEnCultivo;
 
-        dañoCausado = dañoCausadoHechicero + dañoCausadoVerdugo + dañoCausadoArquero;
-        dañoCausadoHechiceroShow = dañoCausadoHechicero;
-        dañoCausadoVerdugoShow = dañoCausadoVerdugo;
-        dañoCausadoArqueroShow = dañoCausadoArquero;
+        danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero;
+        danoCausadoHechiceroShow = danoCausadoHechicero;
+        danoCausadoVerdugoShow = danoCausadoVerdugo;
+        danoCausadoArqueroShow = danoCausadoArquero;
 
         if (favorDeDioses <= 10000) // 60 sec = 1 min
         {
@@ -74,37 +74,37 @@ public class Stats : MonoBehaviour
         }
 
 
-        if (dañoCausado <= 1000000) //24 hr = 1 day
+        if (danoCausado <= 1000000) //24 hr = 1 day
         {
-            dañoCausadoMillon = false;
+            danoCausadoMillon = false;
         }
-        if (dañoCausado >= 1000000) //24 hr = 1 day
+        if (danoCausado >= 1000000) //24 hr = 1 day
         {
-            dañoCausadoMillon = true;
+            danoCausadoMillon = true;
         }
-        if (dañoCausadoHechicero <= 1000000) //24 hr = 1 day
+        if (danoCausadoHechicero <= 1000000) //24 hr = 1 day
         {
-            dañoCausadoHechiceroMillon = false;
+            danoCausadoHechiceroMillon = false;
         }
-        if (dañoCausadoHechicero >= 1000000) //24 hr = 1 day
+        if (danoCausadoHechicero >= 1000000) //24 hr = 1 day
         {
-            dañoCausadoHechiceroMillon = true;
+            danoCausadoHechiceroMillon = true;
         }
-        if (dañoCausadoVerdugo <= 1000000) //24 hr = 1 day
+        if (danoCausadoVerdugo <= 1000000) //24 hr = 1 day
         {
-            dañoCausadoVerdugoMillon = false;
+            danoCausadoVerdugoMillon = false;
         }
-        if (dañoCausadoVerdugo >= 1000000) //24 hr = 1 day
+        if (danoCausadoVerdugo >= 1000000) //24 hr = 1 day
         {
-            dañoCausadoVerdugoMillon = true;
+            danoCausadoVerdugoMillon = true;
         }
-        if (dañoCausadoArquero <= 1000000) //24 hr = 1 day
+        if (danoCausadoArquero <= 1000000) //24 hr = 1 day
         {
-            dañoCausadoArqueroMillon = false;
+            danoCausadoArqueroMillon = false;
         }
-        if (dañoCausadoArquero >= 1000000) //24 hr = 1 day
+        if (danoCausadoArquero >= 1000000) //24 hr = 1 day
         {
-            dañoCausadoArqueroMillon = true;
+            danoCausadoArqueroMillon = true;
         }
 
 
@@ -142,23 +142,23 @@ public class Stats : MonoBehaviour
     public static int verdugos = 0;
 
     [Header("Otras Stats:")]
-    public static float dañoCritico = 5f;
+    public static float danoCritico = 5f;
 
-    [Header("Daño causado:")]
-    public int dañoCausado = 0;
-    public static bool dañoCausadoMillon = false;
+    [Header("Dano causado:")]
+    public int danoCausado = 0;
+    public static bool danoCausadoMillon = false;
 
-    public int dañoCausadoHechiceroShow = 0;
-    public static int dañoCausadoHechicero = 0;
-    public static bool dañoCausadoHechiceroMillon = false;
+    public int danoCausadoHechiceroShow = 0;
+    public static int danoCausadoHechicero = 0;
+    public static bool danoCausadoHechiceroMillon = false;
 
-    public int dañoCausadoVerdugoShow = 0;
-    public static int dañoCausadoVerdugo = 0;
-    public static bool dañoCausadoVerdugoMillon = false;
+    public int danoCausadoVerdugoShow = 0;
+    public static int danoCausadoVerdugo = 0;
+    public static bool danoCausadoVerdugoMillon = false;
 
-    public int dañoCausadoArqueroShow = 0;
-    public static int dañoCausadoArquero = 0;
-    public static bool dañoCausadoArqueroMillon = false;
+    public int danoCausadoArqueroShow = 0;
+    public static int danoCausadoArquero = 0;
+    public static bool danoCausadoArqueroMillon = false;
 
 
 

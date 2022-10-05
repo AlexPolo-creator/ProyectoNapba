@@ -45,7 +45,7 @@ public class EnemigoIA : MonoBehaviour
     }
 
     //esta funcion resta la vida al enemigo correspondiente al daño del ataque recibido extraido del Script de AtaqueIA, de donde se llama a esta funcion.
-    public void recibirDaño(float cantidad)
+    public void recibirDano(float cantidad)
     {
         //resta la cantidad equivalente al daño del ataque
         vidaEnemigo -= cantidad;

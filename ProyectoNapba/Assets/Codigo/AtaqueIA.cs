@@ -14,7 +14,7 @@ public class AtaqueIA : MonoBehaviour
 
     //stats del ataque
     public float velocidad = 50f;
-    public float dañoAtaque = 25f;
+    public float danoAtaque = 25f;
     public int criticoAtaque = 1; //0 es si, cualquier otra cosa en no    
     private int maxCritNum;
 
@@ -75,12 +75,12 @@ public class AtaqueIA : MonoBehaviour
 
             if (criticoAtaque == 0)
             {
-                dañoAtaque = TropaStats.hechiceroAtaque * Stats.dañoCritico;
+                danoAtaque = TropaStats.hechiceroAtaque * Stats.danoCritico;
                 esCrit = true;
             }
             else
             {
-                dañoAtaque = TropaStats.hechiceroAtaque;
+                danoAtaque = TropaStats.hechiceroAtaque;
             }
         }
         else if (queTropa == "verdugo")
@@ -98,14 +98,14 @@ public class AtaqueIA : MonoBehaviour
             }
             if (criticoAtaque == 0)
             {
-                dañoAtaque = TropaStats.verdugoAtaque * Stats.dañoCritico;
+                danoAtaque = TropaStats.verdugoAtaque * Stats.danoCritico;
                 esCrit = true;
             }
             else
             {
-                dañoAtaque = TropaStats.verdugoAtaque;
+                danoAtaque = TropaStats.verdugoAtaque;
             }
-            Debug.Log("daño:" + dañoAtaque);
+            Debug.Log("dano:" + danoAtaque);
         }
         else if (queTropa == "arquero")
         {
@@ -121,12 +121,12 @@ public class AtaqueIA : MonoBehaviour
             }
             if (criticoAtaque == 0)
             {
-                dañoAtaque = TropaStats.arqueroAtaque * Stats.dañoCritico;
+                danoAtaque = TropaStats.arqueroAtaque * Stats.danoCritico;
                 esCrit = true;
             }
             else
             {
-                dañoAtaque = TropaStats.arqueroAtaque;
+                danoAtaque = TropaStats.arqueroAtaque;
             }            
         }
         
@@ -158,10 +158,10 @@ public class AtaqueIA : MonoBehaviour
         //calcula la distacia que viajara este fotograma
         float distanciaEsteFotograma = velocidad * Time.deltaTime;
 
-        //si la distancia que va a viajar este fotograma es major que la magnitud del vector direccion, es decir, esta mas cerca de la distacia que viajará por lo que se pasara de lago, por lo consideramos que ha golpeado al objetivo. Con esto evitamos bugs de que se pase de largo y esas cosas
+        //si la distancia que va a viajar este fotograma es major que la magnitud del vector direccion, es decir, esta mas cerca de la distacia que viajarï¿½ por lo que se pasara de lago, por lo consideramos que ha golpeado al objetivo. Con esto evitamos bugs de que se pase de largo y esas cosas
         if (dir.magnitude <= distanciaEsteFotograma)
         {
-            DañarObjetivo();            
+            DanarObjetivo();            
         }
 
         //trasladamos el objeto hacia el objetivo
@@ -175,37 +175,37 @@ public class AtaqueIA : MonoBehaviour
     }
 
 
-    //funcion que daña al objetivo en funcion del daño del atque y destryue el ataque
-    void DañarObjetivo()
+    //funcion que daï¿½a al objetivo en funcion del daï¿½o del atque y destryue el ataque
+    void DanarObjetivo()
     {
-        Debug.Log("daño:" + dañoAtaque);
-        ActivarDañoPopUp(Mathf.RoundToInt(dañoAtaque));
+        Debug.Log("dano:" + danoAtaque);
+        ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque));
 
         //obtenemos el codigo del objetivo
         EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
 
-        //al tener el codigo podemos ejecutar la funcion recibirDaño() del objetivo
+        //al tener el codigo podemos ejecutar la funcion recibirDaï¿½o() del objetivo
        
-        e.recibirDaño(dañoAtaque);
+        e.recibirDano(danoAtaque);
 
-        if (dañoAtaque >= e.vidaEnemigo)
+        if (danoAtaque >= e.vidaEnemigo)
         {
 
-            dañoAtaque = e.vidaEnemigo; //con esto evitamos que el daño registrado sea mayor que la vida restante del objetivo en caso de que el objetivo vaya a morir ya
+            danoAtaque = e.vidaEnemigo; //con esto evitamos que el daï¿½o registrado sea mayor que la vida restante del objetivo en caso de que el objetivo vaya a morir ya
 
         }
 
         if (tipoTropa == "hechicero")
         {
-            Stats.dañoCausadoHechicero += Mathf.RoundToInt(dañoAtaque);
+            Stats.danoCausadoHechicero += Mathf.RoundToInt(danoAtaque);
         }
         else if (tipoTropa == "verdugo")
         {
-            Stats.dañoCausadoVerdugo += Mathf.RoundToInt(dañoAtaque);
+            Stats.danoCausadoVerdugo += Mathf.RoundToInt(danoAtaque);
         }
         else if (tipoTropa == "arquero")
         {
-            Stats.dañoCausadoArquero += Mathf.RoundToInt(dañoAtaque);
+            Stats.danoCausadoArquero += Mathf.RoundToInt(danoAtaque);
         }
 
         //destruimos el ataque
@@ -215,11 +215,11 @@ public class AtaqueIA : MonoBehaviour
         return;
     }
 
-    public GameObject PopUpDaño;
+    public GameObject PopUpDano;
     TextMeshPro textoPopUp;
-    void ActivarDañoPopUp(int cantidadDaño)
+    void ActivarDanoPopUp(int cantidadDano)
     {       
-        textoPopUp = PopUpDaño.GetComponent<TextMeshPro>();
+        textoPopUp = PopUpDano.GetComponent<TextMeshPro>();
         if (esCrit)
         {
             textoPopUp.color = colorCrit;
@@ -230,8 +230,8 @@ public class AtaqueIA : MonoBehaviour
             textoPopUp.color = Color.white;
             textoPopUp.fontSize = 10;
         }      
-        textoPopUp.SetText(cantidadDaño.ToString());
-        Instantiate(PopUpDaño, objetivoAtaque.position, Quaternion.identity);
+        textoPopUp.SetText(cantidadDano.ToString());
+        Instantiate(PopUpDano, objetivoAtaque.position, Quaternion.identity);
     }
 
 }

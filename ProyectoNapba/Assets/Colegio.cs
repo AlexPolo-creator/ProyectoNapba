@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Colegio : MonoBehaviour
 {
-    public Color hoverColor; //color cuando poner el cursor por encima   
-    private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
+    public Color hoverColor; //color
+    private SpriteRenderer sprite; //creamos la variable sprite pa cuando poner el cursor por encima   ra poder cambiarle el color al SpriteRenderer de la mina   
     private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     public static bool menuActivado = false;

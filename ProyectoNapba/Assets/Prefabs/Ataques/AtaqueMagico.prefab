@@ -195,9 +195,9 @@ MonoBehaviour:
   tipoTropa: mago
   queTropa: hechicero
   velocidad: 1
-  "da\xF1oAtaque": 75
+  danoAtaque: 25
   criticoAtaque: 1
   enemigoTag: Enemigo
   velocidadRotacion: 10000
   colorCrit: {r: 0.8784314, g: 0.15686275, b: 0, a: 1}
-  "PopUpDa\xF1o": {fileID: 737823371747002220, guid: 638d20b883ac5f74eb347939ed514948, type: 3}
+  PopUpDano: {fileID: 737823371747002220, guid: 638d20b883ac5f74eb347939ed514948, type: 3}
