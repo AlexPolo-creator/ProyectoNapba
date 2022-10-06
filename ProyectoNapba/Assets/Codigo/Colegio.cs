@@ -20,6 +20,10 @@ public class Colegio : MonoBehaviour
 
         //establecemos el color inicial al color de la mina al comienzo
         colorInicial = sprite.color;
+
+        precioHechicero = precioHechiceroInicial;
+        precioVerdugo = precioVerdugoInicial;
+
     }
     public void desactivarMenu()
     {

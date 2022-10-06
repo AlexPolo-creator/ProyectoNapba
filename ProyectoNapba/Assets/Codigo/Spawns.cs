@@ -17,24 +17,28 @@ public class Spawns : MonoBehaviour
 
     
     void aumentoTiempo(){
-        if (tiempo >=1 && tiempo<3){
+        if (tiempo >= 1 && tiempo < 3)
+        {
                 esperaEnemigosTipo1 =4;
                 esperaEnemigosTipo2 = 25;
 
-        }else if(tiempo >=3 && tiempo<5){
+        }else if(tiempo >= 3 && tiempo < 5)
+        {
                 esperaEnemigosTipo1 =3;
                 esperaEnemigosTipo2 =20;
-        }else if (tiempo>=5){
+        }else if (tiempo >= 5)
+        {
                 esperaEnemigosTipo1 =2;
                 esperaEnemigosTipo2 =15;
-                }
+        }
     }
+
     void Start()
     {
-        Debug.Log(":" + esperaEnemigosTipo1);
+
         esperaEnemigosTipo1 = esperaInicialEnemigosTipo1;
         esperaEnemigosTipo2 = esperaInicialEnemigosTipo2;
-        Debug.Log(":" + esperaEnemigosTipo1);
+
 
         StartCoroutine(SpawnEnemigosTipo1());
         StartCoroutine(SpawnEnemigosTipo2());
@@ -67,7 +71,7 @@ public class Spawns : MonoBehaviour
             }
     void Update(){
         tiempo = Time.deltaTime*CicloDiaNoche.tick;
-        Debug.Log(tiempo);
+
         aumentoTiempo();
     }
 

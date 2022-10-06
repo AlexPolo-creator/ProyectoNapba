@@ -131,8 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipoTropa: mago
   queTropa: hechicero
-  rango: 2
-  velocidadDisparo: 0.3
   velocidadRotacion: 2
   rotacionDiff: 90
   puntoDeDisparo: {fileID: 5897036855590127860}
