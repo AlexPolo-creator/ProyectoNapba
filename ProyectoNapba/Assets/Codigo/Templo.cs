@@ -201,6 +201,7 @@ public class Templo : MonoBehaviour
 
     public GameObject menuTemplo;
     public GameObject menuColegio;
+    public GameObject menuBarracones;
 
 
     // Start is called before the first frame update
@@ -252,7 +253,9 @@ public class Templo : MonoBehaviour
         if (!menuActivado)
         {
             menuColegio.SetActive(false);
+            menuBarracones.SetActive(false);
             Colegio.menuActivado = false;
+            Barracones.menuActivado = false;
             menuTemplo.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;

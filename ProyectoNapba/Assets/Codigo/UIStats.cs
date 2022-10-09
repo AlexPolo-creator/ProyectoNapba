@@ -10,6 +10,7 @@ public class UIStats : MonoBehaviour
     public TextMeshProUGUI vidaJugadorTexto;
 
     public TextMeshProUGUI oroTexto;
+    public TextMeshProUGUI oroBarraconesTexto;
 
     public TextMeshProUGUI favorTexto;
     public TextMeshProUGUI favorTemploTexto;
@@ -42,12 +43,14 @@ public class UIStats : MonoBehaviour
         if (!Stats.oroMil)
         {
             oroTexto.text = "Oro: " + Stats.oro.ToString();
+            oroBarraconesTexto.text = "Oro: " + Stats.oro.ToString();
         }
         else if (Stats.oroMil)
         {
             oroEnMiles = (Stats.oro / 1000);
             oroEnMilesResto = ((Stats.oro - (1000 * oroEnMiles)) / 100);
             oroTexto.text = "Oro: " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
+            oroBarraconesTexto.text = "Oro: " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
         }
 
         if (!Stats.favorDeDiosesMil)

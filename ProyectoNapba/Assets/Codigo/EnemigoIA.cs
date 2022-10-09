@@ -7,9 +7,12 @@ public class EnemigoIA : MonoBehaviour
     public float velocidad = 0.5f;
     public float velocidadInicial = 0.5f;
     public float vidaEnemigo = 100f;
-    public float vidaEnemigoInicial = 100f;
+    public float vidaEnemigoInicial = 100f;   
     public int recompensa = 5;
     public int recompensaInicial = 5;
+
+    float rotacionDiff = 90f;
+    float velocidadRotacion = 10f;
 
     public int daño = 1;
 
@@ -120,6 +123,11 @@ public class EnemigoIA : MonoBehaviour
 
         //mueve al enemigo hacia el proximo waypoint en funcion de la velocidad y la direcci�n. Al ser .normalized no depende del modulo del vector direccion y al estar multiplicado por Time.deltaTime no depende de los fps del cliente.
         transform.Translate(dir.normalized * velocidad * Time.deltaTime, Space.World);
+
+        Vector3 vectorToTarget = transform.position - objetivo.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotacionDiff;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);
 
         //ejecuta la funcion sigueinteWaypoint cuando el enemigo llega a un waypoint para cambiar de objetivo al siguiente waypoint
         if (Vector2.Distance(transform.position, objetivo.position) <= 0.05f)

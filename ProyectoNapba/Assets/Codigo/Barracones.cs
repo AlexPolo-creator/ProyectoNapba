@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Colegio : MonoBehaviour
+public class Barracones : MonoBehaviour
 {
     public Color hoverColor; //color
     private SpriteRenderer sprite; //creamos la variable sprite pa cuando poner el cursor por encima   ra poder cambiarle el color al SpriteRenderer de la mina   
@@ -15,10 +15,9 @@ public class Colegio : MonoBehaviour
     public GameObject menuTemplo;
     public GameObject menuBarracones;
 
-    public TextMeshProUGUI contadorFavor;
+    public TextMeshProUGUI contadorOro;
 
-    public TextMeshProUGUI precioHechiceroTexto;
-    public TextMeshProUGUI precioVerdugoTexto;
+    public TextMeshProUGUI precioArqueroTexto;
 
     private void Start()
     {
@@ -28,50 +27,31 @@ public class Colegio : MonoBehaviour
         //establecemos el color inicial al color de la mina al comienzo
         colorInicial = sprite.color;
 
-        precioHechicero = precioHechiceroInicial;
-        precioVerdugo = precioVerdugoInicial;
+        precioArquero = precioArqueroInicial;
+        
 
-        precioHechiceroTexto.text = precioHechicero.ToString();
-        precioVerdugoTexto.text = precioVerdugo.ToString();
+        precioArqueroTexto.text = precioArquero.ToString();
     }
-
 
     public void desactivarMenu()
     {
         menuActivado = false;
     }
 
-
-    public int precioHechiceroInicial;
-    int precioHechicero;
-    int numHechicerosEntrenados;
-    public void EntrenarHechicero()
+    public int precioArqueroInicial;
+    int precioArquero;
+    int numArquerosEntrenados;
+    public void EntrenarArquero()
     {
-        if (Stats.favorDeDioses >= precioHechicero)
-        {          
-            Stats.hechiceros += 1;
-            Stats.favorDeDioses -= precioHechicero;
-            numHechicerosEntrenados++;
-            precioHechicero = Mathf.RoundToInt(precioHechicero * SistemaDificultad.aumentoPrecioTropas);
-            precioHechiceroTexto.text = precioHechicero.ToString();
-        }
-    }
-
-    public int precioVerdugoInicial;
-    int precioVerdugo;
-    int numVerdugosEntrenados;
-    public void EntrenarVerdugo()
-    {
-        if (Stats.favorDeDioses >= precioVerdugo)
+        if (Stats.oro >= precioArquero)
         {
-            Stats.verdugos += 1;
-            Stats.favorDeDioses -= precioVerdugo;
-            numVerdugosEntrenados++;
-            precioVerdugo = Mathf.RoundToInt(precioVerdugo * SistemaDificultad.aumentoPrecioTropas);
-            precioVerdugoTexto.text = precioVerdugo.ToString();
+            Stats.arqueros += 1;
+            Stats.oro -= precioArquero;
+            numArquerosEntrenados++;
+            precioArquero = Mathf.RoundToInt(precioArquero * SistemaDificultad.aumentoPrecioTropas);
+            precioArqueroTexto.text = precioArquero.ToString();
         }
     }
-
 
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()
@@ -79,10 +59,10 @@ public class Colegio : MonoBehaviour
         if (!menuActivado)
         {
             menuTemplo.SetActive(false);
-            menuBarracones.SetActive(false);
+            menuColegio.SetActive(false);
             Templo.menuActivado = false;
-            Barracones.menuActivado = false;
-            menuColegio.SetActive(true);           
+            Colegio.menuActivado = false;
+            menuBarracones.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
         }
