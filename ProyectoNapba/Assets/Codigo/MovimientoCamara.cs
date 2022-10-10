@@ -60,6 +60,13 @@ public class MovimientoCamara : MonoBehaviour
 
     private void Update()
     {
+
+        if (batalla.position == transform.position)
+        {
+
+            enCiudad = false;
+        }
+
         if (!enCiudad)
         {
             if (Input.GetMouseButtonDown(0))
@@ -77,11 +84,11 @@ public class MovimientoCamara : MonoBehaviour
             }
             if (Input.mouseScrollDelta.y > 0)
             {
-                camaraZoom -= cantidadZoom * Time.deltaTime;
+                camaraZoom -= cantidadZoom * Time.unscaledDeltaTime;
             }
             if (Input.mouseScrollDelta.y < 0)
             {
-                camaraZoom += cantidadZoom * Time.deltaTime;
+                camaraZoom += cantidadZoom * Time.unscaledDeltaTime;
             }
             camaraZoom = Mathf.Clamp(camaraZoom, maxZoom, minZoom);
         }
@@ -99,10 +106,10 @@ public class MovimientoCamara : MonoBehaviour
         }
         
         Vector2 dir = camaraObjetivo - transform.position;
-        transform.Translate(dir * velocidadSeguimientoCamara * Time.deltaTime, Space.World);
+        transform.Translate(dir * velocidadSeguimientoCamara * Time.unscaledDeltaTime, Space.World);
 
         float camaraZoomDiff = camaraZoom - camara.orthographicSize;
-        camara.orthographicSize += camaraZoomDiff * velocidadZoom * Time.deltaTime;
+        camara.orthographicSize += camaraZoomDiff * velocidadZoom * Time.unscaledDeltaTime;
 
         
     }
@@ -150,6 +157,6 @@ public class MovimientoCamara : MonoBehaviour
     public void irBatlla()
     {
         camaraObjetivo = batalla.position;
-        enCiudad = false;
+        
     }
 }

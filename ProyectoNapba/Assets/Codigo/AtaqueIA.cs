@@ -14,9 +14,9 @@ public class AtaqueIA : MonoBehaviour
 
     //stats del ataque
     public float velocidad = 50f;
-    public float danoAtaque = 25f;
-    public int criticoAtaque = 1; //0 es si, cualquier otra cosa en no    
-    private int maxCritNum;
+    float danoAtaque = 25f;
+    int criticoAtaque = 1; //0 es si, cualquier otra cosa en no    
+    int maxCritNum;
 
     //tag de los objetos a los que puede considerar objetivos
     public string enemigoTag = "Enemigo";
@@ -57,6 +57,7 @@ public class AtaqueIA : MonoBehaviour
     }
 
     private bool esCrit = false;
+    private bool esEjecucion = false;
     public Color colorCrit;
     void Start()
     {
@@ -178,15 +179,18 @@ public class AtaqueIA : MonoBehaviour
     //funcion que da�a al objetivo en funcion del da�o del atque y destryue el ataque
     void DanarObjetivo()
     {
-        Debug.Log("dano:" + danoAtaque);
-        ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque));
-
         //obtenemos el codigo del objetivo
         EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
-
-        //al tener el codigo podemos ejecutar la funcion recibirDa�o() del objetivo
-       
-        e.recibirDano(danoAtaque);
+        if (queTropa == "verdugo" && e.vidaEnemigo < (e.vidaEnemigoInicial * TropaStats.verdugoPuntoEjecucion)) 
+        {
+            danoAtaque = e.vidaEnemigo;
+            esEjecucion = true;
+            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque));
+        }
+        else
+        {
+            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque));
+        }
 
         if (danoAtaque >= e.vidaEnemigo)
         {
@@ -195,15 +199,18 @@ public class AtaqueIA : MonoBehaviour
 
         }
 
-        if (tipoTropa == "hechicero")
+        e.recibirDano(danoAtaque);//al tener el codigo podemos ejecutar la funcion recibirDa�o() del objetivo
+
+
+        if (queTropa == "hechicero")
         {
             Stats.danoCausadoHechicero += Mathf.RoundToInt(danoAtaque);
         }
-        else if (tipoTropa == "verdugo")
+        else if (queTropa == "verdugo")
         {
             Stats.danoCausadoVerdugo += Mathf.RoundToInt(danoAtaque);
         }
-        else if (tipoTropa == "arquero")
+        else if (queTropa == "arquero")
         {
             Stats.danoCausadoArquero += Mathf.RoundToInt(danoAtaque);
         }
@@ -215,20 +222,27 @@ public class AtaqueIA : MonoBehaviour
         return;
     }
 
+
     public GameObject PopUpDano;
     TextMeshPro textoPopUp;
     void ActivarDanoPopUp(int cantidadDano)
     {       
         textoPopUp = PopUpDano.GetComponent<TextMeshPro>();
-        if (esCrit)
+        if (esCrit && !esEjecucion)
         {
             textoPopUp.color = colorCrit;
             textoPopUp.fontSize = 12;
         }
-        else
+        else if (!esCrit && !esEjecucion)
         {
             textoPopUp.color = Color.white;
             textoPopUp.fontSize = 10;
+        }else if (esEjecucion)
+        {
+            textoPopUp.color = colorCrit;
+            textoPopUp.SetText("Ejecución");
+            Instantiate(PopUpDano, objetivoAtaque.position, Quaternion.identity);
+            return;
         }      
         textoPopUp.SetText(cantidadDano.ToString());
         Instantiate(PopUpDano, objetivoAtaque.position, Quaternion.identity);

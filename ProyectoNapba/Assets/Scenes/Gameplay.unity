@@ -5138,7 +5138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563955429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.407984, y: 6.9767838, z: -8.619983}
+  m_LocalPosition: {x: -4.407984, y: 6.9767838, z: -18.619984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6489,7 +6489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732884552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.407984, y: -3.0232162, z: -8.619983}
+  m_LocalPosition: {x: -4.407984, y: -3.023223, z: -18.619984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10523,8 +10523,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446984818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 25, y: 16.8, z: 1.4063027}
+  m_LocalPosition: {x: 0, y: -0.1345, z: 10}
+  m_LocalScale: {x: 25, y: 16.532764, z: 1.4063027}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 818046458}
@@ -14711,8 +14711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaJugadorInicial: 1000
-  oroInicial: 2500
-  favorDeDiosesInicial: 1000
+  oroInicial: 25000000
+  favorDeDiosesInicial: 10000000
   poblacionLibreInicial: 10
   poblacionEnMinaInicial: 10
   poblacionEnTemploInicial: 0
@@ -14734,15 +14734,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hechiceroRangoInicial: 1.5
-  hechiceroVelocidadDeDisparoInicial: 0.3
+  hechiceroVelocidadDeDisparoInicial: 0.25
   hechiceroAtaqueInicial: 75
   hechiceroCriticoPorcentajeInicial: 0
   verdugoRangoInicial: 1.5
-  verdugoVelocidadDeDisparoInicial: 0.5
-  verdugoAtaqueInicial: 30
+  verdugoPuntoEjecucionInicial: 0.25
+  verdugoVelocidadDeDisparoInicial: 0.8
+  verdugoAtaqueInicial: 15
   verdugoCriticoPorcentajeInicial: 0
   arqueroRangoInicial: 1.5
-  arqueroVelocidadDeDisparoInicial: 0.35
+  arqueroVelocidadDeDisparoInicial: 0.75
   arqueroAtaqueInicial: 25
   arqueroCriticoPorcentajeInicial: 0
 --- !u!114 &2022825720

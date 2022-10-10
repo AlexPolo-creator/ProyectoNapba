@@ -25,6 +25,9 @@ public class TropaStats : MonoBehaviour
     public float verdugoRangoInicial = 1.5f;
     public static float verdugoRango;
 
+    public float verdugoPuntoEjecucionInicial;
+    public static float verdugoPuntoEjecucion;
+
     public float verdugoVelocidadDeDisparoInicial = 0.35f; //cuantas veces dispara por segundo
     public static float verdugoVelocidadDeDisparo;
 
@@ -62,7 +65,8 @@ public class TropaStats : MonoBehaviour
         verdugoVelocidadDeDisparo = verdugoVelocidadDeDisparoInicial;
         verdugoAtaque = verdugoAtaqueInicial;
         verdugoRango = verdugoRangoInicial;
-        hechiceroCriticoPorcentaje = hechiceroCriticoPorcentajeInicial;
+        verdugoPuntoEjecucion = verdugoPuntoEjecucionInicial;
+        verdugoCriticoPorcentaje = verdugoCriticoPorcentajeInicial;
 
 
         arqueroVelocidadDeDisparo = arqueroVelocidadDeDisparoInicial;
