@@ -7053,11 +7053,13 @@ MonoBehaviour:
   ciudad: {fileID: 732884553}
   batalla: {fileID: 563955430}
   enCiudad: 0
+  yendoCiudad: 0
   rangoCamara: {fileID: 525665490}
   rangoCamaraSecundario: {fileID: 1446984820}
+  camaraZoomInicial: 5
   velocidadZoom: 5
   minZoom: 5
-  maxZoom: 1.5
+  maxZoom: 0.75
   cantidadZoom: 50
   deslizamientoCamara: 0.8
   velocidadSeguimientoCamara: 5
