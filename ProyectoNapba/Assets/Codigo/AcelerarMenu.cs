@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AcelerarMenu : MonoBehaviour
 {   
+    //no pienso comentar esta clase, si no lo entiendes eres subnormal
+
     void Start()
     {
         Time.timeScale = 1f; 

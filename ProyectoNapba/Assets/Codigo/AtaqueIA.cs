@@ -3,71 +3,66 @@ using UnityEngine;
 using TMPro;
 
 public class AtaqueIA : MonoBehaviour
-{
-    //el objetivo del ataque
-    Transform objetivoAtaque;
-
+{   
+    Transform objetivoAtaque; //el objetivo del ataque, lo establecemos en Start()
 
     [Header("Que tropa es la atacante?:")]
-    public string tipoTropa;
-    public string queTropa;
+    public string tipoTropa; //el tipo general, es decir, es un mago o es infanteria
+    public string queTropa; //dentro de su tipo, que tropa es, es decir, si es mago, es un Hechicero?, un verdugo?, etc
 
-    //stats del ataque
-    public float velocidad = 50f;
-    float danoAtaque = 25f;
-    int criticoAtaque = 1; //0 es si, cualquier otra cosa en no    
-    int maxCritNum;
+    //stats del ataque:
+    public float velocidad = 50f; //la velocidad a la que el ataque se mueve (principalmente estético)
 
-    //tag de los objetos a los que puede considerar objetivos
-    public string enemigoTag = "Enemigo";
+    float danoAtaque; //el daño no es modificabel ya que se establece su valor al impactar con el objetivo
+    int criticoAtaque = 1; //variable usada para determinar si el ataque será critico, 0 es si, cualquier otra cosa en no  NO TOCAR  
+    int maxCritNum; //variable usada para determinar si el ataque será critico, determina el maximo numero para el Random.Range en funcion del porcentaje critico de la tropa
 
-    //el offset de rotacion inicial necesario para que salga apuntando al objetivo
-    float rotacionDiff = 90f;
+    public string enemigoTag = "Enemigo"; //tag de los objetos a los que puede considerar objetivos NO TOCAR
 
-    //la velocidad a la que rota para mirar al objetivo, tiene que ser muy alta
-    public float velocidadRotacion = 100f;
+    float rotacionDiff = 90f;//el offset de rotacion inicial necesario para que salga apuntando al objetivo NO TOCAR
 
-    //funcion por la cual establece su objetivo
-    void BuscarObjetivo()
+    public float velocidadRotacion = 100f;    //la velocidad a la que rota para mirar al objetivo, tiene que ser muy alta
+  
+    void BuscarObjetivo()//funcion por la cual establece su objetivo
     {
-        GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag);
-        float minimaDistancia = Mathf.Infinity;
-        GameObject enemigoMasCercano = null;
+        GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
+        float minimaDistancia = Mathf.Infinity; //cramos el float de distancia minima para determinar la ultima distancia mas cercana detectada. Hacemos que el default de esto sea infinito para que cualquier enemigo este mas cerca que el infinito
+        GameObject enemigoMasCercano = null; //creamos la variable de tipo GameObject del enemigo mas cercano para almacenar cual es el enemigo mas cercano, Hacemos que el default de esto sea null
 
-        foreach (GameObject enemigo in enemigos)
+        foreach (GameObject enemigo in enemigos) //iteramos esta funcion por y para cada componente del array de enemigos
         {
-            float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position);
-            if (distanciaEnemigo < minimaDistancia)
+            float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position); //calculamos la distancia de la tropa hasta el enemigo que estamos iternado
+            if (distanciaEnemigo < minimaDistancia) //si la distancia hasta este enemigo es menor que la ultima distancia mas cercana detectada cambiamos esta distancia mas cercana detectada (minimaDistancia) a la del enemigo sobre el que hemos iterado y establecemos el enemigo mas cercano como el enemigo que tenemos iterado
             {
-                minimaDistancia = distanciaEnemigo;
-                enemigoMasCercano = enemigo;
+                minimaDistancia = distanciaEnemigo; //establecemos la distancia mas cercana detectada (minimaDistancia) a la del enemigo sobre el que hemos iterado
+                enemigoMasCercano = enemigo; //establecemos el enemigo mas cercano como el enemigo que tenemos iterado
             }
         }
 
         if (enemigoMasCercano != null)
         {
-            objetivoAtaque = enemigoMasCercano.transform;
+            objetivoAtaque = enemigoMasCercano.transform; //establecemos el objetivo del ataque como el transform del enemigo mas cercano
         }
         else
         {
-            objetivoAtaque = null;
+            objetivoAtaque = null; //si no hay enemigo mas cercano 
         }
 
 
     }
 
-    private bool esCrit = false;
-    private bool esEjecucion = false;
-    public Color colorCrit;
+    private bool esCrit = false; //esta varible determina si el atque es critico
+    private bool esEjecucion = false; //esta variable determina en caso de que sea un ataque de verdugo si el ataque es una ejecucion
+    public Color colorCrit; //el color del texto del popUp en caso de que sea un critico
+    public Color colorEjecucion; //esto a futuro lo cambiaremos por una animacion o algo
     void Start()
     {
-        if (queTropa == "hechicero")
+        if (queTropa == "hechicero")//si el ataque fue lanzado por un hechicero
         {
             if (TropaStats.hechiceroCriticoPorcentaje != 0)
             {
-                maxCritNum = Mathf.RoundToInt(1 / TropaStats.hechiceroCriticoPorcentaje * 100);
-                criticoAtaque = Random.Range(0, maxCritNum);
-                
+                maxCritNum = Mathf.RoundToInt(1 / TropaStats.hechiceroCriticoPorcentaje * 100); //establecemos en maxCritNum en funcion del porcentaje de critico
+                criticoAtaque = Random.Range(0, maxCritNum); //sacamos un numero aleatorio del 0 al maxCritNum, si es 0 el ataque sera critico, si alguien no entiende como funciona este sistema que me he invetao que me escriba por was que me da pereza explicarlo, PERO FUNCIONA         
             }
             else
             {
@@ -76,7 +71,7 @@ public class AtaqueIA : MonoBehaviour
 
             if (criticoAtaque == 0)
             {
-                danoAtaque = TropaStats.hechiceroAtaque * Stats.danoCritico;
+                danoAtaque = TropaStats.hechiceroAtaque * Stats.danoCritico; //establecemos el daño en funcion del daño de la tropa multiplicado por el daño crit
                 esCrit = true;
             }
             else
