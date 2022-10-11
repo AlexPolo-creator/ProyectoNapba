@@ -127,85 +127,71 @@ public class AtaqueIA : MonoBehaviour
         }
         
         
-        //ejecuta la funcion de buscar objetivo, al estar en Start lo hara solo al crearse el objeto por lo que si su objetivo muere se destruye el objeto, si queremos que un ataque al morir su objetivo busque otro se tendria que poner esta funcion en Update mas unos cambios y listo
-        BuscarObjetivo();
+        
+        BuscarObjetivo();//ejecuta la funcion de buscar objetivo, al estar en Start lo hara solo al crearse el objeto por lo que si su objetivo muere se destruye el objeto, si queremos que un ataque al morir su objetivo busque otro se tendria que poner esta funcion en Update mas unos cambios y listo
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //si su objetivo muere el ataque desaparece
-        if (objetivoAtaque == null) 
+        if (objetivoAtaque == null)  //si su objetivo muere el ataque desaparece
         {
             //destruimos el ataque
             Destroy(gameObject);
-
             //hago return para asegurarme de que la funcion Destroy() se haya terminado de ejecutar antes de continuar
             return;
-
             //TODO: particulas cuando desaparece un ataque
-
-        }
-
-        //calcula el vector direccion hacia el objetivo
-        Vector3 dir = objetivoAtaque.position - transform.position;
-
-        //calcula la distacia que viajara este fotograma
-        float distanciaEsteFotograma = velocidad * Time.deltaTime;
-
-        //si la distancia que va a viajar este fotograma es major que la magnitud del vector direccion, es decir, esta mas cerca de la distacia que viajar� por lo que se pasara de lago, por lo consideramos que ha golpeado al objetivo. Con esto evitamos bugs de que se pase de largo y esas cosas
-        if (dir.magnitude <= distanciaEsteFotograma)
+        }   
+        Vector3 dir = objetivoAtaque.position - transform.position;//calcula el vector direccion hacia el objetivo 
+        float distanciaEsteFotograma = velocidad * Time.deltaTime;//calcula la distacia que viajara este fotograma
+        
+        if (dir.magnitude <= distanciaEsteFotograma)//si la distancia que va a viajar este fotograma es mayor que la magnitud del vector direccion, es decir, esta mas cerca de la distacia que viajara por lo que se pasara de lago, por lo consideramos que ha golpeado al objetivo. Con esto evitamos bugs de que se pase de largo y esas cosas
         {
             DanarObjetivo();            
         }
-
-        //trasladamos el objeto hacia el objetivo
-        transform.Translate(dir.normalized * distanciaEsteFotograma, Space.World);
+        
+        transform.Translate(dir.normalized * distanciaEsteFotograma, Space.World);//trasladamos el objeto hacia el objetivo
 
         //codigo que realiza la rotaccion del ataque al objetivo, ni putas de como funciona
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - rotacionDiff;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);
-        
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);       
     }
 
 
-    //funcion que da�a al objetivo en funcion del da�o del atque y destryue el ataque
+    //funcion que daña al objetivo en funcion del daño del atque y destryue el ataque
     void DanarObjetivo()
-    {
-        //obtenemos el codigo del objetivo
-        EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();
-        if (queTropa == "verdugo" && e.vidaEnemigo < (e.vidaEnemigoInicial * TropaStats.verdugoPuntoEjecucion)) 
+    {        
+        EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();//obtenemos el codigo del objetivo
+
+        if (queTropa == "verdugo" && e.vidaEnemigo <= (e.vidaEnemigoInicial * TropaStats.verdugoPuntoEjecucion)) //si el ataque es de un verdugo y el enemigo tiene menos vida que el punto de ejecucion ehecutamos al objetivo
         {
             danoAtaque = e.vidaEnemigo;
             esEjecucion = true;
-            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque));
+            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque)); //activamos el popup TODO: cambiar popUp a una animacion
         }
         else
         {
-            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque));
+            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque)); //activamos el popup de daño
         }
 
-        if (danoAtaque >= e.vidaEnemigo)
+        if (danoAtaque >= e.vidaEnemigo) //si el daño de este ataque es mayor que la vida restante que tiene
         {
-
             danoAtaque = e.vidaEnemigo; //con esto evitamos que el da�o registrado sea mayor que la vida restante del objetivo en caso de que el objetivo vaya a morir ya
-
         }
 
-        e.recibirDano(danoAtaque);//al tener el codigo podemos ejecutar la funcion recibirDa�o() del objetivo
+        e.recibirDano(danoAtaque);//al tener el codigo podemos ejecutar la funcion recibirDano() del objetivo
 
 
-        if (queTropa == "hechicero")
+        if (queTropa == "hechicero") //si es un hechicero
         {
             Stats.danoCausadoHechicero += Mathf.RoundToInt(danoAtaque);
         }
-        else if (queTropa == "verdugo")
+        else if (queTropa == "verdugo") //si es un verdugo
         {
             Stats.danoCausadoVerdugo += Mathf.RoundToInt(danoAtaque);
         }
-        else if (queTropa == "arquero")
+        else if (queTropa == "arquero") //si es un arquero
         {
             Stats.danoCausadoArquero += Mathf.RoundToInt(danoAtaque);
         }
