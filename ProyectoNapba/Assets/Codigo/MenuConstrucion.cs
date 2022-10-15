@@ -102,6 +102,7 @@ public class MenuConstrucion : MonoBehaviour
             //resta al stat del oro el precio de la tropa seleccionada
             Stats.arqueros -= 1;
             Stats.numSoldados++;
+            Stats.numArqueros++;
         }
 
         //instaciamos una tropa en la posicion del nodo seleccionado gracias a la fucnion de ObtenerPosicionColocacionTropa del script de NodoTropa.

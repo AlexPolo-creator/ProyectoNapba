@@ -8,6 +8,8 @@ public class Stats : MonoBehaviour
     public static int numMagos; //estas dos variables sirven para llevar cuenta de cuantas tropas hay colocadas.
     public static int numSoldados;
 
+    public static int numArqueros;
+
 
     private void Start()
     {
@@ -15,6 +17,8 @@ public class Stats : MonoBehaviour
 
         numMagos = 0;
         numSoldados = 0;
+
+        numArqueros = 0; 
 
         vidaJugador = vidaJugadorInicial;
 
@@ -48,6 +52,7 @@ public class Stats : MonoBehaviour
 
     void calcularStats()
     {
+
         poblacionLibre = poblacion - poblacionEnMina - poblacionEnTemplo - poblacionEnCultivo;
 
         danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero;

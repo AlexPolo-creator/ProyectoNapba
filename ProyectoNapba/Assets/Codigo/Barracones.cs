@@ -11,9 +11,8 @@ public class Barracones : MonoBehaviour
 
     public static bool menuActivado = false;
 
-    public GameObject menuColegio;
-    public GameObject menuTemplo;
-    public GameObject menuBarracones;
+    public GameObject getMenuBarracones;
+    public static GameObject menuBarracones;
 
     public TextMeshProUGUI contadorOro;
 
@@ -21,6 +20,7 @@ public class Barracones : MonoBehaviour
 
     private void Start()
     {
+        menuBarracones = getMenuBarracones;
         //obtemos el componente SpriteRenderer de la mina
         sprite = GetComponent<SpriteRenderer>();
 
@@ -58,10 +58,13 @@ public class Barracones : MonoBehaviour
     {
         if (!menuActivado)
         {
-            menuTemplo.SetActive(false);
-            menuColegio.SetActive(false);
+            Templo.menuTemplo.SetActive(false);
+            Colegio.menuColegio.SetActive(false);
+            Herreria.menuHerreria.SetActive(false);
             Templo.menuActivado = false;
             Colegio.menuActivado = false;
+            Herreria.menuActivado = false;
+
             menuBarracones.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;

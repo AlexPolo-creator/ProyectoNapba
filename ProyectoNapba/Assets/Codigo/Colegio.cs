@@ -11,9 +11,8 @@ public class Colegio : MonoBehaviour
 
     public static bool menuActivado = false;
 
-    public GameObject menuColegio;
-    public GameObject menuTemplo;
-    public GameObject menuBarracones;
+    public GameObject getMenuColegio;
+    public static GameObject menuColegio;
 
     public TextMeshProUGUI contadorFavor;
 
@@ -22,6 +21,7 @@ public class Colegio : MonoBehaviour
 
     private void Start()
     {
+        menuColegio = getMenuColegio;
         //obtemos el componente SpriteRenderer de la mina
         sprite = GetComponent<SpriteRenderer>();
 
@@ -78,10 +78,13 @@ public class Colegio : MonoBehaviour
     {
         if (!menuActivado)
         {
-            menuTemplo.SetActive(false);
-            menuBarracones.SetActive(false);
+            Templo.menuTemplo.SetActive(false);
+            Barracones.menuBarracones.SetActive(false);
+            Herreria.menuHerreria.SetActive(false);
             Templo.menuActivado = false;
             Barracones.menuActivado = false;
+            Herreria.menuActivado = false;
+
             menuColegio.SetActive(true);           
             menuActivado = true;
             sprite.color = colorInicial;

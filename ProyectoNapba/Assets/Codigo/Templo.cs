@@ -5,6 +5,94 @@ using TMPro;
 
 public class Templo : MonoBehaviour
 {
+    public Color hoverColor; //color cuando poner el cursor por encima   
+    private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
+    private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
+
+    public static bool menuActivado = false;
+
+    public GameObject getMenuTemplo;
+    public static GameObject menuTemplo;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        menuTemplo = getMenuTemplo;
+
+        numBotonesMejoraAxctivos = 0;
+
+        precioBotinDivino1 = precioInicialBotinDivino1;
+        precioCastigoPiadoso1 = precioInicialCastigoPiadoso1;
+        precioClarividencia = precioInicialClarividencia;
+        precioSantaSentencia1 = precioInicialSantaSentencia1;
+        precioVivacidad1 = precioInicialVivacidad1;
+
+
+        botonBotinActivado = false;
+        botonCastigoActivado = false;
+        botonSentenciaActivado = false;
+        botonVivacidadActivado = false;
+        botonClarividenciaActivado = false;
+
+        numBotinDivino1 = 0;
+        numCastigoPiadoso1 = 0;
+        numSantaSentencia1 = 0;
+        numVivacidad1 = 0;
+        numClarividencia = 0;
+
+        mejoraBotinDivino1 = false;
+        mejoraCastigoPiadoso1 = false;
+        mejoraSantaSentencia1 = false;
+        mejoraVivacidad1 = false;
+        mejoraClarividencia = false;
+
+        //obtemos el componente SpriteRenderer de la mina
+        sprite = GetComponent<SpriteRenderer>();
+
+        //establecemos el color inicial al color de la mina al comienzo
+        colorInicial = sprite.color;
+    }
+
+    public void desactivarMenu()
+    {
+        menuActivado = false;
+    }
+
+    //esta funcion se ejecuta al pulsar el nodo
+    void OnMouseDown()
+    {
+        if (!menuActivado)
+        {
+            Colegio.menuColegio.SetActive(false);
+            Barracones.menuBarracones.SetActive(false);
+            Herreria.menuHerreria.SetActive(false);
+            Colegio.menuActivado = false;
+            Barracones.menuActivado = false;
+            Herreria.menuActivado = false;
+
+            menuTemplo.SetActive(true);
+            menuActivado = true;
+            sprite.color = colorInicial;
+        }
+    }
+
+    //esta funcion se ejecuta al colocar el cursor sobre el nodo
+    void OnMouseEnter()
+    {
+        if (!menuActivado)
+        {
+            sprite.color = hoverColor;
+        }
+    }
+
+    //esta funcion se ejecuta al quitar el cursor de encima del nodo
+    void OnMouseExit()
+    {
+        sprite.color = colorInicial;
+    }
+
+
     //Mejoras globales (Bendiciones):
     public static bool mejoraBotinDivino1;
     public bool botonBotinActivado = false;
@@ -189,91 +277,5 @@ public class Templo : MonoBehaviour
             }
         }
         return;
-    }
-
-
-
-    public Color hoverColor; //color cuando poner el cursor por encima   
-    private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
-    private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
-
-    public static bool menuActivado = false;
-
-    public GameObject menuTemplo;
-    public GameObject menuColegio;
-    public GameObject menuBarracones;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        numBotonesMejoraAxctivos = 0;
-
-        precioBotinDivino1 = precioInicialBotinDivino1;
-        precioCastigoPiadoso1 = precioInicialCastigoPiadoso1;
-        precioClarividencia = precioInicialClarividencia;
-        precioSantaSentencia1 = precioInicialSantaSentencia1;
-        precioVivacidad1 = precioInicialVivacidad1;
-
-
-        botonBotinActivado = false;
-        botonCastigoActivado = false;
-        botonSentenciaActivado = false;
-        botonVivacidadActivado = false;
-        botonClarividenciaActivado = false;
-
-        numBotinDivino1 = 0;
-        numCastigoPiadoso1 = 0;
-        numSantaSentencia1 = 0;
-        numVivacidad1 = 0;
-        numClarividencia = 0;
-
-        mejoraBotinDivino1 = false;
-        mejoraCastigoPiadoso1 = false;
-        mejoraSantaSentencia1 = false;
-        mejoraVivacidad1 = false;
-        mejoraClarividencia = false;
-
-        //obtemos el componente SpriteRenderer de la mina
-        sprite = GetComponent<SpriteRenderer>();
-
-        //establecemos el color inicial al color de la mina al comienzo
-        colorInicial = sprite.color;
-    }
-
-    public void desactivarMenu()
-    {
-        menuActivado = false;
-    }
-
-    //esta funcion se ejecuta al pulsar el nodo
-    void OnMouseDown()
-    {
-        if (!menuActivado)
-        {
-            menuColegio.SetActive(false);
-            menuBarracones.SetActive(false);
-            Colegio.menuActivado = false;
-            Barracones.menuActivado = false;
-            menuTemplo.SetActive(true);
-            menuActivado = true;
-            sprite.color = colorInicial;
-        }       
-    }
-
-    //esta funcion se ejecuta al colocar el cursor sobre el nodo
-    void OnMouseEnter()
-    {
-        if (!menuActivado)
-        {
-            sprite.color = hoverColor;
-        }
-    }
-
-    //esta funcion se ejecuta al quitar el cursor de encima del nodo
-    void OnMouseExit()
-    {
-        sprite.color = colorInicial;
     }
 }
