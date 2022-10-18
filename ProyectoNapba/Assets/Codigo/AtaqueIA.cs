@@ -81,7 +81,6 @@ public class AtaqueIA : MonoBehaviour
         }
         else if (queTropa == "verdugo")
         {
-            Debug.Log("verdugo");
             if (TropaStats.verdugoCriticoPorcentaje != 0)
             {
                 maxCritNum = Mathf.RoundToInt(1 / TropaStats.verdugoCriticoPorcentaje * 100);
@@ -101,7 +100,6 @@ public class AtaqueIA : MonoBehaviour
             {
                 danoAtaque = TropaStats.verdugoAtaque;
             }
-            Debug.Log("dano:" + danoAtaque);
         }
         else if (queTropa == "arquero")
         {

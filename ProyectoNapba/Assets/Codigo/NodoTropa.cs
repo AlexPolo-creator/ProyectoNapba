@@ -33,7 +33,6 @@ public class NodoTropa : MonoBehaviour
 
         if (tropa != null)
         {
-            Debug.Log("No se puede construir ahí pendejo!");
             return;
         }
 

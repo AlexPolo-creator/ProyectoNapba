@@ -14,24 +14,8 @@ public class Spawns : MonoBehaviour
     private float tiempo;
     float esperaEnemigosTipo1; //segundos entre cada spawn
     float esperaEnemigosTipo2;
+    float dificultad = 5;
 
-    
-    void aumentoTiempo(){
-        if (tiempo >= 1 && tiempo < 3)
-        {
-                esperaEnemigosTipo1 =4;
-                esperaEnemigosTipo2 = 25;
-
-        }else if(tiempo >= 3 && tiempo < 5)
-        {
-                esperaEnemigosTipo1 =3;
-                esperaEnemigosTipo2 =20;
-        }else if (tiempo >= 5)
-        {
-                esperaEnemigosTipo1 =2;
-                esperaEnemigosTipo2 =15;
-        }
-    }
 
     void Start()
     {
@@ -70,9 +54,22 @@ public class Spawns : MonoBehaviour
                 
             }
     void Update(){
-        tiempo = Time.deltaTime*CicloDiaNoche.tick;
-
-        aumentoTiempo();
+        tiempo += Time.deltaTime;
+        if (esperaEnemigosTipo1 >= 0.9 ){
+            if (tiempo >= dificultad){
+                esperaEnemigosTipo1--;
+            }
+        }else{
+                esperaEnemigosTipo1=1;
+            }
+        if (esperaEnemigosTipo2 >= 0.9){
+            if (tiempo >= dificultad){
+                esperaEnemigosTipo2-=5;
+                dificultad +=5;
+            }
+        }else{
+                esperaEnemigosTipo2=5;
+        }  
     }
 
     
