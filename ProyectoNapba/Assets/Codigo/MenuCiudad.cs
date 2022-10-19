@@ -8,64 +8,64 @@ public class MenuCiudad : MonoBehaviour
     public GameObject cultivoEdificio;
 
 
-    public void AumentarPoblacionEnMina()
+    public void AumentarComidaEnMina()
     {
-        if (Stats.poblacionLibre > 0)
+        if (Stats.comidaLibre > 0)
         {
-            Stats.poblacionEnMina += 1;
+            Stats.comidaEnMina += 1;
         }
-        if (Mina.poblacionMinaCero)
+        if (Mina.comidaMinaCero)
         {
-            Mina.poblacionMinaCero = false;
+            Mina.comidaMinaCero = false;
             Mina mina = minaEdificio.GetComponent<Mina>();
             mina.SumarOro();
         }        
     }
 
-    public void DisminuirPoblacionEnMina()
+    public void DisminuirComidaEnMina()
     {
-        if (Stats.poblacionEnMina > 0)
+        if (Stats.comidaEnMina > 0)
         {
-            Stats.poblacionEnMina -= 1;
+            Stats.comidaEnMina -= 1;
         }
-        if (Stats.poblacionEnMina == 1)
+        if (Stats.comidaEnMina == 1)
         {
-            Mina.poblacionMinaCero = true;
+            Mina.comidaMinaCero = true;
         }
         else
         {
-            Mina.poblacionMinaCero = false;
+            Mina.comidaMinaCero = false;
         }
     }
-    public void AumentarPoblacionEnCultivo()
+    public void AumentarComidaEnCultivo()
     {
-        if (Stats.poblacionLibre > 0)
+        if (Stats.comidaLibre > 0)
         {
-            Stats.poblacionEnCultivo += 1;
+            Stats.comidaEnCultivo += 1;
         }
-        if (Cultivos.poblacionCultivoCero)
+        if (Cultivos.comidaCultivoCero)
         {
-            Cultivos.poblacionCultivoCero = false;
+            Cultivos.comidaCultivoCero = false;
             Cultivos cultivos = cultivoEdificio.GetComponent<Cultivos>();
-            cultivos.SumarPoblacion();
+            cultivos.SumarComida();
         }
     }
 
-    public void DisminuirPoblacionEnCultivo()
+    public void DisminuirComidaEnCultivo()
     {
-        if (Stats.poblacionEnCultivo > 0)
+        if (Stats.comidaEnCultivo > 0)
         {
-            Stats.poblacionEnCultivo -= 1;
+            Stats.comidaEnCultivo -= 1;
         }
 
-        //esto cheackea si la poblacion va a ser 0, y si lo es no dejamos que la coroutina empice ya que al estar dividido por 0 empezaría una coroutina al infinito
-        if (Stats.poblacionEnCultivo == 1)
+        //esto cheackea si la poblacion va a ser 0, y si lo es no dejamos que la coroutina empice ya que al estar dividido por 0 empezarï¿½a una coroutina al infinito
+        if (Stats.comidaEnCultivo == 1)
         {
-            Cultivos.poblacionCultivoCero = true;
+            Cultivos.comidaCultivoCero = true;
         }
         else
         {
-            Cultivos.poblacionCultivoCero = false;
+            Cultivos.comidaCultivoCero = false;
         }
     }
 }

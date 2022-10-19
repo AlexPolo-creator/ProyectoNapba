@@ -4383,7 +4383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 198023154}
   m_Layer: 5
-  m_Name: MenuMinaPoblacion
+  m_Name: MenuMinaComida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13278,7 +13278,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 181199743}
         m_TargetAssemblyTypeName: MenuCiudad, Assembly-CSharp
-        m_MethodName: AumentarPoblacionEnCultivo
+        m_MethodName: AumentarComidaEnCultivo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14178,7 +14178,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 181199743}
         m_TargetAssemblyTypeName: MenuCiudad, Assembly-CSharp
-        m_MethodName: DisminuirPoblacionEnMina
+        m_MethodName: DisminuirComidaEnMina
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16932,7 +16932,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 181199743}
         m_TargetAssemblyTypeName: MenuCiudad, Assembly-CSharp
-        m_MethodName: AumentarPoblacionEnMina
+        m_MethodName: AumentarComidaEnMina
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31149,7 +31149,7 @@ MonoBehaviour:
   velocidadGranjeros: 300
   velocidadGranjerosInicial: 300
   hoverColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
-  menuPoblacionCultivo: {fileID: 2068460843}
+  menuComidaCultivo: {fileID: 2068460843}
 --- !u!58 &1631579726
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -34135,7 +34135,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 181199743}
         m_TargetAssemblyTypeName: MenuCiudad, Assembly-CSharp
-        m_MethodName: DisminuirPoblacionEnCultivo
+        m_MethodName: DisminuirComidaEnCultivo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37765,10 +37765,10 @@ MonoBehaviour:
   vidaJugadorInicial: 1000
   oroInicial: 25000000
   favorDeDiosesInicial: 10000000
-  poblacionLibreInicial: 10
-  poblacionEnMinaInicial: 10
-  poblacionEnTemploInicial: 0
-  poblacionEnCultivoInicial: 10
+  comidaLibreInicial: 50
+  comidaEnMinaInicial: 0
+  comidaEnTemploInicial: 0
+  comidaEnCultivoInicial: 0
   danoCausado: 0
   danoCausadoHechiceroShow: 0
   danoCausadoVerdugoShow: 0
@@ -38463,7 +38463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068460844}
   m_Layer: 5
-  m_Name: MenuCultivoPoblacion
+  m_Name: MenuCultivoComida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38647,7 +38647,7 @@ MonoBehaviour:
   produccionOro: 5
   produccionOroInicial: 5
   hoverColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
-  menuPoblacionMina: {fileID: 198023153}
+  menuComidaMina: {fileID: 0}
 --- !u!4 &2081403875
 Transform:
   m_ObjectHideFlags: 0

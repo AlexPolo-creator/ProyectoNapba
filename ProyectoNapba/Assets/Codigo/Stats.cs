@@ -28,14 +28,14 @@ public class Stats : MonoBehaviour
         favorDeDioses = favorDeDiosesInicial;
         favorDeDiosesMil = false;
 
-        poblacionLibre = poblacionLibreInicial;
+        comidaLibre = comidaLibreInicial;
         
 
-        poblacionEnCultivo = poblacionEnCultivoInicial;
-        poblacionEnMina = poblacionEnMinaInicial;
-        poblacionEnTemplo = poblacionEnTemploInicial;
+        comidaEnCultivo = comidaEnCultivoInicial;
+        comidaEnMina =    comidaEnMinaInicial;
+        comidaEnTemplo =  comidaEnTemploInicial;
 
-        poblacion = poblacionLibre + poblacionEnMina + poblacionEnTemplo + poblacionEnCultivo;
+        comida= comidaLibre + comidaEnMina + comidaEnTemplo + comidaEnCultivo;
 
         arqueros = 0;
         hechiceros = 0;
@@ -53,7 +53,7 @@ public class Stats : MonoBehaviour
     void calcularStats()
     {
 
-        poblacionLibre = poblacion - poblacionEnMina - poblacionEnTemplo - poblacionEnCultivo;
+        comidaLibre = comida - comidaEnMina - comidaEnTemplo - comidaEnCultivo;
 
         danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero;
         danoCausadoHechiceroShow = danoCausadoHechicero;
@@ -128,17 +128,17 @@ public class Stats : MonoBehaviour
     public int favorDeDiosesInicial = 100;
     public static bool favorDeDiosesMil = false;
 
-    public static int poblacionLibre;
-    public int poblacionLibreInicial = 50;
+    public static int comidaLibre;
+    public int comidaLibreInicial = 50;
 
-    public static int poblacionEnMina;
-    public static int poblacionEnTemplo;
-    public static int poblacionEnCultivo;
-    public int poblacionEnMinaInicial;
-    public int poblacionEnTemploInicial;
-    public int poblacionEnCultivoInicial;
+    public static int comidaEnMina;
+    public static int comidaEnTemplo;
+    public static int comidaEnCultivo;
+    public int comidaEnMinaInicial;
+    public int comidaEnTemploInicial;
+    public int comidaEnCultivoInicial;
 
-    public static int poblacion;
+    public static int comida;
 
 
     [Header("Tropas para colocar:")]

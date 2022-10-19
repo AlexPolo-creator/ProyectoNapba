@@ -72,10 +72,10 @@ public class UIStats : MonoBehaviour
         verdugosBotonTexto.text = Stats.verdugos.ToString();
         arquerosBotonTexto.text = Stats.arqueros.ToString();
 
-        poblacionTexto.text = "Poblacion: " + Stats.poblacion.ToString() + " (" + Stats.poblacionLibre.ToString() + ")";
+        poblacionTexto.text = "comida: " + Stats.comida.ToString() + " (" + Stats.comidaLibre.ToString() + ")";
         
 
-        poblacionMinaTexto.text = Stats.poblacionEnMina.ToString() + " mineros";
-        poblacionCultivoTexto.text = Stats.poblacionEnCultivo.ToString() + " granjeros";
+        poblacionMinaTexto.text = Stats.comidaEnMina.ToString() + " mineros";
+        poblacionCultivoTexto.text = Stats.comidaEnCultivo.ToString() + " granjeros";
     }
 }

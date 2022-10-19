@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Mina : MonoBehaviour
 {
-    public static bool poblacionMinaCero;
+    public static bool comidaMinaCero;
 
     public float velocidadMineros; //Cada cuantos segundos extraen oro.
     public float velocidadMinerosInicial = 5f;
 
-    public int produccionOro; //Cantidad de oro que se produce por extracción
+    public int produccionOro; //Cantidad de oro que se produce por extracciï¿½n
     public int produccionOroInicial = 5;
 
     public Color hoverColor; //color cuando poner el cursor por encima   
@@ -18,7 +18,7 @@ public class Mina : MonoBehaviour
 
     private bool menuActivado = false;
 
-    public GameObject menuPoblacionMina;
+    public GameObject menuComidaMina;
 
     void Start()
     {
@@ -38,13 +38,13 @@ public class Mina : MonoBehaviour
     
     public IEnumerator SumarOro()
     {
-        if (!poblacionMinaCero)
+        if (!comidaMinaCero)
         {
             //esta sintaxis indica la cantidad de segundos reales (pero escalados) que tardara en ejecutar el resto del codigo
             yield return new WaitForSeconds(velocidadMineros);
 
             //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
-            Stats.oro += produccionOro * Stats.poblacionEnMina;
+            Stats.oro += produccionOro * Stats.comidaEnMina;
 
             //vuelve a iniciar la coroutina (bucle)
             StartCoroutine(SumarOro());
@@ -56,13 +56,13 @@ public class Mina : MonoBehaviour
     {
         if (!menuActivado)
         {
-            menuPoblacionMina.SetActive(true);
+            menuComidaMina.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
         }
         else if (menuActivado)
         {
-            menuPoblacionMina.SetActive(false);
+            menuComidaMina.SetActive(false);
             menuActivado = false;
         }      
     }

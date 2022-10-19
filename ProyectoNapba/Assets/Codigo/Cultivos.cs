@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cultivos : MonoBehaviour
 {
-    public static bool poblacionCultivoCero;
+    public static bool comidaCultivoCero;
 
     public float velocidadGranjeros; //Cada cuantos segundos nace un nuevo aldeano cuando hay un solo granjero.
     public float velocidadGranjerosInicial = 300f; //velocidad por granjero inicial 
@@ -17,11 +17,11 @@ public class Cultivos : MonoBehaviour
 
     private bool menuActivado = false;
 
-    public GameObject menuPoblacionCultivo;
+    public GameObject menuComidaCultivo;
 
     private void Update()
     {
-        realVelocidad = velocidadGranjeros * 1 / Stats.poblacionEnCultivo / 10;
+        realVelocidad = velocidadGranjeros * 1 / Stats.comidaEnCultivo / 10;
         
     }
 
@@ -30,10 +30,10 @@ public class Cultivos : MonoBehaviour
         //establezco los valores originales de produccionOro y velocidadMineros        
         velocidadGranjeros = velocidadGranjerosInicial;
 
-        realVelocidad = velocidadGranjeros * 1 / Stats.poblacionEnCultivo / 10;
+        realVelocidad = velocidadGranjeros * 1 / Stats.comidaEnCultivo / 10;
 
         //Uso una coroutina y no un InvokeRepeating para asi poder modificar en tiempo real lo que tarda en ejecutar el codigo, eso no se puede con un InvokeRepeating.
-        StartCoroutine(SumarPoblacion());
+        StartCoroutine(SumarComida());
 
         //obtemos el componente SpriteRenderer de la mina
         sprite = GetComponent<SpriteRenderer>();
@@ -42,9 +42,9 @@ public class Cultivos : MonoBehaviour
         colorInicial = sprite.color;
     }
 
-    public IEnumerator SumarPoblacion()
+    public IEnumerator SumarComida()
     {
-        if (!poblacionCultivoCero)
+        if (!comidaCultivoCero)
         {
             yield return new WaitForSeconds(0.01f); //bugfix
 
@@ -63,10 +63,10 @@ public class Cultivos : MonoBehaviour
 
 
             //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
-            Stats.poblacion++;
+            Stats.comida++;
 
             //vuelve a iniciar la coroutina (bucle)
-            StartCoroutine(SumarPoblacion());
+            StartCoroutine(SumarComida());
         }
         
     }
@@ -76,13 +76,13 @@ public class Cultivos : MonoBehaviour
     {
         if (!menuActivado)
         {
-            menuPoblacionCultivo.SetActive(true);
+            menuComidaCultivo.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
         }
         else if (menuActivado)
         {
-            menuPoblacionCultivo.SetActive(false);
+            menuComidaCultivo.SetActive(false);
             menuActivado = false;
         }
     }

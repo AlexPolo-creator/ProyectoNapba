@@ -72,7 +72,6 @@ public class CicloDiaNoche : MonoBehaviour
         if (horas>=20 && horas<22) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
         {
             sol.intensity -= rate * Time.deltaTime; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1
-            Debug.Log("funciona");
         }
 
         if (horas == 21 && minutos == 30) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
