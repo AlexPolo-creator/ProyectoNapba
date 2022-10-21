@@ -87,6 +87,31 @@ public class TropaStats : MonoBehaviour
     public float arqueroCriticoPorcentajeInicial = 0f;
     public static float arqueroCriticoPorcentaje; //entre 100
 
+    //Lanzador de hachas
+    public float lanzadorHachasRangoInicial = 1.5f;
+    public static float lanzadorHachasRango;
+
+    public float lanzadorHachasVelocidadDeDisparoInicial = 0.35f; //cuantas veces dispara por segundo
+    public static float lanzadorHachasVelocidadDeDisparo;
+
+    public float lanzadorHachasAtaqueInicial = 25f;
+    public static float lanzadorHachasAtaque;
+
+    public float lanzadorHachasCriticoPorcentajeInicial = 0f;
+    public static float lanzadorHachasCriticoPorcentaje; //entre 100
+
+    //Lancero
+    public float lanceroRangoInicial = 1.5f;
+    public static float lanceroRango;
+
+    public float lanceroVelocidadDeDisparoInicial = 0.35f; //cuantas veces dispara por segundo
+    public static float lanceroVelocidadDeDisparo;
+
+    public float lanceroAtaqueInicial = 25f;
+    public static float lanceroAtaque;
+
+    public float lanceroCriticoPorcentajeInicial = 0f;
+    public static float lanceroCriticoPorcentaje; //entre 100
 
 
     private void Start()
@@ -121,5 +146,15 @@ public class TropaStats : MonoBehaviour
         arqueroAtaque = arqueroAtaqueInicial;
         arqueroRango = arqueroRangoInicial;
         arqueroCriticoPorcentaje = arqueroCriticoPorcentajeInicial;
+
+        lanzadorHachasVelocidadDeDisparo = lanzadorHachasVelocidadDeDisparoInicial;
+        lanzadorHachasAtaque = lanzadorHachasAtaqueInicial;
+        lanzadorHachasRango = lanzadorHachasRangoInicial;
+        lanzadorHachasCriticoPorcentaje = lanzadorHachasCriticoPorcentajeInicial;
+
+        lanceroVelocidadDeDisparo = lanceroVelocidadDeDisparoInicial;
+        lanceroAtaque = lanceroAtaqueInicial;
+        lanceroRango = lanceroRangoInicial;
+        lanceroCriticoPorcentaje = lanceroCriticoPorcentajeInicial;
     }
 }

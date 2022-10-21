@@ -17,6 +17,8 @@ public class Barracones : MonoBehaviour
     public TextMeshProUGUI contadorOro;
 
     public TextMeshProUGUI precioArqueroTexto;
+    public TextMeshProUGUI precioLanzadorHachasTexto;
+    public TextMeshProUGUI precioLanceroTexto;
 
     private void Start()
     {
@@ -28,9 +30,13 @@ public class Barracones : MonoBehaviour
         colorInicial = sprite.color;
 
         precioArquero = precioArqueroInicial;
-        
+        precioLanzadorHachas = precioLanzadorHachasInicial;
+        precioLancero = precioLanceroInicial;
+
 
         precioArqueroTexto.text = precioArquero.ToString();
+        precioLanzadorHachasTexto.text = precioLanzadorHachas.ToString();
+        precioLanceroTexto.text = precioLancero.ToString();
     }
 
     public void desactivarMenu()
@@ -50,6 +56,36 @@ public class Barracones : MonoBehaviour
             numArquerosEntrenados++;
             precioArquero = Mathf.RoundToInt(precioArquero * SistemaDificultad.aumentoPrecioTropas);
             precioArqueroTexto.text = precioArquero.ToString();
+        }
+    }
+
+    public int precioLanzadorHachasInicial;
+    int precioLanzadorHachas;
+    int numLanzadorHachasEntrenados;
+    public void EntrenarLanzadorHachas()
+    {
+        if (Stats.oro >= precioLanzadorHachas)
+        {
+            Stats.lanzadoresHacha += 1;
+            Stats.oro -= precioLanzadorHachas;
+            numLanzadorHachasEntrenados++;
+            precioLanzadorHachas = Mathf.RoundToInt(precioLanzadorHachas * SistemaDificultad.aumentoPrecioTropas);
+            precioLanzadorHachasTexto.text = precioLanzadorHachas.ToString();
+        }
+    }
+
+    public int precioLanceroInicial;
+    int precioLancero;
+    int numLanceroEntrenados;
+    public void EntrenarLancero()
+    {
+        if (Stats.oro >= precioLancero)
+        {
+            Stats.lanceros += 1;
+            Stats.oro -= precioLancero;
+            numLanceroEntrenados++;
+            precioLancero = Mathf.RoundToInt(precioLancero * SistemaDificultad.aumentoPrecioTropas);
+            precioLanceroTexto.text = precioLancero.ToString();
         }
     }
 

@@ -144,7 +144,7 @@ public class AtaqueIA : MonoBehaviour
                 danoAtaque = TropaStats.inquisidorAtaque;
             }
         }
-        else if (queTropa == "arquero")
+        else if (tipoTropa == "soldado")
         {
             if (TropaStats.arqueroCriticoPorcentaje != 0)
             {
@@ -156,16 +156,44 @@ public class AtaqueIA : MonoBehaviour
             {
                 criticoAtaque = 1;
             }
-            if (criticoAtaque == 0)
+            if (queTropa == "arquero")
             {
-                danoAtaque = TropaStats.arqueroAtaque * Stats.danoCritico;
-                esCrit = true;
+                if (criticoAtaque == 0)
+                {
+                    danoAtaque = TropaStats.arqueroAtaque * Stats.danoCritico;
+                    esCrit = true;
+                }
+                else
+                {
+                    danoAtaque = TropaStats.arqueroAtaque;
+                }
             }
-            else
+            else if (queTropa == "lanzadorHachas")
             {
-                danoAtaque = TropaStats.arqueroAtaque;
-            }            
+                if (criticoAtaque == 0)
+                {
+                    danoAtaque = TropaStats.lanzadorHachasAtaque * Stats.danoCritico;
+                    esCrit = true;
+                }
+                else
+                {
+                    danoAtaque = TropaStats.lanzadorHachasAtaque;
+                }
+            }
+            else if (queTropa == "lancero")
+            {
+                if (criticoAtaque == 0)
+                {
+                    danoAtaque = TropaStats.lanceroAtaque * Stats.danoCritico;
+                    esCrit = true;
+                }
+                else
+                {
+                    danoAtaque = TropaStats.lanceroAtaque;
+                }
+            }
         }
+
         
         
         
@@ -276,6 +304,14 @@ public class AtaqueIA : MonoBehaviour
         else if (queTropa == "arquero") //si es un arquero
         {
             Stats.danoCausadoArquero += Mathf.RoundToInt(danoAtaque);
+        }
+        else if (queTropa == "lanzadorHachas") //si es un arquero
+        {
+            Stats.danoCausadoLanzadorHacha += Mathf.RoundToInt(danoAtaque);
+        }
+        else if (queTropa == "lancero") //si es un arquero
+        {
+            Stats.danoCausadoLancero += Mathf.RoundToInt(danoAtaque);
         }
 
         //destruimos el ataque

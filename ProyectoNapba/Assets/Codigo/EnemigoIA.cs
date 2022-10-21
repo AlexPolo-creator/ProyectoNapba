@@ -16,7 +16,7 @@ public class EnemigoIA : MonoBehaviour
 
     public int daño = 1;
 
-    public int cargasDruida; //cantidad de vez que ha sido maldecido por algun druida
+    public int cargasDruida; //cantidad de veces que ha sido maldecido por algun druida
 
     //esta variable especifica el lugar donde el enemigo aparece y en consecuencia el camino que debe tomar. Al ser static puede ser modificado desde otro script. Al ser public puede modificarse en el inspector.
     public int puntoSpawn;

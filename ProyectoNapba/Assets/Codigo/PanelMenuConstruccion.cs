@@ -9,6 +9,8 @@ public class PanelMenuConstruccion : MonoBehaviour
     public ItemsDeCompra inquisidor;
 
     public ItemsDeCompra arquero;
+    public ItemsDeCompra lanzadorHacha;
+    public ItemsDeCompra lancero;
 
     public ItemsDeCompra torre;
 
@@ -42,6 +44,14 @@ public class PanelMenuConstruccion : MonoBehaviour
     public void ElegirArquero()
     {
         menuConstrucion.ElegirTropaAColocar(arquero);
+    }
+    public void ElegirlanzadorHacha()
+    {
+        menuConstrucion.ElegirTropaAColocar(lanzadorHacha);
+    }
+    public void ElegirLancero()
+    {
+        menuConstrucion.ElegirTropaAColocar(lancero);
     }
 
 

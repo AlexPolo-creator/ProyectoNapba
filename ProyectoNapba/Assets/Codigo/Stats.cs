@@ -9,7 +9,8 @@ public class Stats : MonoBehaviour
     public static int numSoldados;
 
     public static int numArqueros;
-
+    public static int numLanceros;
+    public static int numLanzadoresHacha;
 
     private void Start()
     {
@@ -18,7 +19,9 @@ public class Stats : MonoBehaviour
         numMagos = 0;
         numSoldados = 0;
 
-        numArqueros = 0; 
+        numArqueros = 0;
+        numLanzadoresHacha = 0;
+        numLanceros = 0;
 
         vidaJugador = vidaJugadorInicial;
 
@@ -38,6 +41,8 @@ public class Stats : MonoBehaviour
         comida= comidaLibre + comidaEnMina + comidaEnTemplo + comidaEnCultivo;
 
         arqueros = 0;
+        lanzadoresHacha = 0;
+        lanceros = 0;
         hechiceros = 0;
         verdugos = 0;
         druidas = 0;
@@ -50,7 +55,9 @@ public class Stats : MonoBehaviour
         danoCausadoDruida = 0;
         danoCausadoInquisidor = 0;
         danoCausadoArquero = 0;
-        
+        danoCausadoLanzadorHacha = 0;
+        danoCausadoLancero = 0;
+
 
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
@@ -60,66 +67,99 @@ public class Stats : MonoBehaviour
 
         comidaLibre = comida - comidaEnMina - comidaEnTemplo - comidaEnCultivo;
 
-        danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero + danoCausadoDruida + danoCausadoInquisidor;
+        danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero + danoCausadoDruida + danoCausadoInquisidor + danoCausadoLanzadorHacha + danoCausadoLancero;
         danoCausadoHechiceroShow = danoCausadoHechicero;
         danoCausadoVerdugoShow = danoCausadoVerdugo;
         danoCausadoDruidaShow = danoCausadoDruida;
         danoCausadoInquisidorShow = danoCausadoInquisidor;
         danoCausadoArqueroShow = danoCausadoArquero;
+        danoCausadoLanzadorHachaShow = danoCausadoLanzadorHacha;
+        danoCausadoLanceroShow = danoCausadoLancero;
 
-        if (favorDeDioses <= 10000) // 60 sec = 1 min
+
+        if (favorDeDioses <= 10000) 
         {
             favorDeDiosesMil = false;
         }
-        if (favorDeDioses >= 10000) // 60 sec = 1 min
+        if (favorDeDioses >= 10000) 
         {
             favorDeDiosesMil = true;
         }
 
-        if (oro <= 10000) //60 min = 1 hr
+        if (oro <= 10000) 
         {
             oroMil = false;
         }
-        if (oro >= 10000) //60 min = 1 hr
+        if (oro >= 10000) 
         {
             oroMil = true;
         }
 
 
-        if (danoCausado <= 1000000) //24 hr = 1 day
+        if (danoCausado <= 1000000)
         {
             danoCausadoMillon = false;
         }
-        if (danoCausado >= 1000000) //24 hr = 1 day
+        if (danoCausado >= 1000000)
         {
             danoCausadoMillon = true;
         }
-        if (danoCausadoHechicero <= 1000000) //24 hr = 1 day
+        if (danoCausadoHechicero <= 1000000) 
         {
             danoCausadoHechiceroMillon = false;
         }
-        if (danoCausadoHechicero >= 1000000) //24 hr = 1 day
+        if (danoCausadoHechicero >= 1000000) 
         {
             danoCausadoHechiceroMillon = true;
         }
-        if (danoCausadoVerdugo <= 1000000) //24 hr = 1 day
+        if (danoCausadoVerdugo <= 1000000) 
         {
             danoCausadoVerdugoMillon = false;
         }
-        if (danoCausadoVerdugo >= 1000000) //24 hr = 1 day
+        if (danoCausadoVerdugo >= 1000000) 
         {
             danoCausadoVerdugoMillon = true;
         }
-        if (danoCausadoArquero <= 1000000) //24 hr = 1 day
+        if (danoCausadoDruida <= 1000000)
+        {
+            danoCausadoDruidaMillon = false;
+        }
+        if (danoCausadoDruida >= 1000000)
+        {
+            danoCausadoDruidaMillon = true;
+        }
+        if (danoCausadoInquisidor <= 1000000)
+        {
+            danoCausadoInquisidorMillon = false;
+        }
+        if (danoCausadoInquisidor >= 1000000)
+        {
+            danoCausadoInquisidorMillon = true;
+        }
+        if (danoCausadoArquero <= 1000000)
         {
             danoCausadoArqueroMillon = false;
         }
-        if (danoCausadoArquero >= 1000000) //24 hr = 1 day
+        if (danoCausadoArquero >= 1000000) 
         {
             danoCausadoArqueroMillon = true;
         }
-
-
+        if (danoCausadoLanzadorHacha <= 1000000) 
+        {
+            danoCausadoLanzadorHachaMillon = false;
+        }
+        if (danoCausadoLanzadorHacha >= 1000000) 
+        {
+            danoCausadoLanzadorHachaMillon = true;
+        }
+        if (danoCausadoLancero >= 1000000) 
+        {
+            danoCausadoLanceroMillon = true;
+        }
+        if (danoCausadoLancero <= 1000000) 
+        {
+            danoCausadoLanceroMillon = false;
+        }
     }
 
     public static int vidaJugador;
@@ -150,6 +190,8 @@ public class Stats : MonoBehaviour
 
     [Header("Tropas para colocar:")]
     public static int arqueros = 0;
+    public static int lanzadoresHacha = 0;
+    public static int lanceros = 0;
 
     public static int hechiceros = 0;
     public static int verdugos = 0;
@@ -183,8 +225,13 @@ public class Stats : MonoBehaviour
     public static int danoCausadoArquero = 0;
     public static bool danoCausadoArqueroMillon = false;
 
-    
+    public int danoCausadoLanzadorHachaShow = 0;
+    public static int danoCausadoLanzadorHacha = 0;
+    public static bool danoCausadoLanzadorHachaMillon = false;
 
+    public int danoCausadoLanceroShow = 0;
+    public static int danoCausadoLancero = 0;
+    public static bool danoCausadoLanceroMillon = false;
 
 
     public static int nextSceneToLoad;

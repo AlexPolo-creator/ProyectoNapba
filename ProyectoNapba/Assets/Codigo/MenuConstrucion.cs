@@ -33,6 +33,8 @@ public class MenuConstrucion : MonoBehaviour
 
     [Header("Soldados:")]
     public GameObject Arquero;
+    public GameObject lanzadorHacha;
+    public GameObject lancero;
 
     //obtemos la tropa a colocar con las caracteristicas etablecidas en el PanelMenuConstruccion y gracias al script serializado de ItemsDeCompra
     private ItemsDeCompra tropaAColocar;
@@ -56,6 +58,8 @@ public class MenuConstrucion : MonoBehaviour
 
         //resta al stat del oro el precio de la torre seleccionada
         Stats.oro -= torreAColocar.precio;
+
+        torreAColocar.precio = Mathf.RoundToInt(torreAColocar.precio * 0.5f);
 
         //instaciamos una torre en la posicion del nodo seleccionado gracias a la fucnion de ObtenerPosicionColocacionTorre del script de NodoTorre.
         GameObject torre = (GameObject)Instantiate(torreAColocar.prefab, nodo.ObtenerPosicionColocacionTorre(), Quaternion.identity);
@@ -126,13 +130,40 @@ public class MenuConstrucion : MonoBehaviour
                 Debug.Log("No tienes Arqueros suficiente.");
                 return;
             }
-
+            
             //resta al stat del oro el precio de la tropa seleccionada
             Stats.arqueros -= 1;
             Stats.numSoldados++;
             Stats.numArqueros++;
         }
+        else if (tropaAColocar.recurso == "lanzadorHacha")
+        {
+            //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
+            if (Stats.lanzadoresHacha < 1)
+            {
+                Debug.Log("No tienes Lanzadores de Hachas suficiente.");
+                return;
+            }
+            
+            //resta al stat del oro el precio de la tropa seleccionada
+            Stats.lanzadoresHacha -= 1;
+            Stats.numSoldados++;
+            Stats.numLanzadoresHacha++;
+        }
+        else if (tropaAColocar.recurso == "lancero")
+        {
+            //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
+            if (Stats.lanceros < 1)
+            {
+                Debug.Log("No tienes Lanceros suficiente.");
+                return;
+            }
 
+            //resta al stat del oro el precio de la tropa seleccionada
+            Stats.lanceros -= 1;
+            Stats.numSoldados++;
+            Stats.numLanceros++;
+        }
         //instaciamos una tropa en la posicion del nodo seleccionado gracias a la fucnion de ObtenerPosicionColocacionTropa del script de NodoTropa.
         GameObject tropa = (GameObject)Instantiate(tropaAColocar.prefab, nodo.ObtenerPosicionColocacionTropa(), Quaternion.identity);
         nodo.tropa = tropa;

@@ -113,6 +113,8 @@ public class Herreria : MonoBehaviour
             numMetalurgiaAvanzada++;
             mejoraMetalurgiaAvanzada = true;
             TropaStats.arqueroAtaque = TropaStats.arqueroAtaque * 1.1f;
+            TropaStats.lanzadorHachasAtaque = TropaStats.lanzadorHachasAtaque * 1.1f;
+            TropaStats.lanceroAtaque = TropaStats.lanceroAtaque * 1.1f;
             Stats.oro -= precioMetalurgiaAvanzada;
             precioMetalurgiaAvanzada = 2 * precioMetalurgiaAvanzada;
         }
@@ -135,6 +137,8 @@ public class Herreria : MonoBehaviour
             numDestreza++;
             mejoraDestreza = true;
             TropaStats.arqueroVelocidadDeDisparo = TropaStats.arqueroVelocidadDeDisparo * (1 + (0.15f * numDestreza)); // + porque la velocidad de ataque de las tropas es ataques/segundo y no al reves
+            TropaStats.lanzadorHachasVelocidadDeDisparo = TropaStats.lanzadorHachasVelocidadDeDisparo * (1 + (0.15f * numDestreza));
+            TropaStats.lanceroVelocidadDeDisparo = TropaStats.lanceroVelocidadDeDisparo * (1 + (0.15f * numDestreza));
             Stats.oro -= precioDestreza;
             precioDestreza = 2 * precioDestreza;
         }
@@ -180,6 +184,8 @@ public class Herreria : MonoBehaviour
             numPuntasReforzadas++;
             mejoraPuntasReforzadas = true;
             TropaStats.arqueroCriticoPorcentaje += 5f;
+            TropaStats.lanzadorHachasCriticoPorcentaje += 5f;
+            TropaStats.lanceroCriticoPorcentaje += 5f;
             Stats.oro -= precioPuntasReforzadas;
             precioPuntasReforzadas = 2 * precioPuntasReforzadas;
         }
@@ -202,13 +208,17 @@ public class Herreria : MonoBehaviour
             numBotonesMejoraActivos--;
             numLentesSagaces++;
             mejoraLentesSagaces = true;
-            TropaStats.arqueroRango += TropaStats.hechiceroRango * 0.1f;
+            TropaStats.arqueroRango += TropaStats.arqueroRango * 0.1f;
+            TropaStats.lanzadorHachasRango += TropaStats.lanzadorHachasRango * 0.1f;
+            TropaStats.lanceroRango += TropaStats.lanceroRango * 0.1f;
             Stats.oro -= precioLentesSagaces;
             precioLentesSagaces = 2 * precioLentesSagaces;
         }
     }
 
     int numActualArqueros = 0;
+    int numActualLanzadoresHachas = 0;
+    int numActualLanceros = 0;
 
     private void Update()
     {
@@ -216,6 +226,16 @@ public class Herreria : MonoBehaviour
         {
             TropaStats.arqueroAtaque = TropaStats.arqueroAtaque * (1 + (0.05f * Stats.numArqueros));
             numActualArqueros = Stats.numArqueros;
+        }
+        if (mejoraOrgullo && numActualLanzadoresHachas < Stats.numLanzadoresHacha)
+        {
+            TropaStats.lanzadorHachasAtaque = TropaStats.lanzadorHachasAtaque * (1 + (0.05f * Stats.numLanzadoresHacha));
+            numActualLanzadoresHachas = Stats.numLanzadoresHacha;
+        }
+        if (mejoraOrgullo && numActualLanceros < Stats.numLanceros)
+        {
+            TropaStats.lanceroAtaque = TropaStats.lanceroAtaque * (1 + (0.05f * Stats.numLanceros));
+            numActualLanceros = Stats.numLanceros;
         }
 
         if (numBotonesMejoraActivos < 3)

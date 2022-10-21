@@ -79,6 +79,16 @@ public class TropaIA : MonoBehaviour
             rango = TropaStats.arqueroRango;
             velocidadDisparo = TropaStats.arqueroVelocidadDeDisparo;
         }
+        else if (queTropa == "lanzadorHachas")
+        {
+            rango = TropaStats.lanzadorHachasRango;
+            velocidadDisparo = TropaStats.lanzadorHachasVelocidadDeDisparo;
+        }
+        else if (queTropa == "lancero")
+        {
+            rango = TropaStats.lanceroRango;
+            velocidadDisparo = TropaStats.lanceroVelocidadDeDisparo;
+        }
     }
 
 
