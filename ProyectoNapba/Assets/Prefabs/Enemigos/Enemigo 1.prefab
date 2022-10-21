@@ -52,7 +52,9 @@ MonoBehaviour:
   vidaEnemigoInicial: 100
   recompensa: 5
   recompensaInicial: 5
+  sprite: {fileID: 7835220943526823289}
   "da\xF1o": 10
+  cargasDruida: 0
   puntoSpawn: 2
 --- !u!212 &7141134848501576474
 SpriteRenderer:
@@ -61,7 +63,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7806536576105148037}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -130,9 +132,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7835220943526823289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.171, y: -0.03, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.17560005, y: -0.008997917, z: 0}
+  m_LocalScale: {x: 0.010000001, y: 0.010000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2099477504944914319}
@@ -179,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 1034202371
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6c82d7fe11173bb4281630d3f0080a8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5dcb39721113a74a86229d0f10e021f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

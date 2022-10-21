@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemigoIA : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class EnemigoIA : MonoBehaviour
         }
 
         //uso un InvokeRepeating y no Update para no calcular distancias demasidas veces por segundo lo cual puede causar lag.
-        InvokeRepeating("eliminarEntidades", 0, 0.1f);
+        InvokeRepeating("eliminarEntidades", 0, 0.2f);
 
     }
 
@@ -138,8 +139,7 @@ public class EnemigoIA : MonoBehaviour
             siguienteWaypoint();
         }
 
-
-       
+              
     }
 
 
