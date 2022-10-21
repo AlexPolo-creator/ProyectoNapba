@@ -64,7 +64,17 @@ public class TropaIA : MonoBehaviour
         {
             rango = TropaStats.verdugoRango;
             velocidadDisparo = TropaStats.verdugoVelocidadDeDisparo;
-        }else if (queTropa == "arquero")
+        }else if (queTropa == "druida")
+        {
+            rango = TropaStats.druidaRango;
+            velocidadDisparo = TropaStats.druidaVelocidadDeDisparo;
+        }
+        else if (queTropa == "inquisidor")
+        {
+            rango = TropaStats.inquisidorRango;
+            velocidadDisparo = TropaStats.inquisidorVelocidadDeDisparo;
+        }
+        else if (queTropa == "arquero")
         {
             rango = TropaStats.arqueroRango;
             velocidadDisparo = TropaStats.arqueroVelocidadDeDisparo;
@@ -82,13 +92,6 @@ public class TropaIA : MonoBehaviour
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotacionDiff;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);
-
-        /*
-        Vector2 dir = objetivo.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector2 rotacion = lookRotation.eulerAngles;
-        puntoDeDisparo.rotation = Quaternion.Euler(0f, 0f, rotacion.y);
-        */
 
         if (siguienteDisparo <= 0f)
         {

@@ -40,10 +40,15 @@ public class Stats : MonoBehaviour
         arqueros = 0;
         hechiceros = 0;
         verdugos = 0;
+        druidas = 0;
+        inquisidores = 0;
+        
 
         danoCausado = 0;
         danoCausadoHechicero = 0;
         danoCausadoVerdugo = 0;
+        danoCausadoDruida = 0;
+        danoCausadoInquisidor = 0;
         danoCausadoArquero = 0;
         
 
@@ -55,9 +60,11 @@ public class Stats : MonoBehaviour
 
         comidaLibre = comida - comidaEnMina - comidaEnTemplo - comidaEnCultivo;
 
-        danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero;
+        danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero + danoCausadoDruida + danoCausadoInquisidor;
         danoCausadoHechiceroShow = danoCausadoHechicero;
         danoCausadoVerdugoShow = danoCausadoVerdugo;
+        danoCausadoDruidaShow = danoCausadoDruida;
+        danoCausadoInquisidorShow = danoCausadoInquisidor;
         danoCausadoArqueroShow = danoCausadoArquero;
 
         if (favorDeDioses <= 10000) // 60 sec = 1 min
@@ -143,8 +150,11 @@ public class Stats : MonoBehaviour
 
     [Header("Tropas para colocar:")]
     public static int arqueros = 0;
+
     public static int hechiceros = 0;
     public static int verdugos = 0;
+    public static int druidas = 0;
+    public static int inquisidores = 0;
 
     [Header("Otras Stats:")]
     public static float danoCritico = 5f;
@@ -161,9 +171,19 @@ public class Stats : MonoBehaviour
     public static int danoCausadoVerdugo = 0;
     public static bool danoCausadoVerdugoMillon = false;
 
+    public int danoCausadoDruidaShow = 0;
+    public static int danoCausadoDruida = 0;
+    public static bool danoCausadoDruidaMillon = false;
+
+    public int danoCausadoInquisidorShow = 0;
+    public static int danoCausadoInquisidor = 0;
+    public static bool danoCausadoInquisidorMillon = false;
+
     public int danoCausadoArqueroShow = 0;
     public static int danoCausadoArquero = 0;
     public static bool danoCausadoArqueroMillon = false;
+
+    
 
 
 

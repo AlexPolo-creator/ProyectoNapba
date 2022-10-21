@@ -23,6 +23,7 @@ public class AtaqueIA : MonoBehaviour
 
     public float velocidadRotacion = 100f;    //la velocidad a la que rota para mirar al objetivo, tiene que ser muy alta
   
+
     void BuscarObjetivo()//funcion por la cual establece su objetivo
     {
         GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
@@ -101,6 +102,48 @@ public class AtaqueIA : MonoBehaviour
                 danoAtaque = TropaStats.verdugoAtaque;
             }
         }
+        else if (queTropa == "druida")
+        {
+            if (TropaStats.druidaCriticoPorcentaje != 0)
+            {
+                maxCritNum = Mathf.RoundToInt(1 / TropaStats.druidaCriticoPorcentaje * 100);
+                criticoAtaque = Random.Range(0, maxCritNum);
+            }
+            else
+            {
+                criticoAtaque = 1;
+            }
+            if (criticoAtaque == 0)
+            {
+                danoAtaque = TropaStats.druidaAtaque * Stats.danoCritico;
+                esCrit = true;
+            }
+            else
+            {
+                danoAtaque = TropaStats.druidaAtaque;
+            }
+        }
+        else if (queTropa == "inquisidor")
+        {
+            if (TropaStats.inquisidorCriticoPorcentaje != 0)
+            {
+                maxCritNum = Mathf.RoundToInt(1 / TropaStats.inquisidorCriticoPorcentaje * 100);
+                criticoAtaque = Random.Range(0, maxCritNum);
+            }
+            else
+            {
+                criticoAtaque = 1;
+            }
+            if (criticoAtaque == 0)
+            {
+                danoAtaque = TropaStats.inquisidorAtaque * Stats.danoCritico;
+                esCrit = true;
+            }
+            else
+            {
+                danoAtaque = TropaStats.inquisidorAtaque;
+            }
+        }
         else if (queTropa == "arquero")
         {
             if (TropaStats.arqueroCriticoPorcentaje != 0)
@@ -165,13 +208,46 @@ public class AtaqueIA : MonoBehaviour
         if (queTropa == "verdugo" && e.vidaEnemigo <= (e.vidaEnemigoInicial * TropaStats.verdugoPuntoEjecucion)) //si el ataque es de un verdugo y el enemigo tiene menos vida que el punto de ejecucion ehecutamos al objetivo
         {
             danoAtaque = e.vidaEnemigo;
-            esEjecucion = true;
-            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque)); //activamos el popup TODO: cambiar popUp a una animacion
+            esEjecucion = true;          
         }
-        else
+
+        if (queTropa == "druida") //si el ataque es de un druida
+        {           
+            danoAtaque *= 1 + (e.cargasDruida * e.cargasDruida * TropaStats.druidaMultiplicadorDano);
+            e.cargasDruida++;
+        }
+
+        if (queTropa == "inquisidor") //si el ataque es de un druida
         {
-            ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque)); //activamos el popup de daño
+            GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
+            
+            foreach (GameObject enemigo in enemigos) //iteramos esta funcion por y para cada componente del array de enemigos
+            {
+                float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position); //calculamos la distancia de la tropa hasta el enemigo que estamos iternado
+                if (distanciaEnemigo <= TropaStats.inquisidorRadioAtaque && enemigo.transform != objetivoAtaque)
+                {
+                    EnemigoIA e2 = enemigo.GetComponent<EnemigoIA>();
+
+                    e2.recibirDano(danoAtaque * TropaStats.inquisidorMultiplicadorDano);
+
+                    textoPopUp = PopUpDano.GetComponent<TextMeshPro>();
+                    if (esCrit)
+                    {
+                        textoPopUp.color = colorCrit;
+                        textoPopUp.fontSize = 12;
+                    }
+                    else if (!esCrit)
+                    {
+                        textoPopUp.color = Color.white;
+                        textoPopUp.fontSize = 10;
+                    }
+                    textoPopUp.SetText((Mathf.RoundToInt(danoAtaque * TropaStats.inquisidorMultiplicadorDano)).ToString());
+                    Instantiate(PopUpDano, enemigo.transform.position, Quaternion.identity);
+                }
+            }
         }
+
+        ActivarDanoPopUp(Mathf.RoundToInt(danoAtaque)); //activamos el popup de daño
 
         if (danoAtaque >= e.vidaEnemigo) //si el daño de este ataque es mayor que la vida restante que tiene
         {
@@ -188,6 +264,14 @@ public class AtaqueIA : MonoBehaviour
         else if (queTropa == "verdugo") //si es un verdugo
         {
             Stats.danoCausadoVerdugo += Mathf.RoundToInt(danoAtaque);
+        }
+        else if (queTropa == "druida") //si es un druida
+        {
+            Stats.danoCausadoDruida += Mathf.RoundToInt(danoAtaque);
+        }
+        else if (queTropa == "inquisidor") //si es un inquisidor
+        {
+            Stats.danoCausadoInquisidor += Mathf.RoundToInt(danoAtaque);
         }
         else if (queTropa == "arquero") //si es un arquero
         {
@@ -226,5 +310,4 @@ public class AtaqueIA : MonoBehaviour
         textoPopUp.SetText(cantidadDano.ToString());
         Instantiate(PopUpDano, objetivoAtaque.position, Quaternion.identity);
     }
-
 }

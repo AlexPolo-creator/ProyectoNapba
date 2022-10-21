@@ -5,6 +5,8 @@ public class PanelMenuConstruccion : MonoBehaviour
 {
     public ItemsDeCompra hechicero;
     public ItemsDeCompra verdugo;
+    public ItemsDeCompra druida;
+    public ItemsDeCompra inquisidor;
 
     public ItemsDeCompra arquero;
 
@@ -27,6 +29,14 @@ public class PanelMenuConstruccion : MonoBehaviour
         menuConstrucion.ElegirTropaAColocar(verdugo);
     }
 
+    public void ElegirDruida()
+    {
+        menuConstrucion.ElegirTropaAColocar(druida);
+    }
+    public void ElegirInquisisor()
+    {
+        menuConstrucion.ElegirTropaAColocar(inquisidor);
+    }
 
 
     public void ElegirArquero()

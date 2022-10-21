@@ -134,6 +134,8 @@ public class Templo : MonoBehaviour
             mejoraVivacidad1 = true;
             TropaStats.hechiceroVelocidadDeDisparo *= 1 + (0.15f * numVivacidad1); // + porque la velocidad de ataque de los magos es ataques/segundo y no al reves
             TropaStats.verdugoVelocidadDeDisparo *= 1 + (0.15f * numVivacidad1);
+            TropaStats.druidaVelocidadDeDisparo *= 1 + (0.15f * numVivacidad1);
+            TropaStats.inquisidorVelocidadDeDisparo *= 1 + (0.15f * numVivacidad1);
             Stats.favorDeDioses -= precioVivacidad1;
             precioVivacidad1 = 2 * precioVivacidad1;
         }      
@@ -158,6 +160,8 @@ public class Templo : MonoBehaviour
             mejoraCastigoPiadoso1 = true;
             TropaStats.hechiceroAtaque = TropaStats.hechiceroAtaque * 1.1f;
             TropaStats.verdugoAtaque = TropaStats.verdugoAtaque * 1.1f;
+            TropaStats.druidaAtaque = TropaStats.druidaAtaque * 1.1f;
+            TropaStats.inquisidorAtaque = TropaStats.inquisidorAtaque * 1.1f;
             Stats.favorDeDioses -= precioCastigoPiadoso1;
             precioCastigoPiadoso1 = 2 * precioCastigoPiadoso1;
         }
@@ -182,6 +186,8 @@ public class Templo : MonoBehaviour
             mejoraSantaSentencia1 = true;
             TropaStats.hechiceroCriticoPorcentaje += 5f;
             TropaStats.verdugoCriticoPorcentaje += 5f;
+            TropaStats.druidaCriticoPorcentaje += 5f;
+            TropaStats.inquisidorCriticoPorcentaje += 5f;
             Stats.favorDeDioses -= precioSantaSentencia1;
             precioSantaSentencia1 = 2 * precioSantaSentencia1;
         }
@@ -206,6 +212,8 @@ public class Templo : MonoBehaviour
             mejoraClarividencia = true;
             TropaStats.hechiceroRango += TropaStats.hechiceroRango * 0.1f;
             TropaStats.verdugoRango += TropaStats.verdugoRango * 0.1f;
+            TropaStats.druidaRango += TropaStats.druidaRango * 0.1f;
+            TropaStats.inquisidorRango += TropaStats.inquisidorRango * 0.1f;
             Stats.favorDeDioses -= precioClarividencia;
             precioClarividencia = 2 * precioClarividencia;
         }

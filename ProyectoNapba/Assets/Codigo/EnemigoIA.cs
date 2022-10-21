@@ -16,6 +16,8 @@ public class EnemigoIA : MonoBehaviour
 
     public int daño = 1;
 
+    public int cargasDruida; //cantidad de vez que ha sido maldecido por algun druida
+
     //esta variable especifica el lugar donde el enemigo aparece y en consecuencia el camino que debe tomar. Al ser static puede ser modificado desde otro script. Al ser public puede modificarse en el inspector.
     public int puntoSpawn;
 
@@ -31,6 +33,7 @@ public class EnemigoIA : MonoBehaviour
         recompensa = Mathf.RoundToInt(recompensaInicial * SistemaDificultad.recompensaSegunTiempo);
         velocidad = velocidadInicial;
         vidaEnemigo = Mathf.RoundToInt(vidaEnemigoInicial * SistemaDificultad.dificultadEnemigos);
+        cargasDruida = 0;
 
         //asigna un camino al enemigo en funcion de su punto de spawn
         if (puntoSpawn == 1)
@@ -138,4 +141,6 @@ public class EnemigoIA : MonoBehaviour
 
        
     }
+
+
 }

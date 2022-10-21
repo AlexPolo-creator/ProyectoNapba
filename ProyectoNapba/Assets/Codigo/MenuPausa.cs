@@ -19,9 +19,8 @@ public class MenuPausa : MonoBehaviour
     }
 
     public void Salir(){
-        Debug.Log("Saliendo...");
+        //Debug.Log("Saliendo..."); 
         Application.Quit();
-
     }
   
 }

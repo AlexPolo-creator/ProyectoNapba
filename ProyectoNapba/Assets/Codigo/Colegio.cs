@@ -18,6 +18,8 @@ public class Colegio : MonoBehaviour
 
     public TextMeshProUGUI precioHechiceroTexto;
     public TextMeshProUGUI precioVerdugoTexto;
+    public TextMeshProUGUI precioDruidaTexto;
+    public TextMeshProUGUI precioInquisidorTexto;
 
     private void Start()
     {
@@ -30,9 +32,13 @@ public class Colegio : MonoBehaviour
 
         precioHechicero = precioHechiceroInicial;
         precioVerdugo = precioVerdugoInicial;
+        precioDruida = precioDruidaInicial;
+        precioInquisidor = precioInquisidorInicial;
 
         precioHechiceroTexto.text = precioHechicero.ToString();
         precioVerdugoTexto.text = precioVerdugo.ToString();
+        precioDruidaTexto.text = precioDruida.ToString();
+        precioInquisidorTexto.text = precioInquisidor.ToString();
     }
 
 
@@ -72,6 +78,35 @@ public class Colegio : MonoBehaviour
         }
     }
 
+    public int precioDruidaInicial;
+    int precioDruida;
+    int numDruidasEntrenados;
+    public void EntrenarDruida()
+    {
+        if (Stats.favorDeDioses >= precioDruida)
+        {
+            Stats.druidas += 1;
+            Stats.favorDeDioses -= precioDruida;
+            numDruidasEntrenados++;
+            precioDruida = Mathf.RoundToInt(precioDruida * SistemaDificultad.aumentoPrecioTropas);
+            precioDruidaTexto.text = precioDruida.ToString();
+        }
+    }
+
+    public int precioInquisidorInicial;
+    int precioInquisidor;
+    int numInquisidoresEntrenados;
+    public void EntrenarInquisidor()
+    {
+        if (Stats.favorDeDioses >= precioInquisidor)
+        {
+            Stats.inquisidores += 1;
+            Stats.favorDeDioses -= precioInquisidor;
+            numInquisidoresEntrenados++;
+            precioInquisidor = Mathf.RoundToInt(precioInquisidor * SistemaDificultad.aumentoPrecioTropas);
+            precioInquisidorTexto.text = precioInquisidor.ToString();
+        }
+    }
 
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()

@@ -27,6 +27,8 @@ public class MenuConstrucion : MonoBehaviour
     [Header("Magos:")]
     public GameObject Hechicero;
     public GameObject Verdugo;
+    public GameObject Druida;
+    public GameObject Inquisidor;
 
 
     [Header("Soldados:")]
@@ -88,6 +90,32 @@ public class MenuConstrucion : MonoBehaviour
 
             //resta al stat del oro el precio de la tropa seleccionada
             Stats.verdugos -= 1;
+            Stats.numMagos++;
+        }
+        else if (tropaAColocar.recurso == "druida")
+        {
+            //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
+            if (Stats.druidas < 1)
+            {
+                Debug.Log("No tienes Druidas suficiente.");
+                return;
+            }
+
+            //resta al stat del oro el precio de la tropa seleccionada
+            Stats.druidas -= 1;
+            Stats.numMagos++;
+        }
+        else if (tropaAColocar.recurso == "inquisidor")
+        {
+            //checkea si hay dinero suficiente para comprar la torre y si no lo hay devolvemos la fucion sin ejecutar el resto del codigo y mandamos un mensaje al jugador de que no hay dinero
+            if (Stats.inquisidores < 1)
+            {
+                Debug.Log("No tienes Inquisidores suficiente.");
+                return;
+            }
+
+            //resta al stat del oro el precio de la tropa seleccionada
+            Stats.inquisidores -= 1;
             Stats.numMagos++;
         }
         else if (tropaAColocar.recurso == "arquero")
