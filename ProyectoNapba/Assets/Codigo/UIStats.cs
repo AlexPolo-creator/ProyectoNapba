@@ -38,41 +38,41 @@ public class UIStats : MonoBehaviour
     private int favorEnMilesResto;
     void refrescarUI()
     {
-        vidaJugadorTexto.text = "Vida: " + Stats.vidaJugador.ToString();
+        vidaJugadorTexto.text = " " + Stats.vidaJugador.ToString();
 
         if (!Stats.oroMil)
         {
-            oroTexto.text = "Oro: " + Stats.oro.ToString();
-            oroBarraconesTexto.text = "Oro: " + Stats.oro.ToString();
+            oroTexto.text = " " + Stats.oro.ToString();
+            oroBarraconesTexto.text = " " + Stats.oro.ToString();
         }
         else if (Stats.oroMil)
         {
             oroEnMiles = (Stats.oro / 1000);
             oroEnMilesResto = ((Stats.oro - (1000 * oroEnMiles)) / 100);
-            oroTexto.text = "Oro: " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
-            oroBarraconesTexto.text = "Oro: " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
+            oroTexto.text = " " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
+            oroBarraconesTexto.text = " " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
         }
 
         if (!Stats.favorDeDiosesMil)
         {
-            favorTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
-            favorTemploTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
-            favorColegioTexto.text = "Favor de dioses: " + Stats.favorDeDioses.ToString();
+            favorTexto.text = " " + Stats.favorDeDioses.ToString();
+            favorTemploTexto.text = " " + Stats.favorDeDioses.ToString();
+            favorColegioTexto.text = " " + Stats.favorDeDioses.ToString();
         }
         else if (Stats.favorDeDiosesMil)
         {
             favorEnMiles = (Stats.favorDeDioses / 1000);
             favorEnMilesResto = ((Stats.favorDeDioses - (1000 * favorEnMiles)) / 100);
-            favorTexto.text = "Favor de Dioses: " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
-            favorTemploTexto.text = "Favor de Dioses: " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
-            favorColegioTexto.text = "Favor de Dioses: " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
+            favorTexto.text = " " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
+            favorTemploTexto.text = " " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
+            favorColegioTexto.text = " " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
         }
 
         hechicerosBotonTexto.text = Stats.hechiceros.ToString();
         verdugosBotonTexto.text = Stats.verdugos.ToString();
         arquerosBotonTexto.text = Stats.arqueros.ToString();
 
-        poblacionTexto.text = "comida: " + Stats.comida.ToString() + " (" + Stats.comidaLibre.ToString() + ")";
+        poblacionTexto.text = " " + Stats.comida.ToString() + " (" + Stats.comidaLibre.ToString() + ")";
         
 
         poblacionMinaTexto.text = Stats.comidaEnMina.ToString() + " mineros";
