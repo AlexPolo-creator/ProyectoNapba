@@ -1,36 +1,36 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Cultivos : MonoBehaviour
 {
-    public static bool comidaCultivoCero;
+    public static bool poblacionCultivoCero;
 
-    public float velocidadGranjeros; //Cada cuantos segundos nace un nuevo aldeano cuando hay un solo granjero.
-    public float velocidadGranjerosInicial = 300f; //velocidad por granjero inicial 
+    public GameObject popUpComida;
+    TextMeshPro textoPopUp;
 
-    float realVelocidad; //cuantos segundo tardan los granjeros asignados en procucir 1 de poblacion, esta dividido entre 10 para que la coroutina sea por intervalos y asi poder actualizarla en tiempo real
+    public Transform popUpPosicion;
+
+    public static float velocidadGranjeros; //Cada cuantos segundos nace un nuevo aldeano cuando hay un solo granjero.
+    public float velocidadGranjerosInicial = 10f; //velocidad por granjero inicial 
+
+    public static int produccionComida; //Cantidad de oro que se produce por extracci�n
+    public int produccionComidaInicial = 1;
 
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
-    private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
+    public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     private bool menuActivado = false;
 
-    public GameObject menuComidaCultivo;
-
-    private void Update()
-    {
-        realVelocidad = velocidadGranjeros * 1 / Stats.comidaEnCultivo / 10;
-        
-    }
+    public GameObject menuPoblacionCultivo;
 
     void Awake()
     {
+        produccionComida = produccionComidaInicial;
         //establezco los valores originales de produccionOro y velocidadMineros        
         velocidadGranjeros = velocidadGranjerosInicial;
-
-        realVelocidad = velocidadGranjeros * 1 / Stats.comidaEnCultivo / 10;
 
         //Uso una coroutina y no un InvokeRepeating para asi poder modificar en tiempo real lo que tarda en ejecutar el codigo, eso no se puede con un InvokeRepeating.
         StartCoroutine(SumarComida());
@@ -39,36 +39,22 @@ public class Cultivos : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         //establecemos el color inicial al color de la mina al comienzo
-        colorInicial = sprite.color;
+        sprite.color = colorInicial;
     }
 
     public IEnumerator SumarComida()
     {
-        if (!comidaCultivoCero)
-        {
-            yield return new WaitForSeconds(0.01f); //bugfix
 
-            //esta sintaxis indica la cantidad de segundos reales que tardara en ejecutar el resto del codigo, esta puesto 10 veces para que si el jugador cambia la cantidad de granjeros una vez empezada la coroutina no tenga que esperar a que se acabe la coroutina entera para ver la diferencia
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad);
-            yield return new WaitForSeconds(realVelocidad - 0.01f);
+        yield return new WaitForSeconds(velocidadGranjeros);
 
+        //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
+        Stats.comida += produccionComida * Stats.poblacionEnCultivo;
 
-
-            //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
-            Stats.comida++;
-
-            //vuelve a iniciar la coroutina (bucle)
-            StartCoroutine(SumarComida());
-        }
-        
+        textoPopUp = popUpComida.GetComponent<TextMeshPro>();
+        textoPopUp.SetText((produccionComida * Stats.poblacionEnCultivo).ToString());
+        Instantiate(popUpComida, popUpPosicion.position, Quaternion.identity);
+        //vuelve a iniciar la coroutina (bucle)
+        StartCoroutine(SumarComida());
     }
 
     //esta funcion se ejecuta al pulsar el nodo
@@ -76,13 +62,13 @@ public class Cultivos : MonoBehaviour
     {
         if (!menuActivado)
         {
-            menuComidaCultivo.SetActive(true);
+            menuPoblacionCultivo.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
         }
         else if (menuActivado)
         {
-            menuComidaCultivo.SetActive(false);
+            menuPoblacionCultivo.SetActive(false);
             menuActivado = false;
         }
     }

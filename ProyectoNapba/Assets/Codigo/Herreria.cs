@@ -7,7 +7,7 @@ public class Herreria : MonoBehaviour
 {
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
-    private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
+    public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     public static bool menuActivado = false;
 
@@ -51,7 +51,7 @@ public class Herreria : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         //establecemos el color inicial al color de la mina al comienzo
-        colorInicial = sprite.color;
+        sprite.color = colorInicial;
     }
 
     public void desactivarMenu()

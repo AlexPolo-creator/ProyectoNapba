@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Mina : MonoBehaviour
 {
-    public static bool comidaMinaCero;
+    public static bool poblacionMinaCero;
 
-    public float velocidadMineros; //Cada cuantos segundos extraen oro.
+    public GameObject popUpOro;
+    TextMeshPro textoPopUp;
+
+    public Transform popUpPosicion;
+
+    public static float velocidadMineros; //Cada cuantos segundos extraen oro.
     public float velocidadMinerosInicial = 5f;
 
-    public int produccionOro; //Cantidad de oro que se produce por extracci�n
+    public static int produccionOro; //Cantidad de oro que se produce por extracci�n
     public int produccionOroInicial = 5;
 
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
-    private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
+    public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     private bool menuActivado = false;
 
-    public GameObject menuComidaMina;
+    public GameObject menuPoblacionMina;
 
     void Start()
     {
@@ -33,22 +39,23 @@ public class Mina : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         //establecemos el color inicial al color de la mina al comienzo
-        colorInicial = sprite.color;
+        sprite.color = colorInicial;
     }
     
     public IEnumerator SumarOro()
     {
-        if (!comidaMinaCero)
-        {
-            //esta sintaxis indica la cantidad de segundos reales (pero escalados) que tardara en ejecutar el resto del codigo
-            yield return new WaitForSeconds(velocidadMineros);
+        //esta sintaxis indica la cantidad de segundos reales (pero escalados) que tardara en ejecutar el resto del codigo
+        yield return new WaitForSeconds(velocidadMineros);
 
-            //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
-            Stats.oro += produccionOro * Stats.comidaEnMina;
+        //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
+        Stats.oro += produccionOro * Stats.poblacionEnMina;
 
-            //vuelve a iniciar la coroutina (bucle)
-            StartCoroutine(SumarOro());
-        }       
+        textoPopUp = popUpOro.GetComponent<TextMeshPro>();
+        textoPopUp.SetText((produccionOro * Stats.poblacionEnMina).ToString());
+        Instantiate(popUpOro, popUpPosicion.position, Quaternion.identity);
+
+        //vuelve a iniciar la coroutina (bucle)
+        StartCoroutine(SumarOro());      
     }
 
     //esta funcion se ejecuta al pulsar el nodo
@@ -56,13 +63,13 @@ public class Mina : MonoBehaviour
     {
         if (!menuActivado)
         {
-            menuComidaMina.SetActive(true);
+            menuPoblacionMina.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
         }
         else if (menuActivado)
         {
-            menuComidaMina.SetActive(false);
+            menuPoblacionMina.SetActive(false);
             menuActivado = false;
         }      
     }

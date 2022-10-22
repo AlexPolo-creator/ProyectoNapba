@@ -31,14 +31,15 @@ public class Stats : MonoBehaviour
         favorDeDioses = favorDeDiosesInicial;
         favorDeDiosesMil = false;
 
-        comidaLibre = comidaLibreInicial;
-        
+        poblacionLibre = poblacionLibreInicial;
 
-        comidaEnCultivo = comidaEnCultivoInicial;
-        comidaEnMina =    comidaEnMinaInicial;
-        comidaEnTemplo =  comidaEnTemploInicial;
+        poblacionEnCultivo = poblacionEnCultivoInicial;
+        poblacionEnMina =    poblacionEnMinaInicial;
 
-        comida= comidaLibre + comidaEnMina + comidaEnTemplo + comidaEnCultivo;
+        poblacion = poblacionLibre + poblacionEnMina + poblacionEnCultivo;
+
+        comida = comidaInicial;
+        comidaMil = false;
 
         arqueros = 0;
         lanzadoresHacha = 0;
@@ -47,7 +48,6 @@ public class Stats : MonoBehaviour
         verdugos = 0;
         druidas = 0;
         inquisidores = 0;
-        
 
         danoCausado = 0;
         danoCausadoHechicero = 0;
@@ -64,8 +64,12 @@ public class Stats : MonoBehaviour
 
     void calcularStats()
     {
-
-        comidaLibre = comida - comidaEnMina - comidaEnTemplo - comidaEnCultivo;
+        if (comida <= 0)
+        {
+            Derrota(2);
+        }
+        
+        poblacion = poblacionLibre + poblacionEnMina + poblacionEnCultivo;
 
         danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero + danoCausadoDruida + danoCausadoInquisidor + danoCausadoLanzadorHacha + danoCausadoLancero;
         danoCausadoHechiceroShow = danoCausadoHechicero;
@@ -95,6 +99,14 @@ public class Stats : MonoBehaviour
             oroMil = true;
         }
 
+        if (comida <= 10000)
+        {
+            comidaMil = false;
+        }
+        if (comida >= 10000)
+        {
+            comidaMil = true;
+        }
 
         if (danoCausado <= 1000000)
         {
@@ -163,29 +175,31 @@ public class Stats : MonoBehaviour
     }
 
     public static int vidaJugador;
-    public int vidaJugadorInicial = 100;
+    public int vidaJugadorInicial;
 
     [Header("Recursos:")]
 
     public static int oro;
-    public int oroInicial = 250;
-    public static bool oroMil = false;
+    public int oroInicial;
+    public static bool oroMil;
 
     public static int favorDeDioses;
-    public int favorDeDiosesInicial = 100;
-    public static bool favorDeDiosesMil = false;
-
-    public static int comidaLibre;
-    public int comidaLibreInicial = 50;
-
-    public static int comidaEnMina;
-    public static int comidaEnTemplo;
-    public static int comidaEnCultivo;
-    public int comidaEnMinaInicial;
-    public int comidaEnTemploInicial;
-    public int comidaEnCultivoInicial;
+    public int favorDeDiosesInicial;
+    public static bool favorDeDiosesMil;
 
     public static int comida;
+    public int comidaInicial;
+    public static bool comidaMil;
+
+    public static int poblacionLibre;
+    public int poblacionLibreInicial;
+
+    public static int poblacionEnMina;
+    public static int poblacionEnCultivo;
+    public int poblacionEnMinaInicial;
+    public int poblacionEnCultivoInicial;
+
+    public static int poblacion;
 
 
     [Header("Tropas para colocar:")]
@@ -235,9 +249,16 @@ public class Stats : MonoBehaviour
 
 
     public static int nextSceneToLoad;
-    public static void Derrota()
+    public static void Derrota(int tipo)
     {
-        SceneManager.LoadScene(nextSceneToLoad);
+        if (tipo == 1)
+        {
+            SceneManager.LoadScene(nextSceneToLoad);
+        }
+        if (tipo == 2)
+        {
+            SceneManager.LoadScene(nextSceneToLoad + 1);
+        }
     }
 
 }

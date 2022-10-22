@@ -12,10 +12,15 @@ public class PopUpMovement : MonoBehaviour
     private TextMeshPro texto;
     private Color colorTexto;
 
+    public SpriteRenderer sprite;
+    private Color colorSprite;
+
     private void Start()
     {
         texto = GetComponent<TextMeshPro>();
         colorTexto = texto.color;
+
+        colorSprite = sprite.color;
     }
 
     void Update()
@@ -31,7 +36,9 @@ public class PopUpMovement : MonoBehaviour
     void Desaparicion()
     {
         colorTexto.a -= velocidadDesaparicion * Time.deltaTime;
+        colorSprite.a -= velocidadDesaparicion * Time.deltaTime;
         texto.color = colorTexto;
+        sprite.color = colorSprite;
         if (colorTexto.a <= 0f)
         {
             Destroy(gameObject);

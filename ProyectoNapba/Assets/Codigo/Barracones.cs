@@ -7,7 +7,7 @@ public class Barracones : MonoBehaviour
 {
     public Color hoverColor; //color
     private SpriteRenderer sprite; //creamos la variable sprite pa cuando poner el cursor por encima   ra poder cambiarle el color al SpriteRenderer de la mina   
-    private Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
+    public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     public static bool menuActivado = false;
 
@@ -27,7 +27,7 @@ public class Barracones : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         //establecemos el color inicial al color de la mina al comienzo
-        colorInicial = sprite.color;
+        sprite.color = colorInicial;
 
         precioArquero = precioArqueroInicial;
         precioLanzadorHachas = precioLanzadorHachasInicial;

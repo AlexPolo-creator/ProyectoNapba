@@ -9,6 +9,8 @@ public class UIStats : MonoBehaviour
    // HUD
     public TextMeshProUGUI vidaJugadorTexto;
 
+    public TextMeshProUGUI comidaTexto;
+
     public TextMeshProUGUI oroTexto;
     public TextMeshProUGUI oroBarraconesTexto;
 
@@ -31,7 +33,8 @@ public class UIStats : MonoBehaviour
         InvokeRepeating("refrescarUI", 0, 0.1f);
     }
 
-
+    private int comidaEnMiles;
+    private int comidaEnMilesResto;
     private int oroEnMiles;
     private int oroEnMilesResto;
     private int favorEnMiles;
@@ -39,6 +42,18 @@ public class UIStats : MonoBehaviour
     void refrescarUI()
     {
         vidaJugadorTexto.text = " " + Stats.vidaJugador.ToString();
+
+        if (!Stats.comidaMil)
+        {
+            comidaTexto.text = " " + Stats.comida.ToString();
+ 
+        }
+        else if (Stats.comidaMil)
+        {
+            comidaEnMiles = (Stats.comida / 1000);
+            comidaEnMilesResto = ((Stats.comida - (1000 * comidaEnMiles)) / 100);
+            comidaTexto.text = " " + comidaEnMiles.ToString() + "," + comidaEnMilesResto.ToString() + "K";
+        }
 
         if (!Stats.oroMil)
         {
@@ -72,10 +87,10 @@ public class UIStats : MonoBehaviour
         verdugosBotonTexto.text = Stats.verdugos.ToString();
         arquerosBotonTexto.text = Stats.arqueros.ToString();
 
-        poblacionTexto.text = " " + Stats.comida.ToString() + " (" + Stats.comidaLibre.ToString() + ")";
+        poblacionTexto.text = " " + Stats.poblacion.ToString() + " (" + Stats.poblacionLibre.ToString() + ")";
         
 
-        poblacionMinaTexto.text = Stats.comidaEnMina.ToString() + " mineros";
-        poblacionCultivoTexto.text = Stats.comidaEnCultivo.ToString() + " granjeros";
+        poblacionMinaTexto.text = Stats.poblacionEnMina.ToString() + " mineros";
+        poblacionCultivoTexto.text = Stats.poblacionEnCultivo.ToString() + " granjeros";
     }
 }

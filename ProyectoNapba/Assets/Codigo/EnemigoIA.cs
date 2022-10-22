@@ -95,7 +95,7 @@ public class EnemigoIA : MonoBehaviour
             //ejecuta la funcion de derrota cuando la vida del jugador llega a 0
             if(Stats.vidaJugador <= 0)
             {
-                Stats.Derrota();
+                Stats.Derrota(1);
             }
 
             //hago return para asegurarme de que la funcion Destroy() se haya terminado de ejecutar antes de continuar
