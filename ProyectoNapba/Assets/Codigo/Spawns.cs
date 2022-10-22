@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawns : MonoBehaviour
 {
+    public float reduccionTiempo;
+
     public int numSpawn;
 
     public GameObject[] enemigos;
@@ -29,50 +31,48 @@ public class Spawns : MonoBehaviour
         
     }
     IEnumerator SpawnEnemigosTipo1()
-            {
+    {
+        yield return new WaitForSeconds(esperaEnemigosTipo1);
 
-                yield return new WaitForSeconds(esperaEnemigosTipo1);
+        Vector3 spawnPosition1 = new Vector3(0, 0, 0);
+        spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
+        EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
+        spawn.puntoSpawn = numSpawn;
+        GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
 
-                Vector3 spawnPosition1 = new Vector3(0, 0, 0);
-                spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
-                EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
-                spawn.puntoSpawn = numSpawn;
-                GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
-                StartCoroutine(SpawnEnemigosTipo1());
-                
-            }
+        if (esperaEnemigosTipo1 > 5)
+        {
+            esperaEnemigosTipo1 = esperaEnemigosTipo1 * (1 - reduccionTiempo);
+            Debug.Log(":" + esperaEnemigosTipo1);
+        }
+        else
+        {
+            esperaEnemigosTipo1 = 5;
+        }
 
-            IEnumerator SpawnEnemigosTipo2()
-            {
-                yield return new WaitForSeconds(esperaEnemigosTipo2);
-                Vector3 spawnPosition1 = new Vector3(0, 0, 0);
-                spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
-                EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
-                spawn.puntoSpawn = numSpawn;
-                GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
-                StartCoroutine(SpawnEnemigosTipo2());
-                
-            }
-    void Update(){
-        tiempo += Time.deltaTime;
-        if (esperaEnemigosTipo1 >= 0.9 ){
-            if (tiempo >= dificultad){
-                esperaEnemigosTipo1--;
-            }
-        }else{
-                esperaEnemigosTipo1=1;
-            }
-        if (esperaEnemigosTipo2 >= 0.9){
-            if (tiempo >= dificultad){
-                esperaEnemigosTipo2-=5;
-                dificultad +=5;
-            }
-        }else{
-                esperaEnemigosTipo2=5;
-        }  
+        StartCoroutine(SpawnEnemigosTipo1());
     }
+            
 
-    
+                                            
+    IEnumerator SpawnEnemigosTipo2()
+    {
+        yield return new WaitForSeconds(esperaEnemigosTipo2);
+        Vector3 spawnPosition1 = new Vector3(0, 0, 0);
+        spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
+        EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
+        spawn.puntoSpawn = numSpawn;
+        GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
 
-    
+        if (esperaEnemigosTipo1 > 1)
+        {
+            esperaEnemigosTipo1 = esperaEnemigosTipo1 * reduccionTiempo;
+        }
+        else
+        {
+            esperaEnemigosTipo1 = 1;
+        }
+
+        StartCoroutine(SpawnEnemigosTipo2());
+    }                     
 }

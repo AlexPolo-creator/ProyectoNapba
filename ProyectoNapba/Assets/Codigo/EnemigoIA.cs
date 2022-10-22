@@ -45,6 +45,18 @@ public class EnemigoIA : MonoBehaviour
         {
             objetivo = Waypoints.puntosRama2[0];
         }
+        else if (puntoSpawn == 3)
+        {
+            objetivo = Waypoints.puntosRama3[0];
+        }
+        else if (puntoSpawn == 4)
+        {
+            objetivo = Waypoints.puntosRama4[0];
+        }
+        else if (puntoSpawn == 5)
+        {
+            objetivo = Waypoints.puntosRama5[0];
+        }
 
         //uso un InvokeRepeating y no Update para no calcular distancias demasidas veces por segundo lo cual puede causar lag.
         InvokeRepeating("eliminarEntidades", 0, 0.2f);
@@ -116,7 +128,18 @@ public class EnemigoIA : MonoBehaviour
         {
             objetivo = Waypoints.puntosRama2[waypointIndice];
         }
-
+        else if (puntoSpawn == 3  && waypointIndice < Waypoints.rama3length)
+        {
+            objetivo = Waypoints.puntosRama3[waypointIndice];
+        }
+        else if (puntoSpawn == 4  && waypointIndice < Waypoints.rama4length)
+        {
+            objetivo = Waypoints.puntosRama4[waypointIndice];
+        }
+        else if (puntoSpawn == 5  && waypointIndice < Waypoints.rama5length)
+        {
+            objetivo = Waypoints.puntosRama5[waypointIndice];
+        }
     }
 
     //esta funcion se ejecuta 1 vez por fotograma
