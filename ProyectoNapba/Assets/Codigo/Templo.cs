@@ -5,6 +5,8 @@ using TMPro;
 
 public class Templo : MonoBehaviour
 {
+    public GameObject[] restoBotones;
+
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
@@ -57,6 +59,11 @@ public class Templo : MonoBehaviour
     public void desactivarMenu()
     {
         menuActivado = false;
+        foreach(GameObject boton in restoBotones)
+            {
+                boton.SetActive(true);
+
+            }
     }
 
     //esta funcion se ejecuta al pulsar el nodo
@@ -64,6 +71,11 @@ public class Templo : MonoBehaviour
     {
         if (!menuActivado)
         {
+            foreach(GameObject boton in restoBotones)
+            {
+                boton.SetActive(false);
+
+            }
             Colegio.menuColegio.SetActive(false);
             Barracones.menuBarracones.SetActive(false);
             Herreria.menuHerreria.SetActive(false);
@@ -232,7 +244,7 @@ public class Templo : MonoBehaviour
     private int numRandom;
     public void RandomMejoraGlobal()
     {      
-        numRandom = Random.Range(0,5); //el 5 no está incluido (por el culo te la hinco)
+        numRandom = Random.Range(0,5); //el 5 no estï¿½ incluido (por el culo te la hinco)
         
         if (numRandom == 0)
         {

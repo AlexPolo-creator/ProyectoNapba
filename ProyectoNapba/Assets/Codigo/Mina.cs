@@ -5,6 +5,7 @@ using TMPro;
 
 public class Mina : MonoBehaviour
 {
+
     public static bool poblacionMinaCero;
 
     public GameObject popUpOro;

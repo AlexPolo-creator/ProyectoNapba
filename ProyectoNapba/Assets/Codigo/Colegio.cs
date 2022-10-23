@@ -5,6 +5,8 @@ using TMPro;
 
 public class Colegio : MonoBehaviour
 {
+    public GameObject[] restoBotones;
+    
     public Color hoverColor; //color
     private SpriteRenderer sprite; //creamos la variable sprite pa cuando poner el cursor por encima   ra poder cambiarle el color al SpriteRenderer de la mina   
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
@@ -45,6 +47,11 @@ public class Colegio : MonoBehaviour
     public void desactivarMenu()
     {
         menuActivado = false;
+        foreach(GameObject boton in restoBotones)
+            {
+                boton.SetActive(true);
+
+            }
     }
 
 
@@ -113,6 +120,11 @@ public class Colegio : MonoBehaviour
     {
         if (!menuActivado)
         {
+            foreach(GameObject boton in restoBotones)
+            {
+                boton.SetActive(false);
+
+            }
             Templo.menuTemplo.SetActive(false);
             Barracones.menuBarracones.SetActive(false);
             Herreria.menuHerreria.SetActive(false);

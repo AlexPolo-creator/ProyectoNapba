@@ -5,6 +5,9 @@ using TMPro;
 
 public class Herreria : MonoBehaviour
 {
+    public GameObject[] restoBotones;
+    public GameObject esteBoton;
+
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
@@ -57,6 +60,13 @@ public class Herreria : MonoBehaviour
     public void desactivarMenu()
     {
         menuActivado = false;
+
+        foreach(GameObject boton in restoBotones)
+            {
+                boton.SetActive(true);
+
+            }
+            //esteBoton.SetActive(true);
     }
 
     //esta funcion se ejecuta al pulsar el nodo
@@ -64,6 +74,12 @@ public class Herreria : MonoBehaviour
     {
         if (!menuActivado)
         {
+            foreach(GameObject boton in restoBotones)
+            {
+                boton.SetActive(false);
+
+            }
+            //esteBoton.SetActive(true);
             Colegio.menuColegio.SetActive(false);
             Templo.menuTemplo.SetActive(false);
             Barracones.menuBarracones.SetActive(false);
@@ -249,7 +265,7 @@ public class Herreria : MonoBehaviour
     private int numRandom;
     public void RandomMejoraGlobal()
     {
-        numRandom = Random.Range(0, 5); //el 5 no está incluido (por el culo te la hinco)
+        numRandom = Random.Range(0, 5); //el 5 no estï¿½ incluido (por el culo te la hinco)
 
         if (numRandom == 0)
         {
