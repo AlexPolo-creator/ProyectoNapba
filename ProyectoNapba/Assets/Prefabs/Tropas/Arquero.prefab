@@ -136,6 +136,7 @@ MonoBehaviour:
   rotacionDiff: 90
   puntoDeDisparo: {fileID: 4054432302120944946}
   enemigoTag: Enemigo
+  ataqueHielo: {fileID: 0}
   ataque: {fileID: 2436182702403050112, guid: 8336617a4824755469e96d263efec61b, type: 3}
 --- !u!1 &4367814959083623082
 GameObject:
@@ -210,7 +211,7 @@ SpriteRenderer:
   m_SortingLayerID: 1034202371
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 09b7e43b0d659094f8fbcafefd98fb8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8f5e8389bdccec4fba117070563c4d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

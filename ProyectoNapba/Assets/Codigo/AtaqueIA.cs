@@ -25,6 +25,8 @@ public class AtaqueIA : MonoBehaviour
     float rotacionDiff = 90f;//el offset de rotacion inicial necesario para que salga apuntando al objetivo NO TOCAR
 
     public float velocidadRotacion = 100f;    //la velocidad a la que rota para mirar al objetivo, tiene que ser muy alta
+
+    public GameObject popUpEjecucion;
   
 
     void BuscarObjetivo()//funcion por la cual establece su objetivo
@@ -255,7 +257,7 @@ public class AtaqueIA : MonoBehaviour
         transform.Translate(dir.normalized * distanciaEsteFotograma, Space.World);//trasladamos el objeto hacia el objetivo
 
         //codigo que realiza la rotaccion del ataque al objetivo, ni putas de como funciona
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - rotacionDiff;
+        float angle = Mathf.Atan2(-dir.y, -dir.x) * Mathf.Rad2Deg - rotacionDiff;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * velocidadRotacion);       
     }
@@ -377,9 +379,8 @@ public class AtaqueIA : MonoBehaviour
             textoPopUp.fontSize = 10;
         }else if (esEjecucion)
         {
-            textoPopUp.color = colorCrit;
-            textoPopUp.SetText("Ejecución");
-            Instantiate(PopUpDano, objetivoAtaque.position, Quaternion.identity);
+            textoPopUp.SetText("");
+            Instantiate(popUpEjecucion, objetivoAtaque.position, Quaternion.identity);
             return;
         }      
         textoPopUp.SetText(cantidadDano.ToString());

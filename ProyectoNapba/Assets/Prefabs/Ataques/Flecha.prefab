@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1034202371
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 81d7016d25477a04fa9c7d3fc387dba5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56186029d821ea447b3900f28cdf1446, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,9 +100,8 @@ MonoBehaviour:
   tipoTropa: soldado
   queTropa: arquero
   velocidad: 5
-  danoAtaque: 25
-  criticoAtaque: 1
   enemigoTag: Enemigo
   velocidadRotacion: 10000
   colorCrit: {r: 0.8773585, g: 0.15390478, b: 0, a: 1}
+  colorEjecucion: {r: 0, g: 0, b: 0, a: 0}
   PopUpDano: {fileID: 737823371747002220, guid: 638d20b883ac5f74eb347939ed514948, type: 3}

@@ -19,6 +19,8 @@ public class Stats : MonoBehaviour
 
     private void Start()
     {
+        deserualizar();
+        OrdenarPuntuaciones();
         InvokeRepeating("calcularStats", 0, 0.1f);
 
         printPuntuaciones();
@@ -94,20 +96,20 @@ public class Stats : MonoBehaviour
         danoCausadoLanceroShow = danoCausadoLancero;
 
 
-        if (favorDeDioses <= 10000) 
+        if (favorDeDioses <= 10000)
         {
             favorDeDiosesMil = false;
         }
-        if (favorDeDioses >= 10000) 
+        if (favorDeDioses >= 10000)
         {
             favorDeDiosesMil = true;
         }
 
-        if (oro <= 10000) 
+        if (oro <= 10000)
         {
             oroMil = false;
         }
-        if (oro >= 10000) 
+        if (oro >= 10000)
         {
             oroMil = true;
         }
@@ -129,19 +131,19 @@ public class Stats : MonoBehaviour
         {
             danoCausadoMillon = true;
         }
-        if (danoCausadoHechicero <= 1000000) 
+        if (danoCausadoHechicero <= 1000000)
         {
             danoCausadoHechiceroMillon = false;
         }
-        if (danoCausadoHechicero >= 1000000) 
+        if (danoCausadoHechicero >= 1000000)
         {
             danoCausadoHechiceroMillon = true;
         }
-        if (danoCausadoVerdugo <= 1000000) 
+        if (danoCausadoVerdugo <= 1000000)
         {
             danoCausadoVerdugoMillon = false;
         }
-        if (danoCausadoVerdugo >= 1000000) 
+        if (danoCausadoVerdugo >= 1000000)
         {
             danoCausadoVerdugoMillon = true;
         }
@@ -165,23 +167,23 @@ public class Stats : MonoBehaviour
         {
             danoCausadoArqueroMillon = false;
         }
-        if (danoCausadoArquero >= 1000000) 
+        if (danoCausadoArquero >= 1000000)
         {
             danoCausadoArqueroMillon = true;
         }
-        if (danoCausadoLanzadorHacha <= 1000000) 
+        if (danoCausadoLanzadorHacha <= 1000000)
         {
             danoCausadoLanzadorHachaMillon = false;
         }
-        if (danoCausadoLanzadorHacha >= 1000000) 
+        if (danoCausadoLanzadorHacha >= 1000000)
         {
             danoCausadoLanzadorHachaMillon = true;
         }
-        if (danoCausadoLancero >= 1000000) 
+        if (danoCausadoLancero >= 1000000)
         {
             danoCausadoLanceroMillon = true;
         }
-        if (danoCausadoLancero <= 1000000) 
+        if (danoCausadoLancero <= 1000000)
         {
             danoCausadoLanceroMillon = false;
         }
@@ -266,22 +268,17 @@ public class Stats : MonoBehaviour
     {
         if (tipo == 1)
         {
+            dias = CicloDiaNoche.dias;
             anadirPuntuaciones();
-            PlayerPrefs.SetInt("top1", tabla[0]);
-            PlayerPrefs.SetInt("top2", tabla[1]);
-            PlayerPrefs.SetInt("top3", tabla[2]);
-            PlayerPrefs.SetInt("top4", tabla[3]);
-            PlayerPrefs.SetInt("top5", tabla[4]);
+            serializar();
             SceneManager.LoadScene(nextSceneToLoad + 1);
         }
         if (tipo == 2)
         {
+            dias = CicloDiaNoche.dias;
             anadirPuntuaciones();
-            PlayerPrefs.SetInt("top1", tabla[0]);
-            PlayerPrefs.SetInt("top2", tabla[1]);
-            PlayerPrefs.SetInt("top3", tabla[2]);
-            PlayerPrefs.SetInt("top4", tabla[3]);
-            PlayerPrefs.SetInt("top5", tabla[4]);
+            serializar();
+
             SceneManager.LoadScene(nextSceneToLoad + 2);
         }
     }
@@ -289,21 +286,11 @@ public class Stats : MonoBehaviour
 
     //tabla de puntuaciones:
     //variables escena gameplay:
-    [SerializeField] int[] tabla = { 5, 1, 4, 1, 3 };
-    public static int dias = CicloDiaNoche.dias, aux;     //SOLO PRUEBAS TEMPORALES
+    [SerializeField] int[] tabla = { 0, 0, 0, 0, 0 };
+    public static int dias, aux;     //SOLO PRUEBAS TEMPORALES
 
     //variables escena menuInicio:
     public TextMeshProUGUI[] top5;
-    int arrayPos;
-    private void Awake()
-    {
-        tabla[0] = PlayerPrefs.GetInt("top1");
-        tabla[1] = PlayerPrefs.GetInt("top2");
-        tabla[2] = PlayerPrefs.GetInt("top3");
-        tabla[3] = PlayerPrefs.GetInt("top4");
-        tabla[4] = PlayerPrefs.GetInt("top5");
-        OrdenarPuntuaciones();
-    }
 
     void OrdenarPuntuaciones()
     {
@@ -325,22 +312,53 @@ public class Stats : MonoBehaviour
         OrdenarPuntuaciones();
         if (tabla[4] <= dias)
         {
-            tabla[4] = dias;// aqui irian los dias aguantados en la partida actual suplantando la 
+            tabla[4] = dias;
+            for (int i = 0; i <5; i++)
+            {
+                Debug.Log(tabla[i]);
+            }
+            serializar();
+            // aqui irian los dias aguantados en la partida actual suplantando la 
             //cuando muere se guarda y se reordena con la nueva puntuacion            
         }
+
         OrdenarPuntuaciones();
     }
     public void printPuntuaciones()
     {
 
-        arrayPos = 0;
         for (int i = 0; i<5; i++)
         {
-            top5[arrayPos].text = tabla[i].ToString();
-            arrayPos++;
+            top5[i].text = tabla[i].ToString();
         }
     }
+    void serializar()
+    {
+        PlayerPrefs.SetInt("top1", tabla[0]);
+        PlayerPrefs.SetInt("top2", tabla[1]);
+        PlayerPrefs.SetInt("top3", tabla[2]);
+        PlayerPrefs.SetInt("top4", tabla[3]);
+        PlayerPrefs.SetInt("top5", tabla[4]);
 
+    }
+    void deserualizar()
+    {
+        tabla[0] = PlayerPrefs.GetInt("top1");
+        tabla[1] = PlayerPrefs.GetInt("top2");
+        tabla[2] = PlayerPrefs.GetInt("top3");
+        tabla[3] = PlayerPrefs.GetInt("top4");
+        tabla[4] = PlayerPrefs.GetInt("top5");
+    }
+    public void Reset()
+    {
+        tabla[0] = 0;
+        tabla[1] = 0;
+        tabla[2] = 0;
+        tabla[3] = 0;
+        tabla[4] = 0;
+        serializar();
+        printPuntuaciones();
+    }
 
 
 }
