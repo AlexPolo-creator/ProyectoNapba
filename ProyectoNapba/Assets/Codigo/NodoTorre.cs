@@ -51,12 +51,7 @@ public class NodoTorre : MonoBehaviour
     //esta funcion se ejecuta al colocar el cursor sobre el nodo
     void OnMouseEnter()
     {
-        //si ya hay una torre desactivamos este objeto
-        if (torre != null)
-        {
-            //desactiva el objeto
-            gameObject.SetActive(false);
-        }
+        
 
         //si tiene dinero sufieciente cambaimos el color a hoverColor, si no tiene sufiencte cambiamos el color a noTieneDineooColor
         if (menuConstrucion.tieneDineroParaTorre)
@@ -72,6 +67,12 @@ public class NodoTorre : MonoBehaviour
     //esta funcion se ejecuta al quitar el cursor de encima del nodo
     void OnMouseExit()
     {
+        //si ya hay una torre desactivamos este objeto
+        if (torre != null)
+        {
+            //desactiva el objeto
+            gameObject.SetActive(false);
+        }
         sprite.color = colorInicial;
     }
 }

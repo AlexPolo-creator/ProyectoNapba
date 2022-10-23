@@ -49,6 +49,11 @@ public class NodoTropa : MonoBehaviour
     }
     void OnMouseExit()
     {
+        if (tropa != null)
+        {
+            //desactiva el objeto
+            gameObject.SetActive(false);
+        }
         sprite.color = colorInicial;
     }
 
