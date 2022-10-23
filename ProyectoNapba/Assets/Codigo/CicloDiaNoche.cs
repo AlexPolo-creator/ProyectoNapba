@@ -38,7 +38,7 @@ public class CicloDiaNoche : MonoBehaviour
     {
         CalculoTiempo();
         MostrarTiempo();
-        
+        Debug.Log(":" + dias);
     }
 
     public void CalculoTiempo() // Pasa los segundos a minutos, los minutos a horas, y las horas a dias

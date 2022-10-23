@@ -54,6 +54,8 @@ MonoBehaviour:
   recompensaInicial: 5
   sprite: {fileID: 1481409291357293207}
   congelacionColor: {r: 0.5019608, g: 0.68235296, b: 0.7647059, a: 1}
+  inicialColor: {r: 1, g: 1, b: 1, a: 1}
+  velocidadAparicion: 0.35
   "da\xF1o": 10
   cargasDruida: 0
   puntoSpawn: 4

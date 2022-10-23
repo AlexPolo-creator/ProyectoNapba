@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Stats : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Stats : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("calcularStats", 0, 0.1f);
+
+        printPuntuaciones();
 
         numMagos = 0;
         numSoldados = 0;
@@ -75,7 +78,10 @@ public class Stats : MonoBehaviour
         {
             Derrota(2);
         }
-        
+        if (vidaJugador <= 0)
+        {
+            Derrota(1);
+        }
         poblacion = poblacionLibre + poblacionEnMina + poblacionEnCultivo;
 
         danoCausado = danoCausadoHechicero + danoCausadoVerdugo + danoCausadoArquero + danoCausadoDruida + danoCausadoInquisidor + danoCausadoLanzadorHacha + danoCausadoLancero;
@@ -256,16 +262,85 @@ public class Stats : MonoBehaviour
 
 
     public static int nextSceneToLoad;
-    public static void Derrota(int tipo)
+    void Derrota(int tipo)
     {
         if (tipo == 1)
         {
+            anadirPuntuaciones();
+            PlayerPrefs.SetInt("top1", tabla[0]);
+            PlayerPrefs.SetInt("top2", tabla[1]);
+            PlayerPrefs.SetInt("top3", tabla[2]);
+            PlayerPrefs.SetInt("top4", tabla[3]);
+            PlayerPrefs.SetInt("top5", tabla[4]);
             SceneManager.LoadScene(nextSceneToLoad);
         }
         if (tipo == 2)
         {
+            anadirPuntuaciones();
+            PlayerPrefs.SetInt("top1", tabla[0]);
+            PlayerPrefs.SetInt("top2", tabla[1]);
+            PlayerPrefs.SetInt("top3", tabla[2]);
+            PlayerPrefs.SetInt("top4", tabla[3]);
+            PlayerPrefs.SetInt("top5", tabla[4]);
             SceneManager.LoadScene(nextSceneToLoad + 1);
         }
     }
+
+
+    //tabla de puntuaciones:
+    //variables escena gameplay:
+    [SerializeField] int[] tabla = { 5, 1, 4, 1, 3 };
+    public static int dias = CicloDiaNoche.dias, aux;     //SOLO PRUEBAS TEMPORALES
+
+    //variables escena menuInicio:
+    public TextMeshProUGUI[] top5;
+    int arrayPos;
+    private void Awake()
+    {
+        tabla[0] = PlayerPrefs.GetInt("top1");
+        tabla[1] = PlayerPrefs.GetInt("top2");
+        tabla[2] = PlayerPrefs.GetInt("top3");
+        tabla[3] = PlayerPrefs.GetInt("top4");
+        tabla[4] = PlayerPrefs.GetInt("top5");
+        OrdenarPuntuaciones();
+    }
+
+    void OrdenarPuntuaciones()
+    {
+        for (int i = 0; i<5; i++)
+        {
+            for (int j = 0; j<4; j++)
+            {
+                if (tabla[j] < tabla[j+1])
+                {
+                    aux = tabla[j];
+                    tabla[j] = tabla[j+1];
+                    tabla[j+1] = aux;
+                }
+            }
+        }
+    }
+    void anadirPuntuaciones()
+    {
+        OrdenarPuntuaciones();
+        if (tabla[4] <= dias)
+        {
+            tabla[4] = dias;// aqui irian los dias aguantados en la partida actual suplantando la 
+            //cuando muere se guarda y se reordena con la nueva puntuacion            
+        }
+        OrdenarPuntuaciones();
+    }
+    public void printPuntuaciones()
+    {
+
+        arrayPos = 0;
+        for (int i = 0; i<5; i++)
+        {
+            top5[arrayPos].text = tabla[i].ToString();
+            arrayPos++;
+        }
+    }
+
+
 
 }

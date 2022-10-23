@@ -17,6 +17,9 @@ public class EnemigoIA : MonoBehaviour
 
     public SpriteRenderer sprite;
     public Color congelacionColor;
+    public Color inicialColor;
+    private Color colorSprite;
+    public float velocidadAparicion;
 
     public int daño = 1;
 
@@ -34,6 +37,10 @@ public class EnemigoIA : MonoBehaviour
     //esta funcion se ejecuta al iniciar la escena
     private void Start()
     {
+        colorSprite = inicialColor;
+        colorSprite.a = 0;
+        sprite.color = colorSprite;
+        FadeIn();
         recompensa = Mathf.RoundToInt(recompensaInicial * SistemaDificultad.recompensaSegunTiempo);
         velocidad = velocidadInicial;
         vidaEnemigo = Mathf.RoundToInt(vidaEnemigoInicial * SistemaDificultad.dificultadEnemigos);
@@ -107,11 +114,6 @@ public class EnemigoIA : MonoBehaviour
             //resta la vida del jugador en funcion del daño del enemigo
             Stats.vidaJugador -= daño;
 
-            //ejecuta la funcion de derrota cuando la vida del jugador llega a 0
-            if(Stats.vidaJugador <= 0)
-            {
-                Stats.Derrota(1);
-            }
 
             //hago return para asegurarme de que la funcion Destroy() se haya terminado de ejecutar antes de continuar
             return;           
@@ -148,6 +150,11 @@ public class EnemigoIA : MonoBehaviour
     //esta funcion se ejecuta 1 vez por fotograma
     void Update()
     {
+        if (colorSprite.a < 1f)
+        {
+            FadeIn();
+        }
+
         //Esta variable almacena el vector direcci�n del enemigo en funcion de su posici�n y el proximo waypoint
         Vector2 dir = objetivo.position - transform.position;
 
@@ -189,6 +196,13 @@ public class EnemigoIA : MonoBehaviour
         velocidad = velocidadPreCongelacion;
         waitingForSeconds = false;
         Debug.Log("3");
+    }
+
+    void FadeIn()
+    {        
+        colorSprite.a += velocidadAparicion * Time.deltaTime;
+        sprite.color = colorSprite;
+        
     }
 
 }
