@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7110862643458536590}
   - component: {fileID: 7141134848501576474}
   m_Layer: 0
-  m_Name: Enemigo 1
+  m_Name: Enemigo 2
   m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 7806536576105148037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.599, y: -4.02, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.11000001, y: 0.11000001, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5169282385711839913}
   m_Father: {fileID: 0}
@@ -46,17 +46,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b59a8525f3035d46a7587f6f8ad4aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 0.5
-  velocidadInicial: 0.5
-  vidaEnemigo: 100
-  vidaEnemigoInicial: 100
-  recompensa: 5
-  recompensaInicial: 5
+  velocidad: 0.4
+  velocidadInicial: 0.4
+  vidaEnemigo: 300
+  vidaEnemigoInicial: 300
+  recompensa: 20
+  recompensaInicial: 20
   sprite: {fileID: 1481409291357293207}
   congelacionColor: {r: 0.5019608, g: 0.68235296, b: 0.7647059, a: 1}
   inicialColor: {r: 1, g: 1, b: 1, a: 1}
   velocidadAparicion: 0.35
-  "da\xF1o": 10
+  "da\xF1o": 12
   cargasDruida: 0
   puntoSpawn: 4
 --- !u!212 &7141134848501576474
@@ -99,7 +99,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034202371
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 1034202371
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 25e1b416b15e8674b844c865e0fa9a52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb538c927b7a2214c84e59ff1e5d147b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
