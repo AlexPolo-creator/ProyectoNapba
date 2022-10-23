@@ -16,6 +16,9 @@ public class TropaStats : MonoBehaviour
     public float hechiceroAtaqueInicial = 75f;
     public static float hechiceroAtaque;
 
+    public float hechiceroRalentizacionInicial = 75f;
+    public static float hechiceroRalentizacion;
+
     public float hechiceroCriticoPorcentajeInicial = 0f;
     public static float hechiceroCriticoPorcentaje; //entre 100 
 
@@ -120,6 +123,7 @@ public class TropaStats : MonoBehaviour
         hechiceroVelocidadDeDisparo = hechiceroVelocidadDeDisparoInicial;
         hechiceroAtaque = hechiceroAtaqueInicial;
         hechiceroRango = hechiceroRangoInicial;
+        hechiceroRalentizacion = hechiceroRalentizacionInicial;
         hechiceroCriticoPorcentaje = hechiceroCriticoPorcentajeInicial;
 
         verdugoVelocidadDeDisparo = verdugoVelocidadDeDisparoInicial;

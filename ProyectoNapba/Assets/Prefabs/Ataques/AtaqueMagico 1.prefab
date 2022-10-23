@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 7367317255925535630}
   - component: {fileID: 773372186670407515}
   m_Layer: 0
-  m_Name: AtaqueMagico
+  m_Name: AtaqueMagico 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 730d267b357f7fd45aab223a995a0179, type: 3}
-  m_Color: {r: 0.28773582, g: 0.34514213, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoTropa: mago
-  queTropa: hechicero
-  velocidad: 1
+  queTropa: hechiceroHielo
+  velocidad: 2
   enemigoTag: Enemigo
   velocidadRotacion: 10000
   colorCrit: {r: 0.8784314, g: 0.15686275, b: 0, a: 1}

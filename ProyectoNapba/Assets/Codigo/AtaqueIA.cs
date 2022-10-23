@@ -13,6 +13,9 @@ public class AtaqueIA : MonoBehaviour
     //stats del ataque:
     public float velocidad = 50f; //la velocidad a la que el ataque se mueve (principalmente estético)
 
+    Transform[] posiblesObjetivos;
+    int arrayPos;
+
     float danoAtaque; //el daño no es modificabel ya que se establece su valor al impactar con el objetivo
     int criticoAtaque = 1; //variable usada para determinar si el ataque será critico, 0 es si, cualquier otra cosa en no  NO TOCAR  
     int maxCritNum; //variable usada para determinar si el ataque será critico, determina el maximo numero para el Random.Range en funcion del porcentaje critico de la tropa
@@ -26,30 +29,56 @@ public class AtaqueIA : MonoBehaviour
 
     void BuscarObjetivo()//funcion por la cual establece su objetivo
     {
-        GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
-        float minimaDistancia = Mathf.Infinity; //cramos el float de distancia minima para determinar la ultima distancia mas cercana detectada. Hacemos que el default de esto sea infinito para que cualquier enemigo este mas cerca que el infinito
-        GameObject enemigoMasCercano = null; //creamos la variable de tipo GameObject del enemigo mas cercano para almacenar cual es el enemigo mas cercano, Hacemos que el default de esto sea null
-
-        foreach (GameObject enemigo in enemigos) //iteramos esta funcion por y para cada componente del array de enemigos
+        if (queTropa != "hechiceroHielo")
         {
-            float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position); //calculamos la distancia de la tropa hasta el enemigo que estamos iternado
-            if (distanciaEnemigo < minimaDistancia) //si la distancia hasta este enemigo es menor que la ultima distancia mas cercana detectada cambiamos esta distancia mas cercana detectada (minimaDistancia) a la del enemigo sobre el que hemos iterado y establecemos el enemigo mas cercano como el enemigo que tenemos iterado
+            GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
+            float minimaDistancia = Mathf.Infinity; //cramos el float de distancia minima para determinar la ultima distancia mas cercana detectada. Hacemos que el default de esto sea infinito para que cualquier enemigo este mas cerca que el infinito
+            GameObject enemigoMasCercano = null; //creamos la variable de tipo GameObject del enemigo mas cercano para almacenar cual es el enemigo mas cercano, Hacemos que el default de esto sea null
+
+            foreach (GameObject enemigo in enemigos) //iteramos esta funcion por y para cada componente del array de enemigos
             {
-                minimaDistancia = distanciaEnemigo; //establecemos la distancia mas cercana detectada (minimaDistancia) a la del enemigo sobre el que hemos iterado
-                enemigoMasCercano = enemigo; //establecemos el enemigo mas cercano como el enemigo que tenemos iterado
+                float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position); //calculamos la distancia de la tropa hasta el enemigo que estamos iternado
+                if (distanciaEnemigo < minimaDistancia) //si la distancia hasta este enemigo es menor que la ultima distancia mas cercana detectada cambiamos esta distancia mas cercana detectada (minimaDistancia) a la del enemigo sobre el que hemos iterado y establecemos el enemigo mas cercano como el enemigo que tenemos iterado
+                {
+                    minimaDistancia = distanciaEnemigo; //establecemos la distancia mas cercana detectada (minimaDistancia) a la del enemigo sobre el que hemos iterado
+                    enemigoMasCercano = enemigo; //establecemos el enemigo mas cercano como el enemigo que tenemos iterado
+                }
+            }
+
+            if (enemigoMasCercano != null)
+            {
+                objetivoAtaque = enemigoMasCercano.transform; //establecemos el objetivo del ataque como el transform del enemigo mas cercano
+            }
+            else
+            {
+                objetivoAtaque = null; //si no hay enemigo mas cercano 
             }
         }
-
-        if (enemigoMasCercano != null)
+        else if (queTropa == "hechiceroHielo")
         {
-            objetivoAtaque = enemigoMasCercano.transform; //establecemos el objetivo del ataque como el transform del enemigo mas cercano
-        }
-        else
-        {
-            objetivoAtaque = null; //si no hay enemigo mas cercano 
-        }
+            GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
+            posiblesObjetivos = new Transform[500];
+            arrayPos = 0;
+            foreach (GameObject enemigo in enemigos) //iteramos esta funcion por y para cada componente del array de enemigos
+            {
+                float distanciaEnemigo = Vector3.Distance(transform.position, enemigo.transform.position); //calculamos la distancia de la tropa hasta el enemigo que estamos iternado
+                if (distanciaEnemigo < TropaStats.hechiceroRango * 2) 
+                {
+                    posiblesObjetivos[arrayPos] = enemigo.transform;
+                    arrayPos++;
+                }
+            }
+            if (arrayPos != 0)
+            {
+                objetivoAtaque = posiblesObjetivos[Random.Range(0, arrayPos)].transform;
+            }
+            else if (arrayPos == 0)
+            {
+                objetivoAtaque = null; 
+            }
 
 
+        }     
     }
 
     private bool esCrit = false; //esta varible determina si el atque es critico
@@ -79,6 +108,10 @@ public class AtaqueIA : MonoBehaviour
             {
                 danoAtaque = TropaStats.hechiceroAtaque;
             }
+        }
+        if (queTropa == "hechiceroHielo")//si el ataque fue lanzado por un hechicero
+        {
+            danoAtaque = 0;
         }
         else if (queTropa == "verdugo")
         {
@@ -237,6 +270,12 @@ public class AtaqueIA : MonoBehaviour
         {
             danoAtaque = e.vidaEnemigo;
             esEjecucion = true;          
+        }
+
+        if (queTropa == "hechiceroHielo") //si el ataque es de un verdugo y el enemigo tiene menos vida que el punto de ejecucion ehecutamos al objetivo
+        {
+            Debug.Log("1");
+            e.Congelar();
         }
 
         if (queTropa == "druida") //si el ataque es de un druida

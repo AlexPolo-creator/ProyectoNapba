@@ -55,7 +55,6 @@ public class Spawns : MonoBehaviour
     IEnumerator SpawnEnemigosTipo1()
     {
         yield return new WaitForSeconds(esperaEnemigosTipo1);
-
         Vector3 spawnPosition1 = new Vector3(0, 0, 0);
         spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
 
@@ -64,62 +63,129 @@ public class Spawns : MonoBehaviour
             EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
             spawn.puntoSpawn = numSpawn;
             GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
-            GameObject enemigo2 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(0.1f, 0.1f, 0), gameObject.transform.rotation);
         }
         else if (cantidadEnemigos1 == 2)
         {
             EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
             spawn.puntoSpawn = numSpawn;
             GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
         }
         else if (cantidadEnemigos1 == 3)
         {
             EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
             spawn.puntoSpawn = numSpawn;
             GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo3 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(-0.3f, -0.3f, 0), gameObject.transform.rotation);
         }
         else if (cantidadEnemigos1 == 4)
         {
             EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
             spawn.puntoSpawn = numSpawn;
             GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo3 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(-0.3f, -0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo4 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(-0.5f, 0.5f, 0), gameObject.transform.rotation);
+        }
+        else if (cantidadEnemigos1 == 5)
+        {
+            EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
+            spawn.puntoSpawn = numSpawn;
+            GameObject enemigo1 = Instantiate(enemigos[0], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo3 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(-0.3f, -0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo4 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(-0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo5 = Instantiate(enemigos[0], spawnPosition1 + new Vector3(0.5f, -0.5f, 0), gameObject.transform.rotation);
         }
 
         if (esperaEnemigosTipo1 > 5)
         {
-            esperaEnemigosTipo1 = esperaEnemigosTipo1 * (1 - reduccionTiempo);
+            esperaEnemigosTipo1 -= esperaInicialEnemigosTipo1 * reduccionTiempo;
             
         }
         else
         {
             esperaEnemigosTipo1 = esperaInicialEnemigosTipo1;
-            Debug.Log("dobles");
-            cantidadEnemigos1++;
+
+            if (cantidadEnemigos1 <= 5)
+            {
+                cantidadEnemigos1++;
+            }
+            else
+            {
+                cantidadEnemigos1 = 5;
+            }            
         }
 
         StartCoroutine(SpawnEnemigosTipo1());
     }
-            
 
-                                            
     IEnumerator SpawnEnemigosTipo2()
     {
         yield return new WaitForSeconds(esperaEnemigosTipo2);
+
         Vector3 spawnPosition1 = new Vector3(0, 0, 0);
         spawnPosition1 = new Vector3(transform.position.x, transform.position.y, 0);
-        EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
-        spawn.puntoSpawn = numSpawn;
-        GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
 
-        if (esperaEnemigosTipo1 > 1)
+        if (cantidadEnemigos2 == 1)
         {
-            esperaEnemigosTipo1 = esperaEnemigosTipo1 * reduccionTiempo;
+            EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
+            spawn.puntoSpawn = numSpawn;
+            GameObject enemigo1 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
+        }
+        else if (cantidadEnemigos2 == 2)
+        {
+            EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
+            spawn.puntoSpawn = numSpawn;
+            GameObject enemigo1 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+        }
+        else if (cantidadEnemigos2 == 3)
+        {
+            EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
+            spawn.puntoSpawn = numSpawn;
+            GameObject enemigo1 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo3 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(-0.3f, -0.3f, 0), gameObject.transform.rotation);
+        }
+        else if (cantidadEnemigos2 == 4)
+        {
+            EnemigoIA spawn = enemigos[0].GetComponent<EnemigoIA>();
+            spawn.puntoSpawn = numSpawn;
+            GameObject enemigo1 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo3 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(-0.3f, -0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo4 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(-0.5f, 0.5f, 0), gameObject.transform.rotation);
+        }
+        else if (cantidadEnemigos2 == 5)
+        {
+            EnemigoIA spawn = enemigos[1].GetComponent<EnemigoIA>();
+            spawn.puntoSpawn = numSpawn;
+            GameObject enemigo1 = Instantiate(enemigos[1], spawnPosition1, gameObject.transform.rotation);
+            GameObject enemigo2 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo3 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(-0.3f, -0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo4 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(-0.3f, 0.3f, 0), gameObject.transform.rotation);
+            GameObject enemigo5 = Instantiate(enemigos[1], spawnPosition1 + new Vector3(0.5f, -0.5f, 0), gameObject.transform.rotation);
+        }
+
+        if (esperaEnemigosTipo2 > 5)
+        {
+            esperaEnemigosTipo2 -= esperaInicialEnemigosTipo2 * reduccionTiempo;
         }
         else
         {
-            esperaEnemigosTipo1 = 1;
+            esperaEnemigosTipo2 = esperaInicialEnemigosTipo2;
+            if (cantidadEnemigos2 <= 5)
+            {
+                cantidadEnemigos2++;
+            }
+            else
+            {
+                cantidadEnemigos2 = 5;
+            }
         }
 
         StartCoroutine(SpawnEnemigosTipo2());
-    }                     
+    }                    
 }

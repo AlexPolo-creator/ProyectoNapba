@@ -52,10 +52,11 @@ MonoBehaviour:
   vidaEnemigoInicial: 100
   recompensa: 5
   recompensaInicial: 5
-  sprite: {fileID: 7835220943526823289}
+  sprite: {fileID: 1481409291357293207}
+  congelacionColor: {r: 0.5019608, g: 0.68235296, b: 0.7647059, a: 1}
   "da\xF1o": 10
   cargasDruida: 0
-  puntoSpawn: 2
+  puntoSpawn: 4
 --- !u!212 &7141134848501576474
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24a008684a3bfac4091e78a097b0c990, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

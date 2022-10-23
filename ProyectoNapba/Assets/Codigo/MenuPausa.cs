@@ -13,7 +13,7 @@ public class MenuPausa : MonoBehaviour
     }
 
     public void Reanudar(){
-        Time.timeScale = 1f;
+        Time.timeScale = AcelerarMenu.velocidad;
         botonPausa.SetActive(true);
         menuPausa.SetActive(false);
     }

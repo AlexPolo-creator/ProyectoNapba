@@ -23,13 +23,16 @@ public class TropaIA : MonoBehaviour
     public float rotacionDiff = 90;
     public Transform puntoDeDisparo;
     float siguienteDisparo = 0f;
+    int siguienteDisparoHielo;
     public string enemigoTag = "Enemigo";
+    public GameObject ataqueHielo;
     public GameObject ataque;
 
 
     void Start()
     {
         InvokeRepeating("BuscarObjetivo", 0f, 0.25f);
+        siguienteDisparoHielo = Stats.cadaCuantosAtaquesLanzarHielo;
     }
 
     void BuscarObjetivo()
@@ -94,6 +97,7 @@ public class TropaIA : MonoBehaviour
 
     void Update()
     {
+
         siguienteDisparo -= Time.deltaTime;
 
         if (objetivo == null) return;
@@ -107,7 +111,10 @@ public class TropaIA : MonoBehaviour
         {
             Disparar();
             siguienteDisparo = 1f / velocidadDisparo;
-
+            if (Stats.puedeLanzarHielo && queTropa == "hechicero")
+            {
+                siguienteDisparoHielo--;
+            }
         }
 
 
@@ -118,7 +125,15 @@ public class TropaIA : MonoBehaviour
     void Disparar()
     {
         Instantiate(ataque, puntoDeDisparo.position, puntoDeDisparo.rotation);
-        
+        if (siguienteDisparoHielo == 0)
+        {
+            Instantiate(ataqueHielo, puntoDeDisparo.position, puntoDeDisparo.rotation);
+            siguienteDisparoHielo = Stats.cadaCuantosAtaquesLanzarHielo;
+            if (Stats.puedeLanzarHielo2)
+            {
+                Instantiate(ataqueHielo, puntoDeDisparo.position, puntoDeDisparo.rotation);
+            }
+        }
     }
 
     private void OnDrawGizmos()

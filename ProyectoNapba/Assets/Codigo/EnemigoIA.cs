@@ -15,6 +15,9 @@ public class EnemigoIA : MonoBehaviour
     float rotacionDiff = 90f;
     float velocidadRotacion = 10f;
 
+    public SpriteRenderer sprite;
+    public Color congelacionColor;
+
     public int daño = 1;
 
     public int cargasDruida; //cantidad de veces que ha sido maldecido por algun druida
@@ -162,8 +165,30 @@ public class EnemigoIA : MonoBehaviour
             siguienteWaypoint();
         }
 
-              
+            
     }
 
+    public void Congelar()
+    {
+        Debug.Log("2");
+        if (!waitingForSeconds)
+        {
+            StartCoroutine(Congelacion());
+        }      
+    }
+
+    bool waitingForSeconds;
+    IEnumerator Congelacion()
+    {
+        waitingForSeconds = true;
+        sprite.color = congelacionColor;
+        float velocidadPreCongelacion = velocidad;
+        velocidad *= TropaStats.hechiceroRalentizacion; 
+        yield return new WaitForSeconds(5);
+        sprite.color = Color.white;
+        velocidad = velocidadPreCongelacion;
+        waitingForSeconds = false;
+        Debug.Log("3");
+    }
 
 }

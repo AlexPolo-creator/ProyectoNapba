@@ -220,4 +220,5 @@ MonoBehaviour:
   rotacionDiff: 90
   puntoDeDisparo: {fileID: 5897036855590127860}
   enemigoTag: Enemigo
+  ataqueHielo: {fileID: 7367317255925535631, guid: f09d4b6ca4a54f44d905c4649376b33a, type: 3}
   ataque: {fileID: 7367317255925535631, guid: 014c4bd861d28c84a8d27aea201511e3, type: 3}

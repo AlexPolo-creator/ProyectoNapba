@@ -12,6 +12,10 @@ public class Stats : MonoBehaviour
     public static int numLanceros;
     public static int numLanzadoresHacha;
 
+    public static int cadaCuantosAtaquesLanzarHielo;
+    public static bool puedeLanzarHielo;
+    public static bool puedeLanzarHielo2;
+
     private void Start()
     {
         InvokeRepeating("calcularStats", 0, 0.1f);
@@ -58,6 +62,9 @@ public class Stats : MonoBehaviour
         danoCausadoLanzadorHacha = 0;
         danoCausadoLancero = 0;
 
+        cadaCuantosAtaquesLanzarHielo = 4;
+        puedeLanzarHielo = false;
+        puedeLanzarHielo = false;
 
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }

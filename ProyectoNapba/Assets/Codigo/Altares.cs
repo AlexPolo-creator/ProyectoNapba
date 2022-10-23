@@ -14,10 +14,6 @@ public class Altares : MonoBehaviour
     public GameObject botonX22;
     public GameObject botonX23;
     public GameObject botonX24;
-    public GameObject botonX31;
-    public GameObject botonX32;
-    public GameObject botonX33;
-    public GameObject botonX34;
 
     public int precioX11;
     public int precioX12;
@@ -27,10 +23,6 @@ public class Altares : MonoBehaviour
     public int precioX22;
     public int precioX23;
     public int precioX24;
-    public int precioX31;
-    public int precioX32;
-    public int precioX33;
-    public int precioX34;
 
     public void MejoraX11()
     {
@@ -69,4 +61,41 @@ public class Altares : MonoBehaviour
             Stats.favorDeDioses -= precioX14;
         }
     }
+    public void MejoraX21()
+    {
+        if (Stats.favorDeDioses >= precioX21)
+        {
+            Stats.puedeLanzarHielo = true;
+            botonX22.SetActive(true);
+            Stats.favorDeDioses -= precioX21;
+        }
+    }
+    public void MejoraX22()
+    {
+        if (Stats.favorDeDioses >= precioX22)
+        {
+            Stats.cadaCuantosAtaquesLanzarHielo = 2;        
+            botonX23.SetActive(true);
+            Stats.favorDeDioses -= precioX22;
+        }
+    }
+    public void MejoraX23()
+    {
+        if (Stats.favorDeDioses >= precioX23)
+        {
+            TropaStats.hechiceroRalentizacion -= 0.25f;
+            botonX24.SetActive(true);
+            Stats.favorDeDioses -= precioX23;
+        }
+    }
+    public void MejoraX24()
+    {
+        if (Stats.favorDeDioses >= precioX24)
+        {
+            Stats.puedeLanzarHielo2 = true;
+            Stats.favorDeDioses -= precioX24;
+        }
+    }
+
+    // ALTAR A X:
 }
