@@ -272,7 +272,7 @@ public class Stats : MonoBehaviour
             PlayerPrefs.SetInt("top3", tabla[2]);
             PlayerPrefs.SetInt("top4", tabla[3]);
             PlayerPrefs.SetInt("top5", tabla[4]);
-            SceneManager.LoadScene(nextSceneToLoad);
+            SceneManager.LoadScene(nextSceneToLoad + 1);
         }
         if (tipo == 2)
         {
@@ -282,7 +282,7 @@ public class Stats : MonoBehaviour
             PlayerPrefs.SetInt("top3", tabla[2]);
             PlayerPrefs.SetInt("top4", tabla[3]);
             PlayerPrefs.SetInt("top5", tabla[4]);
-            SceneManager.LoadScene(nextSceneToLoad + 1);
+            SceneManager.LoadScene(nextSceneToLoad + 2);
         }
     }
 
