@@ -59462,8 +59462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520612b87d7dd5748a5f4d2806de24a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplicadorDificultadEnemigos: 0.7
-  multiplicadorRecompensa: 0.5
+  multiplicadorDificultadEnemigos: 0.6
+  multiplicadorRecompensa: 0.05
   dificultadEnemigosShow: 0
   segundosTranscurridos: 0
 --- !u!1 &2023036157
