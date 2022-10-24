@@ -1,8 +1,21 @@
-
+using TMPro;
 using UnityEngine;
 
 public class PanelMenuConstruccion : MonoBehaviour
 {
+    public TextMeshProUGUI contadorPrecio;
+    public static int precioTorre;
+
+    private void Start()
+    {
+        menuConstrucion = MenuConstrucion.instance;
+        precioTorre = 2000;
+    }
+    private void Update()
+    {
+        contadorPrecio.text = precioTorre.ToString();
+    }
+
     public ItemsDeCompra hechicero;
     public ItemsDeCompra verdugo;
     public ItemsDeCompra druida;
@@ -15,11 +28,6 @@ public class PanelMenuConstruccion : MonoBehaviour
     public ItemsDeCompra torre;
 
     MenuConstrucion menuConstrucion;
-
-    private void Start()
-    {
-        menuConstrucion = MenuConstrucion.instance;
-    }
 
     public void ElegirHechicero()
     {

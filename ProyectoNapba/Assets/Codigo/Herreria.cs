@@ -5,14 +5,13 @@ using TMPro;
 
 public class Herreria : MonoBehaviour
 {
-    public GameObject[] restoBotones;
-    public GameObject esteBoton;
 
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     public static bool menuActivado = false;
+    public static bool menuDesactivado = false;
 
     public GameObject getMenuHerreria;
     public static GameObject menuHerreria;
@@ -61,24 +60,27 @@ public class Herreria : MonoBehaviour
     {
         menuActivado = false;
 
-        foreach(GameObject boton in restoBotones)
-            {
-                boton.SetActive(true);
-
-            }
-            //esteBoton.SetActive(true);
+        Colegio.menuDesactivado = false;
+        Barracones.menuDesactivado = false;
+        Templo.menuDesactivado = false;
+        Cultivos.menuDesactivado = false;
+        Mina.menuDesactivado = false;
+        Barrio.menuDesactivado = false;
+        //esteBoton.SetActive(true);
     }
 
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
-            foreach(GameObject boton in restoBotones)
-            {
-                boton.SetActive(false);
+            Colegio.menuDesactivado = true;
+            Barracones.menuDesactivado = true;
+            Templo.menuDesactivado = true;
+            Cultivos.menuDesactivado = true;
+            Mina.menuDesactivado = true;
+            Barrio.menuDesactivado = true;
 
-            }
             //esteBoton.SetActive(true);
             Colegio.menuColegio.SetActive(false);
             Templo.menuTemplo.SetActive(false);
@@ -96,7 +98,7 @@ public class Herreria : MonoBehaviour
     //esta funcion se ejecuta al colocar el cursor sobre el nodo
     void OnMouseEnter()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
             sprite.color = hoverColor;
         }

@@ -8,12 +8,14 @@ public class MenuCiudad : MonoBehaviour
     public GameObject cultivoEdificio;
 
 
-    public void AumentarComidaEnMina()
+    public void AumentarPoblacionEnMina()
     {
+        Debug.Log("1");
         if (Stats.poblacionLibre > 0)
         {
             Stats.poblacionEnMina += 1;
             Stats.poblacionLibre -= 1;
+            Debug.Log("2 : " + Stats.poblacionLibre);
         }
         if (Mina.poblacionMinaCero)
         {
@@ -23,7 +25,7 @@ public class MenuCiudad : MonoBehaviour
         }        
     }
 
-    public void DisminuirComidaEnMina()
+    public void DisminuirPoblacionEnMina()
     {
         if (Stats.poblacionEnMina > 0)
         {
@@ -39,7 +41,7 @@ public class MenuCiudad : MonoBehaviour
             Mina.poblacionMinaCero = false;
         }
     }
-    public void AumentarComidaEnCultivo()
+    public void AumentarPoblacionEnCultivo()
     {
         if (Stats.poblacionLibre > 0)
         {
@@ -54,7 +56,7 @@ public class MenuCiudad : MonoBehaviour
         }
     }
 
-    public void DisminuirComidaEnCultivo()
+    public void DisminuirPoblacionEnCultivo()
     {
         if (Stats.poblacionEnCultivo > 0)
         {

@@ -173,14 +173,15 @@ public class Spawns : MonoBehaviour
         if (esperaEnemigosTipo2 > 10)
         {
             esperaEnemigosTipo2 -= esperaInicialEnemigosTipo2 * reduccionTiempo;
-
         }
         else
         {
+
             esperaEnemigosTipo2 = esperaInicialEnemigosTipo2;
 
             if (cantidadEnemigos2 <= 5)
             {
+
                 cantidadEnemigos2++;
             }
             else

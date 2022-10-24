@@ -1,10 +1,12 @@
-
+using TMPro;
 using UnityEngine;
 
 public class MenuConstrucion : MonoBehaviour
 {
     //no entiendo porque hay que hacer esto pero hay que hacerlo
     public static MenuConstrucion instance;
+
+    
 
     //esta funcion se ejecuta justo antes de Start
     void Awake()
@@ -59,7 +61,8 @@ public class MenuConstrucion : MonoBehaviour
         //resta al stat del oro el precio de la torre seleccionada
         Stats.oro -= torreAColocar.precio;
 
-        torreAColocar.precio = Mathf.RoundToInt(torreAColocar.precio * 0.5f);
+        torreAColocar.precio = Mathf.RoundToInt(torreAColocar.precio * SistemaDificultad.aumentoPrecioTropas);
+        PanelMenuConstruccion.precioTorre = torreAColocar.precio;
 
         //instaciamos una torre en la posicion del nodo seleccionado gracias a la fucnion de ObtenerPosicionColocacionTorre del script de NodoTorre.
         GameObject torre = (GameObject)Instantiate(torreAColocar.prefab, nodo.ObtenerPosicionColocacionTorre(), Quaternion.identity);

@@ -93,7 +93,7 @@ public class EnemigoIA : MonoBehaviour
 
         if (Templo.mejoraBotinDivino1)
         {
-            Stats.favorDeDioses += Mathf.RoundToInt(recompensa * (1 + (Stats.numMagos * Templo.numBotinDivino1 * 0.05f)));
+            Stats.favorDeDioses += Mathf.RoundToInt(recompensa * (1 + (Stats.numMagos * Templo.numBotinDivino1 * 0.01f)));
         }else
         {
             Stats.favorDeDioses += recompensa;

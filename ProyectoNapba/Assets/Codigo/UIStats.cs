@@ -58,29 +58,25 @@ public class UIStats : MonoBehaviour
         if (!Stats.oroMil)
         {
             oroTexto.text = " " + Stats.oro.ToString();
-            oroBarraconesTexto.text = " " + Stats.oro.ToString();
+
         }
         else if (Stats.oroMil)
         {
             oroEnMiles = (Stats.oro / 1000);
             oroEnMilesResto = ((Stats.oro - (1000 * oroEnMiles)) / 100);
             oroTexto.text = " " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
-            oroBarraconesTexto.text = " " + oroEnMiles.ToString() + "," + oroEnMilesResto.ToString() + "K";
+
         }
 
         if (!Stats.favorDeDiosesMil)
         {
             favorTexto.text = " " + Stats.favorDeDioses.ToString();
-            favorTemploTexto.text = " " + Stats.favorDeDioses.ToString();
-            favorColegioTexto.text = " " + Stats.favorDeDioses.ToString();
         }
         else if (Stats.favorDeDiosesMil)
         {
             favorEnMiles = (Stats.favorDeDioses / 1000);
             favorEnMilesResto = ((Stats.favorDeDioses - (1000 * favorEnMiles)) / 100);
             favorTexto.text = " " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
-            favorTemploTexto.text = " " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
-            favorColegioTexto.text = " " + favorEnMiles.ToString() + "," + favorEnMilesResto.ToString() + "K";
         }
 
         hechicerosBotonTexto.text = Stats.hechiceros.ToString();

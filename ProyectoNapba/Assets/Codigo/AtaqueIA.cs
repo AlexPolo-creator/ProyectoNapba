@@ -268,8 +268,11 @@ public class AtaqueIA : MonoBehaviour
     {        
         EnemigoIA e = objetivoAtaque.GetComponent<EnemigoIA>();//obtenemos el codigo del objetivo
 
-        if (queTropa == "verdugo" && e.vidaEnemigo <= (e.vidaEnemigoInicial * TropaStats.verdugoPuntoEjecucion)) //si el ataque es de un verdugo y el enemigo tiene menos vida que el punto de ejecucion ehecutamos al objetivo
+        
+
+        if (Stats.puedeEjecutar && queTropa == "verdugo" && e.vidaEnemigo <= (e.vidaEnemigoInicial * TropaStats.verdugoPuntoEjecucion)) //si el ataque es de un verdugo y el enemigo tiene menos vida que el punto de ejecucion ehecutamos al objetivo
         {
+            
             danoAtaque = e.vidaEnemigo;
             esEjecucion = true;          
         }
@@ -280,13 +283,13 @@ public class AtaqueIA : MonoBehaviour
             e.Congelar();
         }
 
-        if (queTropa == "druida") //si el ataque es de un druida
+        if (queTropa == "druida" && Stats.puedeMaldecir) //si el ataque es de un druida
         {           
             danoAtaque *= 1 + (e.cargasDruida * e.cargasDruida * TropaStats.druidaMultiplicadorDano);
             e.cargasDruida++;
         }
 
-        if (queTropa == "inquisidor") //si el ataque es de un druida
+        if (queTropa == "inquisidor" && Stats.puedeAtaqueArea) //si el ataque es de un druida
         {
             GameObject[] enemigos = GameObject.FindGameObjectsWithTag(enemigoTag); //crea un array con todos los gameObjects con el tag que establecemos antes
             

@@ -5,13 +5,13 @@ using TMPro;
 
 public class Templo : MonoBehaviour
 {
-    public GameObject[] restoBotones;
 
     public Color hoverColor; //color cuando poner el cursor por encima   
     private SpriteRenderer sprite; //creamos la variable sprite para poder cambiarle el color al SpriteRenderer de la mina   
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     public static bool menuActivado = false;
+    public static bool menuDesactivado = false;
 
     public GameObject getMenuTemplo;
     public static GameObject menuTemplo;
@@ -59,23 +59,27 @@ public class Templo : MonoBehaviour
     public void desactivarMenu()
     {
         menuActivado = false;
-        foreach(GameObject boton in restoBotones)
-            {
-                boton.SetActive(true);
 
-            }
+        Colegio.menuDesactivado = false;
+        Barracones.menuDesactivado = false;
+        Herreria.menuDesactivado = false;
+        Cultivos.menuDesactivado = false;
+        Mina.menuDesactivado = false;
+        Barrio.menuDesactivado = false;
     }
 
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
-            foreach(GameObject boton in restoBotones)
-            {
-                boton.SetActive(false);
+            Colegio.menuDesactivado = true;
+            Barracones.menuDesactivado = true;
+            Herreria.menuDesactivado = true;
+            Cultivos.menuDesactivado = true;
+            Mina.menuDesactivado = true;
+            Barrio.menuDesactivado = true;
 
-            }
             Colegio.menuColegio.SetActive(false);
             Barracones.menuBarracones.SetActive(false);
             Herreria.menuHerreria.SetActive(false);
@@ -92,7 +96,7 @@ public class Templo : MonoBehaviour
     //esta funcion se ejecuta al colocar el cursor sobre el nodo
     void OnMouseEnter()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
             sprite.color = hoverColor;
         }
@@ -250,7 +254,7 @@ public class Templo : MonoBehaviour
         {
             if (!botonBotinActivado)
             {               
-                textoBotinPrecio.text = precioBotinDivino1.ToString() + " de Favor";
+                textoBotinPrecio.text = precioBotinDivino1.ToString();
                 botonBotinDivino1.SetActive(true);
                 botonBotinActivado = true;
                 numBotonesMejoraAxctivos++;
@@ -260,7 +264,7 @@ public class Templo : MonoBehaviour
         {
             if (!botonCastigoActivado)
             {
-                textoCastigoPrecio.text = precioCastigoPiadoso1.ToString() + " de Favor";
+                textoCastigoPrecio.text = precioCastigoPiadoso1.ToString();
                 botonCastigoPiadoso1.SetActive(true);
                 botonCastigoActivado = true;
                 numBotonesMejoraAxctivos++;
@@ -270,7 +274,7 @@ public class Templo : MonoBehaviour
         {
             if (numSantaSentencia1 < 10 && !botonSentenciaActivado)
             {
-                textoSentenciaPrecio.text = precioSantaSentencia1.ToString() + " de Favor";
+                textoSentenciaPrecio.text = precioSantaSentencia1.ToString();
                 botonSantaSentencia1.SetActive(true);
                 botonSentenciaActivado = true;
                 numBotonesMejoraAxctivos++;
@@ -280,7 +284,7 @@ public class Templo : MonoBehaviour
         {
             if (numVivacidad1 < 5 && !botonVivacidadActivado)
             {
-                textoVivacidadPrecio.text = precioVivacidad1.ToString() + " de Favor";
+                textoVivacidadPrecio.text = precioVivacidad1.ToString();
                 botonVivacidad1.SetActive(true);
                 botonVivacidadActivado = true;
                 numBotonesMejoraAxctivos++;
@@ -290,7 +294,7 @@ public class Templo : MonoBehaviour
         {
             if (numClarividencia < 5 && !botonClarividenciaActivado)
             {
-                textoClarividenciaPrecio.text = precioClarividencia.ToString() + " de Favor";
+                textoClarividenciaPrecio.text = precioClarividencia.ToString();
                 botonClarividencia.SetActive(true);
                 botonClarividenciaActivado = true;
                 numBotonesMejoraAxctivos++;

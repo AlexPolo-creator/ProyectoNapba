@@ -5,13 +5,13 @@ using TMPro;
 
 public class Barracones : MonoBehaviour
 {
-    public GameObject[] restoBotones;
 
     public Color hoverColor; //color
     private SpriteRenderer sprite; //creamos la variable sprite pa cuando poner el cursor por encima   ra poder cambiarle el color al SpriteRenderer de la mina   
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     public static bool menuActivado = false;
+    public static bool menuDesactivado = false;
 
     public GameObject getMenuBarracones;
     public static GameObject menuBarracones;
@@ -45,11 +45,12 @@ public class Barracones : MonoBehaviour
     {
         menuActivado = false;
 
-        foreach(GameObject boton in restoBotones)
-            {
-                boton.SetActive(true);
-
-            }
+        Colegio.menuDesactivado = false;
+        Templo.menuDesactivado = false;
+        Herreria.menuDesactivado = false;
+        Cultivos.menuDesactivado = false;
+        Mina.menuDesactivado = false;
+        Barrio.menuDesactivado = false;
     }
 
     public int precioArqueroInicial;
@@ -100,13 +101,15 @@ public class Barracones : MonoBehaviour
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
-            foreach(GameObject boton in restoBotones)
-            {
-                boton.SetActive(false);
+            Colegio.menuDesactivado = true;
+            Templo.menuDesactivado = true;
+            Herreria.menuDesactivado = true;
+            Cultivos.menuDesactivado = true;
+            Mina.menuDesactivado = true;
+            Barrio.menuDesactivado = true;
 
-            }
             Templo.menuTemplo.SetActive(false);
             Colegio.menuColegio.SetActive(false);
             Herreria.menuHerreria.SetActive(false);
@@ -123,7 +126,7 @@ public class Barracones : MonoBehaviour
     //esta funcion se ejecuta al colocar el cursor sobre el nodo
     void OnMouseEnter()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
             sprite.color = hoverColor;
         }

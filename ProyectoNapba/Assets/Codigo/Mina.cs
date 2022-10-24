@@ -5,6 +5,7 @@ using TMPro;
 
 public class Mina : MonoBehaviour
 {
+    public static bool menuDesactivado = false;
 
     public static bool poblacionMinaCero;
 
@@ -62,8 +63,10 @@ public class Mina : MonoBehaviour
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
+            
+
             menuPoblacionMina.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
@@ -78,7 +81,7 @@ public class Mina : MonoBehaviour
     //esta funcion se ejecuta al colocar el cursor sobre el nodo
     void OnMouseEnter()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
             sprite.color = hoverColor;
         }

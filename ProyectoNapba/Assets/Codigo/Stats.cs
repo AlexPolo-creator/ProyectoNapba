@@ -17,13 +17,22 @@ public class Stats : MonoBehaviour
     public static bool puedeLanzarHielo;
     public static bool puedeLanzarHielo2;
 
+    public static bool puedeEjecutar;
+    public static bool puedeMaldecir;
+    public static bool puedeAtaqueArea;
+
+
+
+
     private void Start()
     {
         deserualizar();
         OrdenarPuntuaciones();
         InvokeRepeating("calcularStats", 0, 0.1f);
+        InvokeRepeating("restarComida", 0, 15f);
 
         printPuntuaciones();
+        printLogros();
 
         numMagos = 0;
         numSoldados = 0;
@@ -69,9 +78,18 @@ public class Stats : MonoBehaviour
 
         cadaCuantosAtaquesLanzarHielo = 4;
         puedeLanzarHielo = false;
-        puedeLanzarHielo = false;
+        puedeLanzarHielo2 = false;
+
+        puedeEjecutar = false;
+        puedeMaldecir = false;
+        puedeAtaqueArea = false;
 
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+    }
+
+    void restarComida()
+    {
+        comida -= (numMagos + numSoldados + poblacion) / 15;
     }
 
     void calcularStats()
@@ -94,6 +112,50 @@ public class Stats : MonoBehaviour
         danoCausadoArqueroShow = danoCausadoArquero;
         danoCausadoLanzadorHachaShow = danoCausadoLanzadorHacha;
         danoCausadoLanceroShow = danoCausadoLancero;
+
+        //logros:
+        //1:
+        if (numMagos >= 15 && logros[0] == 0)
+        {
+            logros[0] = 1;
+            serializarLogros();
+        }
+        if (CicloDiaNoche.dias == 7 && logros[1] == 0)
+        {
+            logros[1] = 1;
+            serializarLogros();
+        }
+        if (danoCausado >= 500000 && logros[2] == 0)
+        {
+            logros[2] = 1;
+            serializarLogros();
+        }
+        if (CicloDiaNoche.dias == 14 && logros[3] == 0)
+        {
+            logros[3] = 1;
+            serializarLogros();
+        }
+
+        if (numArqueros >= 10 || numLanceros >= 10 || numLanzadoresHacha >= 10 && logros[4] == 0)
+        {
+            logros[4] = 1;
+            serializarLogros();
+        }
+        if (danoCausado >= 5000000 && logros[5] == 0)
+        {
+            logros[5] = 1;
+            serializarLogros();
+        }
+        if (puedeLanzarHielo && puedeEjecutar && puedeMaldecir && puedeAtaqueArea && logros[6] == 0)
+        {
+            logros[6] = 1;
+            serializarLogros();
+        }        
+        if (CicloDiaNoche.dias == 30 && logros[7] == 0)
+        {
+            logros[7] = 1;
+            serializarLogros();
+        }
 
 
         if (favorDeDioses <= 10000)
@@ -289,6 +351,10 @@ public class Stats : MonoBehaviour
     [SerializeField] int[] tabla = { 0, 0, 0, 0, 0 };
     public static int dias, aux;     //SOLO PRUEBAS TEMPORALES
 
+    [SerializeField] int[] logros = { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public GameObject[] logrosShow;
+    public GameObject[] logrosLock;
+
     //variables escena menuInicio:
     public TextMeshProUGUI[] top5;
 
@@ -324,6 +390,22 @@ public class Stats : MonoBehaviour
 
         OrdenarPuntuaciones();
     }
+    public void printLogros()
+    {
+        for (int i = 0; i<8; i++)
+        {
+            if (logros[i] == 1)
+            {
+                logrosShow[i].SetActive(true);
+                logrosLock[i].SetActive(false);
+            }
+            else if (logros[i] == 0)
+            {
+                logrosShow[i].SetActive(false);
+                logrosLock[i].SetActive(true);
+            }
+        }
+    }
     public void printPuntuaciones()
     {
 
@@ -341,6 +423,19 @@ public class Stats : MonoBehaviour
         PlayerPrefs.SetInt("top5", tabla[4]);
 
     }
+
+    void serializarLogros()
+    {
+        PlayerPrefs.SetInt("logro1", logros[0]);
+        PlayerPrefs.SetInt("logro2", logros[1]);
+        PlayerPrefs.SetInt("logro3", logros[2]);
+        PlayerPrefs.SetInt("logro4", logros[3]);
+        PlayerPrefs.SetInt("logro5", logros[4]);
+        PlayerPrefs.SetInt("logro6", logros[5]);
+        PlayerPrefs.SetInt("logro7", logros[6]);
+        PlayerPrefs.SetInt("logro8", logros[7]);
+    }
+
     void deserualizar()
     {
         tabla[0] = PlayerPrefs.GetInt("top1");
@@ -348,6 +443,16 @@ public class Stats : MonoBehaviour
         tabla[2] = PlayerPrefs.GetInt("top3");
         tabla[3] = PlayerPrefs.GetInt("top4");
         tabla[4] = PlayerPrefs.GetInt("top5");
+
+        logros[0] = PlayerPrefs.GetInt("logro1");
+        logros[1] = PlayerPrefs.GetInt("logro2");
+        logros[2] = PlayerPrefs.GetInt("logro3");
+        logros[3] = PlayerPrefs.GetInt("logro4");
+        logros[4] = PlayerPrefs.GetInt("logro5");
+        logros[5] = PlayerPrefs.GetInt("logro6");
+        logros[6] = PlayerPrefs.GetInt("logro7");
+        logros[7] = PlayerPrefs.GetInt("logro8");
+
     }
     public void Reset()
     {
@@ -356,8 +461,20 @@ public class Stats : MonoBehaviour
         tabla[2] = 0;
         tabla[3] = 0;
         tabla[4] = 0;
+
+        logros[0] = 0;
+        logros[1] = 0;
+        logros[2] = 0;
+        logros[3] = 0;
+        logros[4] = 0;
+        logros[5] = 0;
+        logros[6] = 0;
+        logros[7] = 0;
+
         serializar();
+        serializarLogros();
         printPuntuaciones();
+        printLogros();
     }
 
 

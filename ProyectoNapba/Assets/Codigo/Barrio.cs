@@ -14,6 +14,7 @@ public class Barrio : MonoBehaviour
     public Color colorInicial; //creamos la variable colorInicial para poder reestablecer inical el color al SpriteRenderer de la mina cuando quitemos el cursor de encima
 
     private bool menuActivado = false;
+    public static bool menuDesactivado = false;
 
     public GameObject menuBarrio;
 
@@ -42,8 +43,10 @@ public class Barrio : MonoBehaviour
     //esta funcion se ejecuta al pulsar el nodo
     void OnMouseDown()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
+            
+
             menuBarrio.SetActive(true);
             menuActivado = true;
             sprite.color = colorInicial;
@@ -58,7 +61,7 @@ public class Barrio : MonoBehaviour
     //esta funcion se ejecuta al colocar el cursor sobre el nodo
     void OnMouseEnter()
     {
-        if (!menuActivado)
+        if (!menuActivado && !menuDesactivado)
         {
             sprite.color = hoverColor;
         }
