@@ -139,7 +139,7 @@ public class Stats : MonoBehaviour
             logros[1] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
-            textoPopUp.SetText("La Promulgación de la Santa Sentencia");
+            textoPopUp.SetText("La Promulgaciï¿½n de la Santa Sentencia");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (danoCausado >= 500000 && logros[2] == 0)
@@ -158,13 +158,17 @@ public class Stats : MonoBehaviour
             textoPopUp.SetText("La Era Sangrienta");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
-        if (numArqueros == 10 || numLanceros == 10 || numLanzadoresHacha == 10 && logros[4] == 0)
+        if (numArqueros == 10 || numLanceros == 10 || numLanzadoresHacha == 10 )
         {
-            logros[4] = 1;
+            if(logros[4] == 0){
+                  logros[4] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
             textoPopUp.SetText("Los Hijos de Anarfin");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
+
+            }
+            
         }
         if (danoCausado >= 5000000 && logros[5] == 0)
         {
