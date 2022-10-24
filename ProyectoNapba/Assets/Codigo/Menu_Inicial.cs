@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Menu_Inicial : MonoBehaviour
 {
-    
+    private void Awake()
+    {
+        Stats.inGameplay = false;
+    }
     public void Jugar(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 

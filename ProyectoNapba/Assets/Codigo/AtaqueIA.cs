@@ -27,7 +27,8 @@ public class AtaqueIA : MonoBehaviour
     public float velocidadRotacion = 100f;    //la velocidad a la que rota para mirar al objetivo, tiene que ser muy alta
 
     public GameObject popUpEjecucion;
-  
+    public GameObject PopUpMaldicion;
+
 
     void BuscarObjetivo()//funcion por la cual establece su objetivo
     {
@@ -287,6 +288,8 @@ public class AtaqueIA : MonoBehaviour
         {           
             danoAtaque *= 1 + (e.cargasDruida * e.cargasDruida * TropaStats.druidaMultiplicadorDano);
             e.cargasDruida++;
+            Instantiate(PopUpMaldicion, objetivoAtaque.position, Quaternion.identity);
+
         }
 
         if (queTropa == "inquisidor" && Stats.puedeAtaqueArea) //si el ataque es de un druida

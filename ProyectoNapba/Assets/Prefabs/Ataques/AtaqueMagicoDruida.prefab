@@ -197,6 +197,8 @@ MonoBehaviour:
   velocidad: 2
   enemigoTag: Enemigo
   velocidadRotacion: 10000
+  popUpEjecucion: {fileID: 0}
+  PopUpMaldicion: {fileID: 737823371747002220, guid: 3cdbe2a575304e34d9196a49022759c2, type: 3}
   colorCrit: {r: 0.8784314, g: 0.15686275, b: 0, a: 1}
   colorEjecucion: {r: 0, g: 0, b: 0, a: 0}
   PopUpDano: {fileID: 737823371747002220, guid: 638d20b883ac5f74eb347939ed514948, type: 3}

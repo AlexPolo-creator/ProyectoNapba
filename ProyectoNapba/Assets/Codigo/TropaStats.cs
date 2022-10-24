@@ -116,9 +116,14 @@ public class TropaStats : MonoBehaviour
     public float lanceroCriticoPorcentajeInicial = 0f;
     public static float lanceroCriticoPorcentaje; //entre 100
 
+    private void Awake()
+    {
+        Stats.inGameplay = true;
+    }
 
     private void Start()
     {
+        
 
         hechiceroVelocidadDeDisparo = hechiceroVelocidadDeDisparoInicial;
         hechiceroAtaque = hechiceroAtaqueInicial;

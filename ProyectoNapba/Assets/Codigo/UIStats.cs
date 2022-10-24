@@ -25,7 +25,11 @@ public class UIStats : MonoBehaviour
 
     public TextMeshProUGUI hechicerosBotonTexto;
     public TextMeshProUGUI verdugosBotonTexto;
+    public TextMeshProUGUI druidasBotonTexto;
+    public TextMeshProUGUI inquisidoresBotonTexto;
     public TextMeshProUGUI arquerosBotonTexto;
+    public TextMeshProUGUI lancerosBotonTexto;
+    public TextMeshProUGUI lanzadoresHachasBotonTexto;
 
 
     private void Start()
@@ -81,7 +85,11 @@ public class UIStats : MonoBehaviour
 
         hechicerosBotonTexto.text = Stats.hechiceros.ToString();
         verdugosBotonTexto.text = Stats.verdugos.ToString();
+        druidasBotonTexto.text = Stats.druidas.ToString();
+        inquisidoresBotonTexto.text = Stats.inquisidores.ToString();
         arquerosBotonTexto.text = Stats.arqueros.ToString();
+        lancerosBotonTexto.text = Stats.lanceros.ToString();
+        lanzadoresHachasBotonTexto.text = Stats.lanzadoresHacha.ToString();
 
         poblacionTexto.text = " " + Stats.poblacion.ToString() + " (" + Stats.poblacionLibre.ToString() + ")";
         

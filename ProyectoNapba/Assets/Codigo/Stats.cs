@@ -21,15 +21,24 @@ public class Stats : MonoBehaviour
     public static bool puedeMaldecir;
     public static bool puedeAtaqueArea;
 
+    public static bool inGameplay = false;
 
-
+    
 
     private void Start()
     {
         deserualizar();
+
         OrdenarPuntuaciones();
-        InvokeRepeating("calcularStats", 0, 0.1f);
-        InvokeRepeating("restarComida", 0, 15f);
+
+        if (inGameplay)
+        {
+            InvokeRepeating("calcularStats", 0, 0.1f);
+            Debug.Log("calculando");
+        }
+        
+
+        InvokeRepeating("restarComida", 15f, 15f);
 
         printPuntuaciones();
         printLogros();
