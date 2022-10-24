@@ -160,28 +160,29 @@ public class Stats : MonoBehaviour
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
 
-        if (numArqueros >= 10 || numLanceros >= 10 || numLanzadoresHacha >= 10 && logros[4] == 0)
+        if (danoCausado >= 5000000 && logros[5] == 0)
         {
-            logros[4] = 1;
+            logros[5] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
             textoPopUp.SetText("La Era Sangrienta");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
-        if (danoCausado >= 5000000 && logros[5] == 0)
-        {
-            logros[5] = 1;
-            serializarLogros();
-        }
         if (puedeLanzarHielo && puedeEjecutar && puedeMaldecir && puedeAtaqueArea && logros[6] == 0)
         {
             logros[6] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("La Era Sangrienta");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }        
         if (CicloDiaNoche.dias == 30 && logros[7] == 0)
         {
             logros[7] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("La Era Sangrienta");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
 
 
