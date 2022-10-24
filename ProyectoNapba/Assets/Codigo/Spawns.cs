@@ -108,14 +108,16 @@ public class Spawns : MonoBehaviour
         }
         else
         {
-            esperaEnemigosTipo1 = esperaInicialEnemigosTipo1;
+            
 
-            if (cantidadEnemigos1 <= 5)
+            if (cantidadEnemigos1 < 5)
             {
+                esperaEnemigosTipo1 = esperaInicialEnemigosTipo1;
                 cantidadEnemigos1++;
             }
             else
             {
+                
                 cantidadEnemigos1 = 5;
             }            
         }
@@ -177,11 +179,11 @@ public class Spawns : MonoBehaviour
         else
         {
 
-            esperaEnemigosTipo2 = esperaInicialEnemigosTipo2;
+            
 
-            if (cantidadEnemigos2 <= 5)
+            if (cantidadEnemigos2 < 5)
             {
-
+                esperaEnemigosTipo2 = esperaInicialEnemigosTipo2;
                 cantidadEnemigos2++;
             }
             else
@@ -247,10 +249,11 @@ public class Spawns : MonoBehaviour
         }
         else
         {
-            esperaEnemigosTipo3 = esperaInicialEnemigosTipo3;
+            
 
-            if (cantidadEnemigos3 <= 5)
+            if (cantidadEnemigos3 < 5)
             {
+                esperaEnemigosTipo3 = esperaInicialEnemigosTipo3;
                 cantidadEnemigos3++;
             }
             else
@@ -316,10 +319,11 @@ public class Spawns : MonoBehaviour
         }
         else
         {
-            esperaEnemigosTipo4 = esperaInicialEnemigosTipo4;
+            
 
-            if (cantidadEnemigos4 <= 5)
+            if (cantidadEnemigos4 < 5)
             {
+                esperaEnemigosTipo4 = esperaInicialEnemigosTipo4;
                 cantidadEnemigos4++;
             }
             else
