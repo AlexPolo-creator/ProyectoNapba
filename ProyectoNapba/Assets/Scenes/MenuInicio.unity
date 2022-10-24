@@ -2631,8 +2631,8 @@ MonoBehaviour:
   popUpLogro: {fileID: 0}
   popUpPos: {fileID: 0}
   vidaJugadorInicial: 1000
-  oroInicial: 250000
-  favorDeDiosesInicial: 100000
+  oroInicial: 2500
+  favorDeDiosesInicial: 100
   comidaInicial: 50
   poblacionLibreInicial: 10
   poblacionEnMinaInicial: 10
