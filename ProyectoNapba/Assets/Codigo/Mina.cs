@@ -50,7 +50,7 @@ public class Mina : MonoBehaviour
         yield return new WaitForSeconds(velocidadMineros);
 
         //suma al stat del oro la produccion de oro multiplidada por la poblacion trabajando en la mina
-        Stats.oro += produccionOro * Stats.poblacionEnMina;
+        Stats.oro += Mathf.RoundToInt(produccionOro * Stats.poblacionEnMina * SistemaDificultad.recompensaSegunTiempo);
 
         textoPopUp = popUpOro.GetComponent<TextMeshPro>();
         textoPopUp.SetText((produccionOro * Stats.poblacionEnMina).ToString());
