@@ -31,5 +31,10 @@ public class SistemaDificultad : MonoBehaviour
         dificultadEnemigosShow = dificultadEnemigos;
     }
 
-    
+    public void Start()
+    {
+        multiplicadorRecompensa = 0;
+
+
+    }
 }

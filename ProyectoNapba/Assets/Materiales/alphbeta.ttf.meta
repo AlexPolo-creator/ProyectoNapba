@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a83232ac85c9cda4c949129b034acc6f
+guid: c4d883872361d9e47af24d1f85a22f0e
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Silkscreen
+  - Alpha Beta BRK
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

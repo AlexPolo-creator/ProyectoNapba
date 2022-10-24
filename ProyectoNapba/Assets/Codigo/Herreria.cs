@@ -273,7 +273,7 @@ public class Herreria : MonoBehaviour
         {
             if (!botonMetalurgiaAvanzadaActivado)
             {
-                textoMetalurgiaAvanzadaPrecio.text = precioMetalurgiaAvanzada.ToString() + " de Oro";
+                textoMetalurgiaAvanzadaPrecio.text = precioMetalurgiaAvanzada.ToString() + " ";
                 botonMetalurgiaAvanzada.SetActive(true);
                 botonMetalurgiaAvanzadaActivado = true;
                 numBotonesMejoraActivos++;
@@ -283,7 +283,7 @@ public class Herreria : MonoBehaviour
         {
             if (!botonOrgulloActivado)
             {
-                textoOrgulloPrecio.text = precioOrgullo.ToString() + " de Oro";
+                textoOrgulloPrecio.text = precioOrgullo.ToString() + " ";
                 botonOrgullo.SetActive(true);
                 botonOrgulloActivado = true;
                 numBotonesMejoraActivos++;
@@ -293,7 +293,7 @@ public class Herreria : MonoBehaviour
         {
             if (numPuntasReforzadas < 10 && !botonPuntasReforzadasActivado)
             {
-                textoPuntasReforzadasPrecio.text = precioPuntasReforzadas.ToString() + " de Oro";
+                textoPuntasReforzadasPrecio.text = precioPuntasReforzadas.ToString() + " ";
                 botonPuntasReforzadas.SetActive(true);
                 botonPuntasReforzadasActivado = true;
                 numBotonesMejoraActivos++;
@@ -303,7 +303,7 @@ public class Herreria : MonoBehaviour
         {
             if (numDestreza < 5 && !botonDestrezaActivado)
             {
-                textoDestrezaPrecio.text = precioDestreza.ToString() + " de Oro";
+                textoDestrezaPrecio.text = precioDestreza.ToString() + " ";
                 botonDestreza.SetActive(true);
                 botonDestrezaActivado = true;
                 numBotonesMejoraActivos++;
@@ -313,7 +313,7 @@ public class Herreria : MonoBehaviour
         {
             if (numLentesSagaces < 5 && !botonLentesSagacesActivado)
             {
-                textoLentesSagacesPrecio.text = precioLentesSagaces.ToString() + " de Oro";
+                textoLentesSagacesPrecio.text = precioLentesSagaces.ToString() + " ";
                 botonLentesSagaces.SetActive(true);
                 botonLentesSagacesActivado = true;
                 numBotonesMejoraActivos++;

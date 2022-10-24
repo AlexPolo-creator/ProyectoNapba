@@ -66,7 +66,7 @@ public class Colegio : MonoBehaviour
             Stats.hechiceros += 1;
             Stats.favorDeDioses -= precioHechicero;
             numHechicerosEntrenados++;
-            precioHechicero = Mathf.RoundToInt(precioHechicero * SistemaDificultad.aumentoPrecioTropas);
+            precioHechicero = Mathf.RoundToInt(precioHechicero * SistemaDificultad.aumentoPrecioTropas * 1.5f);
             precioHechiceroTexto.text = precioHechicero.ToString();
         }
     }
@@ -81,7 +81,7 @@ public class Colegio : MonoBehaviour
             Stats.verdugos += 1;
             Stats.favorDeDioses -= precioVerdugo;
             numVerdugosEntrenados++;
-            precioVerdugo = Mathf.RoundToInt(precioVerdugo * SistemaDificultad.aumentoPrecioTropas);
+            precioVerdugo = Mathf.RoundToInt(precioVerdugo * SistemaDificultad.aumentoPrecioTropas * 1.5f);
             precioVerdugoTexto.text = precioVerdugo.ToString();
         }
     }
@@ -96,7 +96,7 @@ public class Colegio : MonoBehaviour
             Stats.druidas += 1;
             Stats.favorDeDioses -= precioDruida;
             numDruidasEntrenados++;
-            precioDruida = Mathf.RoundToInt(precioDruida * SistemaDificultad.aumentoPrecioTropas);
+            precioDruida = Mathf.RoundToInt(precioDruida * SistemaDificultad.aumentoPrecioTropas * 1.5f);
             precioDruidaTexto.text = precioDruida.ToString();
         }
     }
@@ -111,7 +111,7 @@ public class Colegio : MonoBehaviour
             Stats.inquisidores += 1;
             Stats.favorDeDioses -= precioInquisidor;
             numInquisidoresEntrenados++;
-            precioInquisidor = Mathf.RoundToInt(precioInquisidor * SistemaDificultad.aumentoPrecioTropas);
+            precioInquisidor = Mathf.RoundToInt(precioInquisidor * SistemaDificultad.aumentoPrecioTropas * 1.5f);
             precioInquisidorTexto.text = precioInquisidor.ToString();
         }
     }

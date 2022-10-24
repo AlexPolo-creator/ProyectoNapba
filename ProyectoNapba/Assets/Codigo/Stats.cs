@@ -98,7 +98,7 @@ public class Stats : MonoBehaviour
 
     void restarComida()
     {
-        comida -= (numMagos + numSoldados + poblacion) / 15;
+        comida -= (numMagos + numSoldados + poblacion) / 5;
     }
 
     void calcularStats()

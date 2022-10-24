@@ -4,6 +4,8 @@ using TMPro;
 
 public class AtaqueIA : MonoBehaviour
 {   
+    bool esCongelacion;
+    
     Transform objetivoAtaque; //el objetivo del ataque, lo establecemos en Start()
 
     [Header("Que tropa es la atacante?:")]
@@ -28,7 +30,7 @@ public class AtaqueIA : MonoBehaviour
 
     public GameObject popUpEjecucion;
     public GameObject PopUpMaldicion;
-
+    public GameObject PopUpCongelacion;
 
     void BuscarObjetivo()//funcion por la cual establece su objetivo
     {
@@ -282,6 +284,13 @@ public class AtaqueIA : MonoBehaviour
         {
             Debug.Log("1");
             e.Congelar();
+            Instantiate(PopUpCongelacion, objetivoAtaque.position, Quaternion.identity);
+            esCongelacion = true;
+            
+        }
+        else {
+            esCongelacion = false;
+
         }
 
         if (queTropa == "druida" && Stats.puedeMaldecir) //si el ataque es de un druida
@@ -388,7 +397,12 @@ public class AtaqueIA : MonoBehaviour
             textoPopUp.SetText("");
             Instantiate(popUpEjecucion, objetivoAtaque.position, Quaternion.identity);
             return;
-        }      
+        }    
+        else if (esCongelacion)
+        {
+            return;                
+
+        }  
         textoPopUp.SetText(cantidadDano.ToString());
         Instantiate(PopUpDano, objetivoAtaque.position, Quaternion.identity);
     }

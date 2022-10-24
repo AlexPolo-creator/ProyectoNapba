@@ -523,7 +523,7 @@ public class Altares : MonoBehaviour
     {
         if (Stats.favorDeDioses >= precioA[5])
         {
-            TropaStats.inquisidorMultiplicadorDano += 0.1f;
+            TropaStats.inquisidorMultiplicadorDano += 0.05f;
             Stats.favorDeDioses -= precioA[5];
             Debug.Log("A22");
         }
