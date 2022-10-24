@@ -2628,9 +2628,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa61c48a50428d4bb8274aa071f8a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpLogro: {fileID: 0}
+  popUpPos: {fileID: 0}
   vidaJugadorInicial: 1000
-  oroInicial: 2500
-  favorDeDiosesInicial: 100
+  oroInicial: 250000
+  favorDeDiosesInicial: 100000
   comidaInicial: 50
   poblacionLibreInicial: 10
   poblacionEnMinaInicial: 10

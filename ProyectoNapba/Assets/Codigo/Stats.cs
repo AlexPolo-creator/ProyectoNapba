@@ -23,7 +23,9 @@ public class Stats : MonoBehaviour
 
     public static bool inGameplay = false;
 
-    
+    public GameObject popUpLogro;
+    public Transform popUpPos;
+    TextMeshPro textoPopUp;
 
     private void Start()
     {
@@ -126,29 +128,45 @@ public class Stats : MonoBehaviour
         //1:
         if (numMagos >= 15 && logros[0] == 0)
         {
+            Debug.Log("aaaaaaa");
             logros[0] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("La Danza de la Creacion");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (CicloDiaNoche.dias == 7 && logros[1] == 0)
         {
             logros[1] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("El Vastago de la Oscuridad");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (danoCausado >= 500000 && logros[2] == 0)
         {
             logros[2] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("La Promulgación de la Santa Sentencia");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (CicloDiaNoche.dias == 14 && logros[3] == 0)
         {
             logros[3] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("La Era Dorada");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
 
         if (numArqueros >= 10 || numLanceros >= 10 || numLanzadoresHacha >= 10 && logros[4] == 0)
         {
             logros[4] = 1;
             serializarLogros();
+            textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+            textoPopUp.SetText("La Era Sangrienta");
+            Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (danoCausado >= 5000000 && logros[5] == 0)
         {
