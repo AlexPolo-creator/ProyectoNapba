@@ -128,10 +128,11 @@ public class Stats : MonoBehaviour
         //1:
         if (numMagos >= 15 && logros[0] == 0)
         {
+            Debug.Log("aaaaaaa");
             logros[0] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
-            textoPopUp.SetText("El Vastago de la Oscuridad");
+            textoPopUp.SetText("La Danza de la Creacion");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (CicloDiaNoche.dias == 7 && logros[1] == 0)
@@ -139,7 +140,11 @@ public class Stats : MonoBehaviour
             logros[1] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+<<<<<<< HEAD
             textoPopUp.SetText("La Promulgaciï¿½n de la Santa Sentencia");
+=======
+            textoPopUp.SetText("El Vastago de la Oscuridad");
+>>>>>>> parent of a6e036f (AAAAAAAAAAAAAAAAAA)
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (danoCausado >= 500000 && logros[2] == 0)
@@ -147,7 +152,7 @@ public class Stats : MonoBehaviour
             logros[2] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
-            textoPopUp.SetText("La Era Dorada");
+            textoPopUp.SetText("La Promulgación de la Santa Sentencia");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (CicloDiaNoche.dias == 14 && logros[3] == 0)
@@ -155,6 +160,7 @@ public class Stats : MonoBehaviour
             logros[3] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
+<<<<<<< HEAD
             textoPopUp.SetText("La Era Sangrienta");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
@@ -165,17 +171,21 @@ public class Stats : MonoBehaviour
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
             textoPopUp.SetText("Los Hijos de Anarfin");
+=======
+            textoPopUp.SetText("La Era Dorada");
+>>>>>>> parent of a6e036f (AAAAAAAAAAAAAAAAAA)
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
 
             }
             
         }
+
         if (danoCausado >= 5000000 && logros[5] == 0)
         {
             logros[5] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
-            textoPopUp.SetText("La Mentira de los Dioses");
+            textoPopUp.SetText("La Era Sangrienta");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
         if (puedeLanzarHielo && puedeEjecutar && puedeMaldecir && puedeAtaqueArea && logros[6] == 0)
@@ -183,7 +193,7 @@ public class Stats : MonoBehaviour
             logros[6] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
-            textoPopUp.SetText("..");
+            textoPopUp.SetText("La Era Sangrienta");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }        
         if (CicloDiaNoche.dias == 30 && logros[7] == 0)
@@ -191,7 +201,7 @@ public class Stats : MonoBehaviour
             logros[7] = 1;
             serializarLogros();
             textoPopUp = popUpLogro.GetComponent<TextMeshPro>();
-            textoPopUp.SetText("..");
+            textoPopUp.SetText("La Era Sangrienta");
             Instantiate(popUpLogro, popUpPos.position, Quaternion.identity);
         }
 

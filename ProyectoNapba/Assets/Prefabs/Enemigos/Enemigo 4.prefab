@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 7806536576105148037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.599, y: -4.02, z: 0}
-  m_LocalScale: {x: 0.18000002, y: 0.18000002, z: 1.1250001}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5169282385711839913}
   m_Father: {fileID: 0}
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 0.2
   velocidadInicial: 0.2
-  vidaEnemigo: 700
-  vidaEnemigoInicial: 700
+  vidaEnemigo: 1000
+  vidaEnemigoInicial: 1000
   recompensa: 100
   recompensaInicial: 100
   sprite: {fileID: 1481409291357293207}
