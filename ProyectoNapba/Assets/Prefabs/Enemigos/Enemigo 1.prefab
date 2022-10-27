@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 0.5
   velocidadInicial: 0.5
-  vidaEnemigo: 100
-  vidaEnemigoInicial: 100
+  vidaEnemigo: 75
+  vidaEnemigoInicial: 75
   recompensa: 5
   recompensaInicial: 5
   sprite: {fileID: 1481409291357293207}
