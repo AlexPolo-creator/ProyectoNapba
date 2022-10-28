@@ -1678,7 +1678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0049632, y: -368}
+  m_AnchoredPosition: {x: -0.0049632, y: -444}
   m_SizeDelta: {x: 361.9473, y: 78.2464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &250759399
@@ -3741,7 +3741,7 @@ MonoBehaviour:
   vidaJugadorInicial: 1000
   oroInicial: 2500
   favorDeDiosesInicial: 100
-  comidaInicial: 50
+  comidaInicial: 75
   poblacionLibreInicial: 10
   poblacionEnMinaInicial: 10
   poblacionEnCultivoInicial: 10
@@ -6226,7 +6226,11 @@ MonoBehaviour:
 
 
     SR. GARROTE (CADA VEZ QUE HACIA ALGO LO HACIA
-    MAL Y EL LOCO SE ENFADABA)'
+    MAL Y EL LOCO SE ENFADABA)
+
+
+    SR. SAMUEL (LA LOCURA DEL LOCO) (no lo pillo
+    - atte.Borja)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2d60ad3bdba18b04c81148935a22d68a, type: 2}
   m_sharedMaterial: {fileID: -3663385220215569738, guid: 2d60ad3bdba18b04c81148935a22d68a, type: 2}

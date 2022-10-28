@@ -242,17 +242,17 @@ public class Herreria : MonoBehaviour
     {
         if (mejoraOrgullo && numActualArqueros < Stats.numArqueros)
         {
-            TropaStats.arqueroAtaque = TropaStats.arqueroAtaque * (1 + (0.05f * Stats.numArqueros));
+            TropaStats.arqueroAtaque = (TropaStats.arqueroAtaque * (1 + (0.005f * Stats.numArqueros)) + (3 * Stats.numArqueros));
             numActualArqueros = Stats.numArqueros;
         }
         if (mejoraOrgullo && numActualLanzadoresHachas < Stats.numLanzadoresHacha)
         {
-            TropaStats.lanzadorHachasAtaque = TropaStats.lanzadorHachasAtaque * (1 + (0.05f * Stats.numLanzadoresHacha));
+            TropaStats.lanzadorHachasAtaque = (TropaStats.lanzadorHachasAtaque * (1 + (0.005f * Stats.numLanzadoresHacha)) + (3 * Stats.numLanzadoresHacha));
             numActualLanzadoresHachas = Stats.numLanzadoresHacha;
         }
         if (mejoraOrgullo && numActualLanceros < Stats.numLanceros)
         {
-            TropaStats.lanceroAtaque = TropaStats.lanceroAtaque * (1 + (0.05f * Stats.numLanceros));
+            TropaStats.lanceroAtaque = (TropaStats.lanceroAtaque * (1 + (0.005f * Stats.numLanceros)) + (3 * Stats.numLanceros));
             numActualLanceros = Stats.numLanceros;
         }
 
