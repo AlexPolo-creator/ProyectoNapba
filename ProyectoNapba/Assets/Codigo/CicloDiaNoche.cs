@@ -18,6 +18,9 @@ public class CicloDiaNoche : MonoBehaviour
     public int horas = 10;
     public static int dias = 1;
 
+    public float lumMax;
+    public float lumMin;
+
 
     float rate = 0.18f;
 
@@ -71,6 +74,7 @@ public class CicloDiaNoche : MonoBehaviour
         if (horas>=20 && horas<22) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
         {
             sol.intensity -= rate * Time.deltaTime; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1
+            sol.intensity = Mathf.Clamp(sol.intensity, lumMin, lumMax);
         }
 
         if (horas == 21 && minutos == 30) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
@@ -89,13 +93,14 @@ public class CicloDiaNoche : MonoBehaviour
 
         if (horas == 22) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
         {
-            sol.intensity = 0.08f; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1
+            sol.intensity = lumMin; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1
             
         }
 
         if (horas>=6 && horas<8) // Dawn at 6:00 / 6am    -   until 7:00 / 7am
         {
             sol.intensity += rate * Time.deltaTime;
+            sol.intensity = Mathf.Clamp(sol.intensity, lumMin, lumMax);
         }
 
         if (horas == 7) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
@@ -114,7 +119,7 @@ public class CicloDiaNoche : MonoBehaviour
 
         if (horas == 8) // dusk at 21:00 / 9pm    -   until 22:00 / 10pm
         {
-            sol.intensity = 1; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1
+            sol.intensity = lumMax; // since dusk is 1 hr, we just divide the mins by 60 which will slowly increase from 0 - 1
             
         }
 
@@ -124,6 +129,6 @@ public class CicloDiaNoche : MonoBehaviour
     {
 
         horaDisplay.text = string.Format("{0:00}:{1:00}", horas, minutos); // The formatting ensures that there will always be 0's in empty spaces
-        diaDisplay.text = "Day: " + dias; // display day counter
+        diaDisplay.text = "Dia: " + dias; // display day counter
     }
 }

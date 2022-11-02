@@ -35,7 +35,7 @@ public class Barrio : MonoBehaviour
         {
             Stats.poblacionLibre += 1;
             Stats.comida -= precioPoblacion;
-            precioPoblacion = Mathf.RoundToInt(precioPoblacion * SistemaDificultad.aumentoPrecioTropas);
+            precioPoblacion = Mathf.RoundToInt(precioPoblacion * (SistemaDificultad.aumentoPrecioTropas / 2));
             textoPrecio.text = precioPoblacion.ToString();
         }
     }

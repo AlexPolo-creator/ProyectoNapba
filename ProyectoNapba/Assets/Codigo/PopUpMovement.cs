@@ -8,7 +8,8 @@ public class PopUpMovement : MonoBehaviour
     public float velocidad = 0.25f;
     public float tiempoDesaparicion = 1.5f;
     public float velocidadDesaparicion = 1f;
-    float velocidadFrenado = 0.005f;
+    float velocidadFrenado = 0.2f;
+    float aceleracionFrenado = 2f;
 
     private TextMeshPro texto;
     private Color colorTexto;
@@ -27,7 +28,9 @@ public class PopUpMovement : MonoBehaviour
 
     void Update()
     {
-        velocidad -= velocidad * velocidadFrenado;
+        velocidad -= velocidad * velocidadFrenado * Time.deltaTime;
+        velocidadFrenado += velocidadFrenado * aceleracionFrenado * Time.deltaTime;
+        Debug.Log(velocidadFrenado);
         transform.Translate(new Vector3(0f, 1f, 0f) * velocidad * Time.deltaTime, Space.World);
         tiempoDesaparicion -= Time.deltaTime;
         if (tiempoDesaparicion <= 0f)
@@ -38,8 +41,6 @@ public class PopUpMovement : MonoBehaviour
 
     void Desaparicion()
     {
-        velocidad -= velocidad * velocidadFrenado;
-
         colorTexto.a -= velocidadDesaparicion * Time.deltaTime;
         colorSprite.a -= velocidadDesaparicion * Time.deltaTime;
         texto.color = colorTexto;

@@ -987,9 +987,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tu ciudad ha caido y con ella la ultima resistencia de la humanidad. Los
-    Rechazados han completado su sanguinaria venganza y ya no hay ej\xE9rcito sobre
-    la faz de la Tierra capaz de volver a hacerles frente."
+  m_text: Tu ciudad ha caido y con ella la ultima resistencia de la humanidad. Los
+    Rechazados han completado su sanguinaria venganza y ya no hay ejercito sobre
+    la faz de la Tierra capaz de volver a hacerles frente.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dcc7eccaee9dba7479b131657615cd7c, type: 2}
   m_sharedMaterial: {fileID: 3967157415824175864, guid: dcc7eccaee9dba7479b131657615cd7c, type: 2}

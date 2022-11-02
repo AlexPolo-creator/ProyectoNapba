@@ -27,8 +27,12 @@ public class Stats : MonoBehaviour
     public Transform popUpPos;
     TextMeshPro textoPopUp;
 
+
+
     private void Start()
     {
+        
+
         deserualizar();
 
         OrdenarPuntuaciones();
@@ -44,6 +48,7 @@ public class Stats : MonoBehaviour
 
         printPuntuaciones();
         printLogros();
+
 
         numMagos = 0;
         numSoldados = 0;
