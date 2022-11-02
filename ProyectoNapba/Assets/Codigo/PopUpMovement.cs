@@ -30,7 +30,7 @@ public class PopUpMovement : MonoBehaviour
     {
         velocidad -= velocidad * velocidadFrenado * Time.deltaTime;
         velocidadFrenado += velocidadFrenado * aceleracionFrenado * Time.deltaTime;
-        Debug.Log(velocidadFrenado);
+       
         transform.Translate(new Vector3(0f, 1f, 0f) * velocidad * Time.deltaTime, Space.World);
         tiempoDesaparicion -= Time.deltaTime;
         if (tiempoDesaparicion <= 0f)
